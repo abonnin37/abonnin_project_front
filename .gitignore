@@ -16,8 +16,7 @@ assets.json
 .env.production.local
 
 # IDE
-/.idea
-
+.idea
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

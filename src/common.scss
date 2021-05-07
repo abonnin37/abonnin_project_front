@@ -1,0 +1,60 @@
+// Colors
+$black: #002811;
+$green: #095228;
+$lightGreen: #CEDCD4;
+$whitePastel: #F5F2F1;
+$gray: #716b67;
+
+// Fonts
+$font: 'Work Sans', sans-serif;
+$fontTitle: 'Orelega One', serif;
+$fontSize: 80%;
+
+// Layouts
+$contentWidth: 1620px;
+$minMargin: 40px;
+$minMarginMobile: 30px;
+
+// Responsive
+$tabletBreakpoint:990px;
+$mobileBreakpoint:600px;
+
+// Extends
+.content-width {
+  max-width: $contentWidth;
+  margin: 0 auto;
+  @media (max-width: $contentWidth + 2 * $minMargin) {
+    margin: 0 $minMargin;
+  }
+  @media (max-width: $mobileBreakpoint) {
+    margin: 0 $minMarginMobile;
+  }
+}
+
+.display-none{
+  display:none;
+}
+
+// Functions
+@function getUnit($value) {
+  @return str-slice($value * 0 + "", 2, -1);
+}
+
+@function toRem($value) {
+  @if getUnit($value) == pt {
+    @return $value;
+  }
+  @return ($value / 16) + rem;
+}
+
+// Exports
+:export{
+  black: $black;
+  green: $green;
+  lightGreen: $lightGreen;
+  whitePastel: $whitePastel;
+  gray: $gray;
+  tabletBreakpoint:$tabletBreakpoint;
+  mobileBreakpoint:$mobileBreakpoint;
+  fontSize: $fontSize;
+}

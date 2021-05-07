@@ -1,0 +1,84 @@
+@import "src/common";
+
+.competences {
+  display: grid;
+  grid-template-columns: 15% 35% 35% 15%;
+  grid-template-rows: toRem(100) auto auto toRem(100);
+  background-color: $whitePastel;
+
+  .itemTitle {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    position: relative;
+
+    h1 {
+      color: $green;
+      background-color: $whitePastel;
+      z-index: 10;
+      padding: 20px;
+      margin-right: 175px;
+      position: relative;
+    }
+
+    .emptySquare {
+      position: absolute;
+      border: 1px solid $green;
+      width: 375px;
+      height: 175px;
+      transform: translate(62px, -226px);
+      z-index: 9;
+    }
+  }
+
+  .itemLangues {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    place-self: self-start;
+    align-self: flex-end;
+  }
+
+  .itemComputer {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    display: flex;
+  }
+
+  .textGroup {
+    padding-left: 40px;
+    border-left: 2px solid $lightGreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      color: $green;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: circle;
+    }
+  }
+  .icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    svg {
+      height: 120px;
+      width: auto;
+      padding: 0 40px;
+
+      path{
+        fill: $lightGreen;
+      }
+    }
+  }
+}

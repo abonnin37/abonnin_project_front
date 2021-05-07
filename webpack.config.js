@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // the output bundle won't be optimized for production but suitable for development
@@ -33,15 +32,18 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                ],
+                loader: 'file-loader',
+                options: {
+                    name: 'images/[name].[ext]'
+                },
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
             },
         ]
     },
-    resolve: { extensions: ["*", ".js", ".jsx"] },
+    resolve: { extensions: ["*", ".js", ".jsx", ".scss", ".svg"] },
     output: {
         // the output of the webpack build will be in /dist directory
         path: path.resolve(__dirname, 'dist'),
@@ -53,8 +55,5 @@ module.exports = {
         contentBase: path.join(__dirname, "public/"),
         port: 3000,
         publicPath: "http://localhost:3000/dist/",
-        hotOnly: true
-    },
-    // add a custom index.html as the template
-    plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') })]
+    }
 };

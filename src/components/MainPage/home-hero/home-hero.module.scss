@@ -1,0 +1,80 @@
+@import "src/common";
+
+.homeHero {
+  background-color: $lightGreen;
+  padding-bottom: toRem(75);
+
+  .title {
+    color: $green;
+    margin: auto;
+    padding-top: toRem(135);
+    text-align: center;
+  }
+
+  .contentHomeHero {
+    display: flex;
+
+    .colLeft {
+      position: relative;
+      display: flex;
+      .cvLink {
+        display: flex;
+        align-items: center;
+        margin-top: toRem(950);
+        margin-left: toRem(128);
+
+        a {
+          color: $green;
+          font-size: toRem(26);
+        }
+      }
+
+      .banner {
+        margin-top: toRem(250);
+        margin-left: toRem(230);
+        img {
+          width: toRem(1315);
+        }
+      }
+
+      .descriptionGroup {
+        position: absolute;
+        top: 100px;
+        left: 70px;
+        width: toRem(864);
+        background-color: $whitePastel;
+        padding: 50px;
+        h2 {
+          color: $green;
+        }
+
+        p {
+          color: $green;
+        }
+      }
+    }
+
+    .colRight {
+      display: flex;
+      flex-direction: column;
+      margin-left: toRem(35);
+
+      .slash {
+        width: 100px;
+        height: 1px;
+        background-color: $green;
+        transform: rotate(60deg);
+        margin-top: 150px;
+      }
+
+      .bannerDate {
+        p {
+          font-size: toRem(28);
+          transform: rotate(-90deg);
+          margin-top: 355px;
+          color: $green;
+        }
+      }
+    }
+  }
+}

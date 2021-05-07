@@ -1,0 +1,30 @@
+@import "src/common";
+
+.projects {
+  height: toRem(1000);
+  background-color: $whitePastel;
+  padding-top: toRem(75);
+  position: relative;
+
+  h1 {
+    position: absolute;
+    margin-top: toRem(116);
+    margin-left: toRem(-395);
+    color: $green;
+    display: flex;
+    align-items: center;
+    transform: rotate(-90deg);
+    transform-origin: top right;
+
+
+    &::after {
+      content: "";
+      width: 70px;
+      height: 3px;
+      background-color: #095228;
+      position: absolute;
+      margin-left: 350px;
+      margin-top: 12px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@import "src/common";
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 15px;
+
+    label {
+        margin: 0 0 6px 0;
+        font-size: 1.1rem;
+    }
+
+    input, textarea {
+        border: none;
+        background-color: white;
+        outline: none;
+        color: $green;
+        padding: 15px;
+        box-sizing: border-box;
+        font: inherit;
+
+        &::placeholder {
+            color: $green;
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        height: 200px;
+    };
+
+    .error {
+        color: red;
+    }
+}

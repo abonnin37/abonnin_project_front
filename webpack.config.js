@@ -1,8 +1,12 @@
+require('dotenv').config();
 const path = require('path');
+const isDevelopment = process.env.NODE_ENV === 'development';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports =  {
     // the output bundle won't be optimized for production but suitable for development
-    mode: 'development',
+    mode: isDevelopment ? 'development' : 'production',
     // the app entry point is /src/index.js
     entry: path.resolve(__dirname, 'src', 'index.js'),
     module: {
@@ -15,19 +19,31 @@ module.exports = {
                 // use the babel-loader for transpiling JavaScript to a suitable format
                 loader: 'babel-loader',
             },
-            {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+            { // Fix SourceMap Warning
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(css|s[ac]ss)$/i,
                 use: [
-                    // Creates `style` nodes from JS strings
-                    "style-loader",
-                    // Translates CSS into CommonJS
-                    "css-loader",
-                    // Compiles Sass to CSS
-                    "sass-loader",
+                    isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                compileType: "module",
+                                mode: "local", // Possible values - local, global, and pure.
+                                auto: true, // Allow .module personalization (ex : "auto: /\.custom-module\.\w+$/i,")
+                                exportGlobals: true,
+                                localIdentName: isDevelopment ? "[name]___[local]___[hash:base64:5]" : "[hash:base64]", // Allows to configure the generated local ident name.
+                                localIdentHashPrefix: "abonnin", // Allows to add custom hash to generate more unique classes.
+                                exportOnlyLocals: false,
+                            },
+                            sourceMap: isDevelopment,
+                        },
+                    },
+                    "sass-loader"
                 ],
             },
             {
@@ -43,7 +59,7 @@ module.exports = {
             },
         ]
     },
-    resolve: { extensions: ["*", ".js", ".jsx", ".scss", ".svg"] },
+    resolve: { extensions: ["*", ".js", ".jsx"] },
     output: {
         // the output of the webpack build will be in /dist directory
         path: path.resolve(__dirname, 'dist'),
@@ -55,5 +71,14 @@ module.exports = {
         contentBase: path.join(__dirname, "public/"),
         port: 3000,
         publicPath: "http://localhost:3000/dist/",
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin(),
+        new MiniCssExtractPlugin(
+            {
+                filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+                chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
+            },
+        ),
+    ],
 };

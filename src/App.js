@@ -1,6 +1,9 @@
-import React, {Component} from "react";
-
+import React, {Fragment} from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import MainPage from "./components/MainPage/main-page";
+import Header from "./components/Layout/header/header";
+import Blog from "./components/Blog/blog";
+import Footer from "./components/Layout/footer/footer";
 
 function App() {
     return(

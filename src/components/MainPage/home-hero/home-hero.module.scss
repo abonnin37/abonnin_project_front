@@ -32,6 +32,10 @@
       .banner {
         margin-top: toRem(250);
         margin-left: toRem(230);
+
+        @media (max-width: $mobileBreakpoint) {
+          display: none;
+        }
         img {
           width: toRem(1315);
         }
@@ -44,6 +48,10 @@
         width: toRem(864);
         background-color: $whitePastel;
         padding: 50px;
+
+        @media (max-width: $mobileBreakpoint) {
+          display: none;
+        }
         h2 {
           color: $green;
         }

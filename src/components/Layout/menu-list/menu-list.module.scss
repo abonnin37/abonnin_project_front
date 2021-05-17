@@ -1,0 +1,66 @@
+@import "src/common";
+
+.menuList {
+
+    ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0 toRem(80);
+
+            a {
+                font-family: $font;
+                font-style: normal;
+                font-weight: 500;
+                font-size: toRem(20);
+                line-height: toRem(32);
+                letter-spacing: toRem(0.15);
+                color: $green;
+                text-decoration: none;
+                position: relative;
+
+                &:after {
+                    background: none repeat scroll 0 0 transparent;
+                    content: "";
+                    display: block;
+                    height: 2px;
+                    left: 50%;
+                    position: absolute;
+
+                    width: 0;
+                    bottom: -10px;
+                    transition: width 0.3s ease, left 0.3s ease, background-color 0.3s ease, font-weight 0.3s ease;
+                }
+
+                &:hover, &.active {
+                    font-weight: bold!important;
+                }
+
+                &:hover:after, &.active:after {
+                    width: 100%!important;
+                    left: 0!important;
+                    background-color: $green!important;
+                }
+            }
+        }
+    }
+
+    @media (max-width: $mobileBreakpoint){
+        ul {
+            flex-direction: column;
+            margin-left: 1em;
+            margin-right: 1em;
+
+            li {
+                width: 100%;
+                text-align: center;
+                border: 1px solid $green;
+                margin: 10px;
+            }
+        }
+    }
+}

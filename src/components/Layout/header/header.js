@@ -26,7 +26,6 @@ const Header = () => {
 
     // Manages the header background according to the scroll
     function backgroundHeaderHandler () {
-        console.log(style.menuHeight);
         if (window.pageYOffset - 20 > style.menuHeight) {
             headerEl.current.style.background = style.lightGreen;
         } else {

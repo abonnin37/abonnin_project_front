@@ -1,9 +1,5 @@
 @import 'src/common';
 
-$menuHeight: 68.4;
-$menuHeightTablet: 124px;
-$menuHeightMobile: 98.5px;
-
 .header {
   position: absolute;
   z-index: 500;
@@ -176,10 +172,4 @@ $menuHeightMobile: 98.5px;
       }
     }
   }
-}
-
-:export{
-  menuHeight: $menuHeight;
-  menuHeightTablet: $menuHeightTablet;
-  menuHeightMobile: $menuHeightMobile;
 }

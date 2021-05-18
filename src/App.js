@@ -4,6 +4,7 @@ import MainPage from "./components/MainPage/main-page";
 import Header from "./components/Layout/header/header";
 import Blog from "./components/Blog/blog";
 import Footer from "./components/Layout/footer/footer";
+import NotFound from "./components/Layout/not-found/not-found";
 
 function App() {
     return(
@@ -11,13 +12,18 @@ function App() {
             <Header />
             <main>
                 <Switch>
+                    <Route path='/' exact>
+                        <Redirect to="/acceuil" />
+                    </Route>
+                    <Route path="/acceuil">
+                        <MainPage />
+                    </Route>
                     <Route path="/blog">
                         <Blog />
                     </Route>
-                    <Route path="/acceuil" exact={true}>
-                        <MainPage />
+                    <Route path="*">
+                        <NotFound />
                     </Route>
-                    <Redirect from="/" to="/acceuil" />
                 </Switch>
             </main>
             <Footer />

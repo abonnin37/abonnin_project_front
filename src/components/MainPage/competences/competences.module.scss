@@ -2,24 +2,64 @@
 
 .competences {
   display: grid;
-  grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: toRem(100) auto auto toRem(100);
+  grid-template-columns: 2fr 6fr 1fr 7fr 2fr;
+  padding: 100px 0;
   background-color: $whitePastel;
 
+  @media (max-width: $laptopBreakpoint) {
+    grid-template-columns: 1fr 6fr 1fr 7fr 1fr;
+  }
+
+  @media (max-width: 800px) {
+    grid-template-columns: 30px 1fr 30px;
+    justify-items: center;
+  }
+
   .itemTitle {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    position: relative;
+    grid-area: 1 / 2 / 2 / 3;
+
+    @media (max-width: 800px) {
+      grid-area: 1 / 2 / 2 / 3;
+    }
 
     h1 {
       color: $green;
-      background-color: $whitePastel;
-      z-index: 10;
-      padding: 20px;
-      margin-right: 175px;
+      padding: 10px 20px;
       position: relative;
+      width: fit-content;
+
+      @media (max-width: 800px) {
+        margin-bottom: 30px;
+      }
+
+      span {
+        z-index: 10;
+        position: relative;
+      }
+
+      div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        &.background {
+          background-color: $whitePastel;
+          z-index: 5;
+        }
+
+        &.square {
+          border: 1px solid $green;
+          transform: translate(70px, -20px);
+          width: 85%;
+          height: 85%;
+
+          @media (max-width: $mobileBreakpoint) {
+            transform: translate(45px, -20px);
+          }
+        }
+      }
     }
 
     .emptySquare {
@@ -33,21 +73,49 @@
   }
 
   .itemLangues {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-area: 2 / 2 / 3 / 3;
     display: flex;
     place-self: self-start;
     align-self: flex-end;
+
+    @media (max-width: 800px) {
+      grid-area: 2 / 2 / 3 / 3;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 40px;
+
+      .textGroup {
+        padding-left: 20px;
+        flex: 1;
+      }
+
+      .icon {
+        flex: 1;
+      }
+    }
   }
 
   .itemComputer {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 4;
+    grid-area: 1 / 4 / 3 / 5;
     display: flex;
+
+    @media (max-width: 800px) {
+      grid-area: 3 / 2 / 4 / 3;
+      flex-direction: row-reverse;
+      justify-self: end;
+
+      .textGroup {
+        flex: 1;
+        padding-left: 0;
+        padding-right: 20px;
+        border-left: none;
+        border-right: 2px solid $lightGreen;
+      }
+
+      .icon {
+        flex: 1;
+      }
+    }
   }
 
   .textGroup {
@@ -70,11 +138,17 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    max-height: 120px;
+    max-width: 200px;
 
     svg {
-      height: 120px;
-      width: auto;
+      height: 100%;
+      width: 100%;
       padding: 0 40px;
+
+      @media (max-width: 800px) {
+        padding: 0 15px;
+      }
 
       path{
         fill: $lightGreen;

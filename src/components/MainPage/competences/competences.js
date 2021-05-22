@@ -8,8 +8,11 @@ const Competences = () => {
     return (
       <div className={style.competences}>
           <div className={style.itemTitle}>
-              <h1>My<br/>competences</h1>
-              <div className={style.emptySquare}></div>
+              <h1>
+                  <span>My<br/>competences</span>
+                  <div className={style.background} />
+                  <div className={style.square} />
+              </h1>
           </div>
           <div className={style.itemLangues}>
               <div className={style.icon}>

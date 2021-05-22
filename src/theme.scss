@@ -25,27 +25,65 @@ body {
   line-height: toRem(24);
   color: $black;
 
+  @media (max-width: $tabletBreakpoint){
+    font-size: toRem(18);
+  }
+
+  @media (max-width: $mobileBreakpoint){
+    font-size: toRem(16);
+  }
+
   h1 {
     font-size: toRem(80);
     line-height: toRem(96);
     font-family: $fontTitle;
     font-weight: 400;
+
+    @media (max-width: $tabletBreakpoint){
+      font-size: toRem(64);
+    }
+
+    @media (max-width: $mobileBreakpoint){
+      font-size: toRem(45);
+    }
   }
   h2 {
-    font-size: toRem(60);
-    line-height: toRem(72);
+    font-size: toRem(48);
+    line-height: toRem(55);
     font-weight: 400;
+
+    @media (max-width: $tabletBreakpoint){
+      font-size: toRem(34);
+    }
   }
 
   h3 {
-    font-size: toRem(36);
+    font-size: toRem(34);
+    line-height: toRem(43);
+    font-weight: 400;
+
+    @media (max-width: $tabletBreakpoint){
+      font-size: toRem(24);
+    }
+  }
+
+  h4 {
+    font-size: toRem(24);
     line-height: toRem(43);
     font-weight: 400;
   }
 
   h5 {
-    font-size: toRem(28);
+    font-size: toRem(20);
     line-height: toRem(36);
     font-weight: 400;
+
+    @media (max-width: $tabletBreakpoint){
+      font-size: toRem(18);
+    }
+
+    @media (max-width: $mobileBreakpoint){
+      font-size: toRem(16);
+    }
   }
 }

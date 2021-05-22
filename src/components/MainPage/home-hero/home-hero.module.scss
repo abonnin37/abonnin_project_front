@@ -12,60 +12,89 @@
   }
 
   .contentHomeHero {
-    display: flex;
+    margin-top: 50px;
+    display: grid;
+    grid: auto / 50px 2fr 1fr 2fr 5fr 1fr 50px;
 
-    .colLeft {
-      position: relative;
+    @media (max-width: $tabletBreakpoint) {
+      grid: auto / 30px 1fr 30px;
+      margin-top: 25px;
+    }
+
+    .cvLink {
+      grid-area: 3 / 2 / 4 / 6;
       display: flex;
-      .cvLink {
-        display: flex;
-        align-items: center;
-        margin-top: toRem(950);
-        margin-left: toRem(128);
+      align-items: center;
+      align-self: flex-end;
+      margin-bottom: 50px;
+      margin-left: 30px;
 
-        a {
-          color: $green;
-          font-size: toRem(26);
+      @media (max-width: $tabletBreakpoint) {
+        grid-area: 4 / 2 / 5 / 3;
+        margin: 20px 0 0 50px;
+      }
+
+      a {
+        color: $green;
+        font-size: toRem(26);
+      }
+    }
+
+    .banner {
+      grid-area: 1 / 4 / 2 / 7;
+      margin-top: toRem(200);
+
+      @media (max-width: $tabletBreakpoint) {
+        grid-area: 1 / 2 / 2 / 3;
+        margin-top: 0;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .descriptionGroup {
+      grid-area: 1 / 2 / 1 / 5;
+      background-color: $whitePastel;
+      padding: 50px;
+      height: fit-content;
+
+      @media (max-width: $laptopBreakpoint) {
+        padding: 30px
+      }
+
+      @media (max-width: $tabletBreakpoint) {
+        grid-area: 3 / 2 / 4 / 3;
+      }
+
+      h2 {
+        color: $green;
+        margin-bottom: 20px;
+
+        @media (max-width: $laptopBreakpoint){
+          font-size: 34px;
+          line-height: 45px;
         }
       }
 
-      .banner {
-        margin-top: toRem(250);
-        margin-left: toRem(230);
-
-        @media (max-width: $mobileBreakpoint) {
-          display: none;
-        }
-        img {
-          width: toRem(1315);
-        }
-      }
-
-      .descriptionGroup {
-        position: absolute;
-        top: 100px;
-        left: 70px;
-        width: toRem(864);
-        background-color: $whitePastel;
-        padding: 50px;
-
-        @media (max-width: $mobileBreakpoint) {
-          display: none;
-        }
-        h2 {
-          color: $green;
-        }
-
-        p {
-          color: $green;
-        }
+      p {
+        color: $green;
       }
     }
 
     .colRight {
+      grid-area: 1 / 6 / 2 / 7;
       display: flex;
       flex-direction: column;
       margin-left: toRem(35);
+
+      @media (max-width: $tabletBreakpoint) {
+        grid-area: 2 / 2 / 3 / 3;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0;
+      }
 
       .slash {
         width: 100px;
@@ -73,14 +102,35 @@
         background-color: $green;
         transform: rotate(60deg);
         margin-top: 150px;
+
+        @media (max-width: $tabletBreakpoint) {
+          display: none;
+        }
+
       }
 
       .bannerDate {
+        @media (max-width: $tabletBreakpoint) {
+          width: 80%;
+          text-align: center;
+        }
+
         p {
+          width: max-content;
           font-size: toRem(28);
           transform: rotate(-90deg);
           margin-top: 355px;
           color: $green;
+
+          @media (max-width: $tabletBreakpoint) {
+            transform: initial;
+            margin: 20px 0;
+            padding: 20px;
+            border-top: 2px solid $green;
+            border-bottom: 2px solid $green;
+            text-align: center;
+            width: 100%;
+          }
         }
       }
     }

@@ -1,12 +1,14 @@
 @import "src/common";
 
 .projects {
-  height: toRem(1000);
+  display: grid;
+  grid-template-columns: 150px 1fr ;
   background-color: $whitePastel;
   padding-top: toRem(75);
   position: relative;
 
-  h1 {
+  .title {
+    grid-area: 1 / 1 / 2 / 2;
     position: absolute;
     margin-top: toRem(116);
     margin-left: toRem(-395);
@@ -25,6 +27,14 @@
       position: absolute;
       margin-left: 350px;
       margin-top: 12px;
+    }
+  }
+
+  .swiper {
+    grid-area: 1 / 2 / 2 / 3;
+    overflow: hidden;
+    .projectContainer {
+
     }
   }
 }

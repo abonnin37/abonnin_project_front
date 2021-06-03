@@ -25,16 +25,20 @@ export function requiredRule(inputName) {
 export function minLengthRule(inputName, minCharacters) {
     return createValidationRule(
         "minLength",
-        `${inputName} should contain atleast ${minCharacters} characters`,
-        (inputValue, formObj) => inputValue.length >= minCharacters
+        `${inputName} should contain at least ${minCharacters} characters`,
+        (inputValue, formObj) => {
+            return inputValue.length >= minCharacters;
+        }
     );
 }
 
 export function maxLengthRule(inputName, maxCharacters) {
     return createValidationRule(
-        "minLength",
+        "maxLength",
         `${inputName} cannot contain more than ${maxCharacters} characters`,
-        (inputValue, formObj) => inputValue.length <= maxCharacters
+        (inputValue, formObj) => {
+            return inputValue.length <= maxCharacters;
+        }
     );
 }
 

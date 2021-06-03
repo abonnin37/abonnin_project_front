@@ -17,14 +17,13 @@ function useForm(formObj) {
 
     const isInputFieldValid = useCallback(
         (inputField) => {
-            console.log(inputField);
             for (const rule of inputField.validationRules) {
                 if (!rule.validate(inputField.value, form)) {
                     inputField.errorMessage = rule.message;
                     return false;
                 }
             }
-
+            inputField.errorMessage = "";
             return true;
         },
         [form]

@@ -5,6 +5,7 @@ import Projects from "./projects/projects";
 import Competences from "./competences/competences";
 import Contact from "./contact/contact";
 import BlogRedirection from "./blog-redirection/blog-redirection";
+import AdminProjects from "../../admin/MainPage/projects/admin-projects";
 
 import style from './main-page.module.scss';
 
@@ -12,6 +13,7 @@ const MainPage = () => {
     return (
         <div className={style.MainPage}>
             <HomeHero />
+            <AdminProjects />
             <Projects />
             <Competences />
             <BlogRedirection />

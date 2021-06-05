@@ -92,8 +92,8 @@ export const contactForm = {
     company: {
         ...createFormFieldConfig("Company", "company", "text"),
         validationRules: [
-            minLengthRule("email", 8),
-            maxLengthRule("email", 50)
+            minLengthRule("company", 8),
+            maxLengthRule("company", 50)
         ]
     },
     subject: {
@@ -112,3 +112,59 @@ export const contactForm = {
         ]
     }
 };
+
+export const addProjectForm = {
+    name: {
+        ...createFormFieldConfig("Name", "name", "text", true, ),
+        validationRules: [
+            requiredRule("name"),
+            minLengthRule("name", 3),
+            maxLengthRule("name", 255)
+        ]
+    },
+    excerpt: {
+        ...createFormFieldConfig("Excerpt", "excerpt", "text", true, ),
+        validationRules: [
+            requiredRule("excerpt"),
+            minLengthRule("excerpt", 3),
+            maxLengthRule("excerpt", 255)
+        ]
+    },
+    description: {
+        ...createFormFieldConfig("Description", "description", "textarea", true, ),
+        validationRules: [
+        ]
+    },
+    url: {
+        ...createFormFieldConfig("Url", "url", "text", true, ),
+        validationRules: [
+            requiredRule("url"),
+            minLengthRule("url", 0),
+            maxLengthRule("url", 255)
+        ]
+    },
+    user: {
+        ...createFormFieldConfig("User", "user", "text", true, ),
+        validationRules: [
+            requiredRule("user"),
+            minLengthRule("user", 0),
+            maxLengthRule("user", 255)
+        ]
+    },
+    beginat: {
+        ...createFormFieldConfig("Begin at", "beginat", "text", true),
+        validationRules: [
+            requiredRule("beginat"),
+            minLengthRule("beginat", 10),
+            maxLengthRule("beginat", 10)
+        ]
+    },
+    endat: {
+        ...createFormFieldConfig("End at", "endat", "text", true, ),
+        validationRules: [
+            requiredRule("endat"),
+            minLengthRule("endat", 10),
+            maxLengthRule("endat", 10)
+        ]
+    },
+}

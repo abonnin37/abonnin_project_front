@@ -1,6 +1,7 @@
 import React from "react";
 
 import style from "./input.module.scss";
+import clsx from "clsx";
 
 function InputField(props) {
     const {
@@ -17,8 +18,13 @@ function InputField(props) {
         formId
     } = props;
 
+    const classes = clsx({
+        [style.inputContainer]: true,
+        "inputContainer": true,
+    });
+
     return (
-        <div className={style.inputContainer}>
+        <div className={classes}>
             {
                 type === "textarea" ?
                     <textarea form={formId} name={name} value={value} onChange={handleChange} onBlur={handleBlur} placeholder={`${label}${isRequired ? '*' : ''}`}/>

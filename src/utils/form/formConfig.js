@@ -53,7 +53,7 @@ function createFormFieldConfig(label, name, type, isRequired = false, className=
         },
         label,
         value: defaultValue,
-        valid: false,
+        valid: !isRequired,
         errorMessage: "",
         touched: false
     };
@@ -115,7 +115,7 @@ export const contactForm = {
 
 export const addProjectForm = {
     name: {
-        ...createFormFieldConfig("Name", "name", "text", true, ),
+        ...createFormFieldConfig("Name", "name", "text", true),
         validationRules: [
             requiredRule("name"),
             minLengthRule("name", 3),
@@ -123,7 +123,7 @@ export const addProjectForm = {
         ]
     },
     excerpt: {
-        ...createFormFieldConfig("Excerpt", "excerpt", "text", true, ),
+        ...createFormFieldConfig("Excerpt", "excerpt", "text", true),
         validationRules: [
             requiredRule("excerpt"),
             minLengthRule("excerpt", 3),
@@ -131,20 +131,19 @@ export const addProjectForm = {
         ]
     },
     description: {
-        ...createFormFieldConfig("Description", "description", "textarea", true, ),
+        ...createFormFieldConfig("Description", "description", "textarea"),
         validationRules: [
         ]
     },
     url: {
-        ...createFormFieldConfig("Url", "url", "text", true, ),
+        ...createFormFieldConfig("Url", "url", "text"),
         validationRules: [
-            requiredRule("url"),
             minLengthRule("url", 0),
             maxLengthRule("url", 255)
         ]
     },
     user: {
-        ...createFormFieldConfig("User", "user", "text", true, ),
+        ...createFormFieldConfig("User", "user", "text", true),
         validationRules: [
             requiredRule("user"),
             minLengthRule("user", 0),
@@ -160,7 +159,7 @@ export const addProjectForm = {
         ]
     },
     endat: {
-        ...createFormFieldConfig("End at", "endat", "text", true, ),
+        ...createFormFieldConfig("End at", "endat", "text", true),
         validationRules: [
             requiredRule("endat"),
             minLengthRule("endat", 10),

@@ -8,7 +8,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import {Alert} from "@material-ui/lab";
 
-const ListProjects = ({listProjects}) => {
+const ListProjects = ({listProjects, refreshList, isAwaitingRefresh, setIsEditing}) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAwaiting, setIsAwaiting] = useState(false);
@@ -32,12 +32,12 @@ const ListProjects = ({listProjects}) => {
                 setOpenSnackbar(true);
                 if (response.status === 204) {
                     setIsSuccess(true);
+                    refreshList();
                 } else {
                     setIsSuccess(false);
                 }
             })
             .catch((error) => {
-                console.log("error");
                 setOpenSnackbar(true);
                 setIsSuccess(false);
             });
@@ -57,7 +57,7 @@ const ListProjects = ({listProjects}) => {
                             <td className={style.name}>{project.name}</td>
                             <td className={style.actions}>
                                 <div>
-                                    <Edit />
+                                    <Edit onClick={() => setIsEditing(project.id)}/>
                                 </div>
                                 <div className={style.delete} onClick={() => onDeleteHandler(project.id)}>
                                     <Delete />
@@ -65,6 +65,11 @@ const ListProjects = ({listProjects}) => {
                             </td>
                         </tr>
                     )
+                }
+                { isAwaitingRefresh &&
+                    <tr>
+                        <CircularProgress size={15} className={style.circularProgress}/>
+                    </tr>
                 }
             </table>
             <Snackbar open={openSnackbar} autoHideDuration={4000} onClose={handleClose}>

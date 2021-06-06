@@ -6,6 +6,7 @@ import {useMedia} from "use-media";
 import Tile from "./tile/tile";
 
 import style from "./projects.module.scss";
+import 'swiper/swiper-bundle.css';
 
 SwiperCore.use([Autoplay, Navigation]);
 
@@ -47,7 +48,6 @@ const Projects = () => {
 
     }, []);
 
-    console.log(projects);
     return (
         <div className={style.projects}>
             <h1 className={style.title}>My projects</h1>

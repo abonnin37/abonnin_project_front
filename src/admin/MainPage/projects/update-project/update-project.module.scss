@@ -1,0 +1,27 @@
+@import "src/common";
+
+.updateProject {
+  padding: 50px 100px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .return {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      p {
+        margin: 0;
+      }
+
+      svg {
+        width: 15px;
+        height: 15px;
+        object-fit: contain;
+        margin-right: 15px;
+      }
+    }
+  }
+}

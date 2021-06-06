@@ -82,7 +82,18 @@ function useForm(formObj) {
         return isValid;
     }, [form]);
 
-    return { renderFormInputs, isFormValid };
+    const setInputValue = (name, value) => {
+        form[name].value = value;
+        if (value !== "") {
+            form[name].valid = isInputFieldValid(form[name]);
+        }
+
+        setForm({
+            ...form
+        });
+    }
+
+    return { renderFormInputs, isFormValid, setInputValue };
 }
 
 export default useForm;

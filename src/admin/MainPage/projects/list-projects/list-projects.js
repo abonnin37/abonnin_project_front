@@ -47,30 +47,34 @@ const ListProjects = ({listProjects, refreshList, isAwaitingRefresh, setIsEditin
         <div className={style.listProjects}>
             <h1>Liste des projets</h1>
             <table>
-                <tr>
-                    <th>Nom du projet</th>
-                    <th>Actions { isAwaiting && <CircularProgress size={15} className={style.circularProgress}/>}</th>
-                </tr>
-                { listProjects.length > 0 &&
-                    listProjects.map((project) =>
-                        <tr key={project.id}>
-                            <td className={style.name}>{project.name}</td>
-                            <td className={style.actions}>
-                                <div>
-                                    <Edit onClick={() => setIsEditing(project.id)}/>
-                                </div>
-                                <div className={style.delete} onClick={() => onDeleteHandler(project.id)}>
-                                    <Delete />
-                                </div>
+                <tbody>
+                    <tr>
+                        <th>Nom du projet</th>
+                        <th>Actions { isAwaiting && <CircularProgress size={15} className={style.circularProgress}/>}</th>
+                    </tr>
+                    { listProjects &&
+                        listProjects.map((project) =>
+                            <tr key={project.id}>
+                                <td className={style.name}>{project.name}</td>
+                                <td className={style.actions}>
+                                    <div>
+                                        <Edit onClick={() => setIsEditing(project.id)}/>
+                                    </div>
+                                    <div className={style.delete} onClick={() => onDeleteHandler(project.id)}>
+                                        <Delete />
+                                    </div>
+                                </td>
+                            </tr>
+                        )
+                    }
+                    { isAwaitingRefresh &&
+                        <tr>
+                            <td className={style.circularProgressTd}>
+                                <CircularProgress size={15} className={style.circularProgress}/>
                             </td>
                         </tr>
-                    )
-                }
-                { isAwaitingRefresh &&
-                    <tr>
-                        <CircularProgress size={15} className={style.circularProgress}/>
-                    </tr>
-                }
+                    }
+                </tbody>
             </table>
             <Snackbar open={openSnackbar} autoHideDuration={4000} onClose={handleClose}>
                 { isSuccess ?

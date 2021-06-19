@@ -53,7 +53,7 @@ const Projects = () => {
             <h1 className={style.title}>My projects</h1>
             <div className={style.swiper}>
                 <Swiper tag="section" {...propertiesDistribution()} >
-                    { projects.length !== 0 &&
+                    { projects &&
                         projects.map((project, i) => {
                         return (
                             <SwiperSlide key={`project-${i}`}>

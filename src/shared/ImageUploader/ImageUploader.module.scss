@@ -1,5 +1,33 @@
 @import "src/common";
 
 .imageUploader {
+  border: 5px solid $green;
+  border-radius: 6px;
+  padding: 30px;
+  .uploadGroup {
+    margin-bottom: 20px;
 
+  }
+
+  .listGroup {
+    h3 {
+      margin: 0 0 10px 0;
+    }
+
+    ul {
+
+      .circularProgress {
+        color: $green;
+      }
+
+      li {
+        display: flex;
+        .delete {
+          height: 15px;
+          width: 15px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
 }

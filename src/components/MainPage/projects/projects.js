@@ -38,7 +38,7 @@ const Projects = () => {
 
     // Get the datas from the api
     useEffect(() => {
-        axios.get('/users/2/projects')
+        axios.get('/api/users/2/projects')
             .then((response) => {
                 setProjects(response.data['hydra:member']);
             })

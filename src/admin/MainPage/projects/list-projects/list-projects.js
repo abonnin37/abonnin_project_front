@@ -25,7 +25,7 @@ const ListProjects = ({listProjects, refreshList, isAwaitingRefresh, setIsEditin
         setIsAwaiting(true);
         axios({
             method: "delete",
-            url: '/projects/'+id,
+            url: '/api/projects/'+id,
         })
             .then((response) => {
                 setIsAwaiting(false);

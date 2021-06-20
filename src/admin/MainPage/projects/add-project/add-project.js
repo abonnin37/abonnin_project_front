@@ -11,7 +11,6 @@ const AddProject = ({refreshList}) => {
       <div className={style.addProject}>
           <h1>Créer un projet</h1>
           <ProjectForm refreshList={refreshList} isEditing={false}/>
-          <ImageUploader />
       </div>
     );
 }

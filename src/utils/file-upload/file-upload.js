@@ -7,7 +7,7 @@ export const FileUpload = () => {
         formData.append("imageFile", file);
         formData.append("project", "/api/projects/" + project_id);
 
-        return axios.post("/images", formData, {
+        return axios.post("/api/images", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             }
@@ -15,8 +15,12 @@ export const FileUpload = () => {
     }
 
     const getFiles = () => {
-        return axios.get("/images");
+        return axios.get("/api/images");
     }
 
-    return {uploadFile, getFiles};
+    const deleteFile = (fileId) => {
+        return axios.delete("/api/images/" + fileId);
+    }
+
+    return {uploadFile, getFiles, deleteFile};
 }

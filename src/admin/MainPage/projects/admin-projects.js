@@ -14,7 +14,7 @@ const AdminProjects = () => {
 
     const refreshList = () => {
         setIsAwaitingRefresh(true);
-        axios.get('/users/2/projects')
+        axios.get('/api/users/2/projects')
             .then((response) => {
                 setListProjects(response.data['hydra:member']);
                 setIsAwaitingRefresh(false);

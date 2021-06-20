@@ -3,6 +3,7 @@ import React, {useEffect, useRef} from "react";
 import style from "./update-project.module.scss";
 import ChevronLeft from "../../../../assets/images/chevron-left.svg";
 import ProjectForm from "../project-form/project-form";
+import {ImageUploader} from "../../../../shared/ImageUploader/ImageUploader";
 
 const UpdateProject = ({refreshList, setIsEditing, project}) => {
 
@@ -15,6 +16,7 @@ const UpdateProject = ({refreshList, setIsEditing, project}) => {
                 </div>
             </div>
             <ProjectForm refreshList={refreshList} isEditing={true} project={project}/>
+            <ImageUploader resourceName={project.name}/>
         </div>
     );
 }

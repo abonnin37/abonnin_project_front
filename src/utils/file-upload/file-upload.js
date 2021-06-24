@@ -1,8 +1,10 @@
 import axios from "../../axios";
 
 export const FileUpload = () => {
+
     const uploadFile = (file, project_id) => {
         let formData = new FormData();
+        console.log(project_id);
 
         formData.append("imageFile", file);
         formData.append("project", "/api/projects/" + project_id);
@@ -18,9 +20,13 @@ export const FileUpload = () => {
         return axios.get("/api/images");
     }
 
+    const getProjectFiles = (projectId) => {
+        return axios.get("/api/projects/" + projectId + "/images");
+    }
+
     const deleteFile = (fileId) => {
         return axios.delete("/api/images/" + fileId);
     }
 
-    return {uploadFile, getFiles, deleteFile};
+    return {uploadFile, getFiles, deleteFile, getProjectFiles};
 }

@@ -1,9 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import style from "./tile.module.scss";
+import axios from "../../../../axios";
+import {toast} from "react-hot-toast";
 
 const Tile = ({project}) => {
+    console.log(project);
+    const [imageUrl, setImageUrl] = useState("");
 
+    useEffect(() => {
+        axios.get(project.images[0])
+            .then(response => {
+                setImageUrl(response.data.contentUrl);
+            })
+            .catch(e => {
+                console.log(e.response);
+                toast.error(e.response.data.message);
+            });
+    }, [project]);
+
+
+    // dayjs
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
@@ -11,7 +28,7 @@ const Tile = ({project}) => {
     return (
         <div className={style.tile}>
             <div className={style.image}>
-                <img src={project.images.length > 0 ? project.images[0] : null} alt=""/>
+                <img src={axios.defaults.baseURL + imageUrl} alt=""/>
             </div>
             <h3 className={style.title}>
                 {project.name}

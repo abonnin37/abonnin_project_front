@@ -2,25 +2,25 @@
 
 .tile {
   cursor: pointer;
-  height: 430px;
 
   .image {
     width: 100%;
-    height: auto;
+    max-height: 350px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
 
     img {
       width: 100%;
-      height: 100%;
       object-fit: contain;
     }
   }
 
   .title {
-
   }
 
   .period {
-
+    margin-bottom: 20px;
   }
 
   .excerpt {

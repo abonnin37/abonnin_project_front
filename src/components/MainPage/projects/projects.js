@@ -37,6 +37,7 @@ const Projects = () => {
     }
 
     // Get the datas from the api
+    // user-info
     useEffect(() => {
         axios.get('/api/users/2/projects')
             .then((response) => {

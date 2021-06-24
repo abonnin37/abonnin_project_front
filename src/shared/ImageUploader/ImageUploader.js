@@ -5,17 +5,18 @@ import Delete from "../../assets/trash.svg";
 import {SnackbarAlert} from "../SnackbarAlert/SnackbarAlert";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-export const ImageUploader = ({resourceName}) => {
+export const ImageUploader = ({resourceName, projectId}) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [listImages, setListImages] = useState([]);
-    const {uploadFile, getFiles, deleteFile} = FileUpload();
+    const {uploadFile, getProjectFiles, deleteFile} = FileUpload();
     const [fireOn, setFireOn] = useState(0);
     const [isAwaiting, setIsAwaiting] = useState(false);
     const [severity, setSeverity] = useState("success");
 
+    // Each time the projectId Change we get the images related to the selected project
     useEffect(() => {
         setIsAwaiting(true);
-        getFiles()
+        getProjectFiles(projectId)
             .then(response => {
                 setIsAwaiting(false);
                 setListImages(response.data["hydra:member"]);
@@ -23,16 +24,18 @@ export const ImageUploader = ({resourceName}) => {
             .catch(e => {
                 setIsAwaiting(false);
             });
-    }, [])
+    }, [projectId])
 
 
+    // Deal with the file selector
     const fileChangedHandler = (event) => {
         setSelectedFile(event.target.files[0]);
     }
 
+    // Fire upload action when file is uploaded
     const uploadHandler = () => {
-        uploadFile(selectedFile, 13).then((response) => {
-            addImageFromList(response.data);
+        uploadFile(selectedFile, projectId).then((response) => {
+            addImageToList(response.data);
             console.log(response);
         }).catch(err => {
             console.log(err);
@@ -50,7 +53,7 @@ export const ImageUploader = ({resourceName}) => {
         }
     }
 
-    const addImageFromList = (image) => {
+    const addImageToList = (image) => {
         const newList = [...listImages];
         newList.push(image);
         setListImages(newList);
@@ -70,8 +73,6 @@ export const ImageUploader = ({resourceName}) => {
             });
     }
 
-    console.log(listImages);
-
     return (
         <div className={style.imageUploader}>
             <div className={style.uploadGroup}>
@@ -79,7 +80,7 @@ export const ImageUploader = ({resourceName}) => {
                 <button onClick={uploadHandler}>Upload!</button>
             </div>
             <div className={style.listGroup}>
-                <h5>Liste des images associé à la {resourceName} :</h5>
+                <h5>Liste des images associé à {resourceName} :</h5>
                 <ul>
 
                     { isAwaiting ?

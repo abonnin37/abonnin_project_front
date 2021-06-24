@@ -16,7 +16,7 @@ const UpdateProject = ({refreshList, setIsEditing, project}) => {
                 </div>
             </div>
             <ProjectForm refreshList={refreshList} isEditing={true} project={project}/>
-            <ImageUploader resourceName={project.name}/>
+            <ImageUploader resourceName={project.name} projectId={project.id}/>
         </div>
     );
 }

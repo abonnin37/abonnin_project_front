@@ -41,7 +41,7 @@
     }
 
     .banner {
-      grid-area: 1 / 4 / 2 / 7;
+      grid-area: 1 / 4 / 2 / 6;
       margin-top: toRem(200);
 
       @media (max-width: $tabletBreakpoint) {

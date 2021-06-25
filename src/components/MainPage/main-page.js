@@ -13,7 +13,7 @@ const MainPage = () => {
     return (
         <div className={style.MainPage}>
             <HomeHero />
-            <AdminProjects />
+            {/*<AdminProjects />*/}
             <Projects />
             <Competences />
             <BlogRedirection />

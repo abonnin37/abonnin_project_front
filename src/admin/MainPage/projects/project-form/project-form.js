@@ -70,9 +70,8 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
         setIsAwaiting(true);
         axios({
             method: isEditing ? "put" : "post",
-            url: isEditing ? "/api/projects/"+project.id : "/projects",
+            url: isEditing ? "/api/projects/"+project.id : "/api/projects",
             data: requestObj,
-            h
         })
             .then((response) => {
                 setIsAwaiting(false);

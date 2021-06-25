@@ -15,7 +15,7 @@ const Tile = ({project}) => {
             })
             .catch(e => {
                 console.log(e.response);
-                toast.error(e.response.data.message);
+                toast.error(e.response.statusText);
             });
     }, [project]);
 

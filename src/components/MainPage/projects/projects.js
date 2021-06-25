@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import axios from "../../../axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {Autoplay, Navigation} from 'swiper/core';
@@ -7,19 +7,25 @@ import Tile from "./tile/tile";
 
 import style from "./projects.module.scss";
 import 'swiper/swiper-bundle.css';
+import clsx from "clsx";
 
 SwiperCore.use([Autoplay, Navigation]);
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
     const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
+    const swiperNext = useRef(null);
+    const swiperPrev = useRef(null);
 
     // Swiper configuration
     const sliderSettings = {
         slidesPerView:4,
         spaceBetween:26,
         autoplay: {"delay": 3000},
-        navigation: true
+        navigation: {
+            nextEl: swiperNext.current,
+            prevEl: swiperPrev.current,
+        }
     };
 
     const sliderSettingsMobile = {
@@ -65,6 +71,10 @@ const Projects = () => {
                         );
                     })}
                 </Swiper>
+                <div className={style.navigation}>
+                    <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
+                    <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
+                </div>
             </div>
         </div>
     );

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import MainPage from "./components/MainPage/main-page";
 import Header from "./components/Layout/header/header";
 import Blog from "./components/Blog/blog";
+import AdminBlog from "./admin/Blog/admin-blog";
 import Footer from "./components/Layout/footer/footer";
 import NotFound from "./components/Layout/not-found/not-found";
 import {Toaster} from "react-hot-toast";
@@ -21,6 +22,9 @@ function App() {
                     </Route>
                     <Route path="/blog">
                         <Blog />
+                    </Route>
+                    <Route path="/adminBlog">
+                        <AdminBlog />
                     </Route>
                     <Route path="*">
                         <NotFound />

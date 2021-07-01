@@ -38,6 +38,7 @@ body {
     line-height: toRem(96);
     font-family: $fontTitle;
     font-weight: 400;
+    color: $green;
 
     @media (max-width: $tabletBreakpoint){
       font-size: toRem(64);
@@ -51,6 +52,7 @@ body {
     font-size: toRem(48);
     line-height: toRem(55);
     font-weight: 400;
+    color: $green;
 
     @media (max-width: $tabletBreakpoint){
       font-size: toRem(34);
@@ -61,6 +63,7 @@ body {
     font-size: toRem(34);
     line-height: toRem(43);
     font-weight: 400;
+    color: $green;
 
     @media (max-width: $tabletBreakpoint){
       font-size: toRem(24);
@@ -71,12 +74,14 @@ body {
     font-size: toRem(24);
     line-height: toRem(43);
     font-weight: 400;
+    color: $green;
   }
 
   h5 {
     font-size: toRem(20);
     line-height: toRem(36);
     font-weight: 400;
+    color: $green;
 
     @media (max-width: $tabletBreakpoint){
       font-size: toRem(18);

@@ -13,6 +13,16 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+// dayjs
+export const getFormatedDate = (stringDate) => {
+    const date = new Date(stringDate);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDay();
+
+    return year + "-" + (month < 10 && "0") + month + "-" + (day < 10 && "0") + day;
+}
+
 const ProjectForm = ({refreshList, isEditing, project}) => {
     const { renderFormInputs, isFormValid, setInputValue } = useForm(addProjectForm);
     const FORM_ID = "addProjectForm";
@@ -20,15 +30,6 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAwaiting, setIsAwaiting] = useState(false);
 
-
-    const getFormatedDate = (stringDate) => {
-        const date = new Date(stringDate);
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        const day = date.getDay();
-
-        return year + "-" + (month < 10 && "0") + month + "-" + (day < 10 && "0") + day;
-    }
 
     useEffect(() => {
         if (isEditing) {

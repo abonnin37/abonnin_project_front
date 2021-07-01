@@ -1,0 +1,60 @@
+@import "src/common";
+
+.listArticles {
+  background-color: $whitePastel;
+  padding: 50px 100px;
+  table {
+    width: 100%;
+
+    tr {
+      border-bottom: 1px solid $green;
+
+      .circularProgress {
+        color: $green;
+        margin-left: 15px;
+      }
+    }
+
+    th {
+      text-align: left;
+    }
+
+    .title {
+
+    }
+
+    .actions {
+      display: flex;
+
+      div {
+        margin-right: 20px;
+        cursor: pointer;
+
+        svg {
+          height: 30px;
+          width: 30px;
+          background-color: $lightGreen;
+          border-radius: 3px;
+          padding: 5px;
+          border: 1px solid $lightGreen;
+          transition: background-color 0.2s ease;
+
+          path {
+            fill: white;
+            transition: fill 0.2s ease;
+          }
+        }
+
+        &:hover {
+          svg {
+            background-color: transparent;
+
+            path {
+              fill: $lightGreen;
+            };
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,6 +13,9 @@ const MenuList = () => {
               <li>
                   <NavLink activeClassName={style.active} to="/blog">Blog</NavLink>
               </li>
+              <li>
+                  <NavLink activeClassName={style.active} to="/adminBlog">Admin Blog</NavLink>
+              </li>
           </ul>
       </nav>  
     );

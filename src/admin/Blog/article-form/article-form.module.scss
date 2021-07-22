@@ -49,4 +49,42 @@
       cursor: default;
     }
   }
+
+  :global(.MuiDropzoneArea-root) {
+    margin-bottom: 20px;
+
+    :global(.MuiDropzonePreviewList-removeButton) {
+      width: auto;
+    }
+  }
+
+  .editImageView {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      display: flex;
+      align-items: center;
+
+      h5 {
+        margin-right: 4px;
+      }
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+  }
+
+  .actionText {
+    cursor: pointer;
+    color: $green;
+
+    &:hover {
+      text-decoration: underline;
+      color: $black;
+    }
+  }
 }

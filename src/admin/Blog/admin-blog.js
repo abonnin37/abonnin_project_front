@@ -12,10 +12,15 @@ const AdminBlog = () => {
     const [isEditing, setIsEditing] = useState(null);
     const [isAwaitingRefresh, setIsAwaitingRefresh] = useState(false);
 
-    const addArticle = (article) => {
-        const newList = [...articleList];
-        newList.push(article);
-        setArticleList(newList);
+    const addArticle = (article, asyncCall) => {
+        if (asyncCall) {
+            setArticleList(articleList);
+        } else {
+            const newList = [...articleList];
+            newList.push(article);
+            setArticleList(newList);
+        }
+
     }
 
     const removeArticle = (article) => {
@@ -28,9 +33,7 @@ const AdminBlog = () => {
     const editArticle = (article) => {
         const newList = [...articleList];
         const articleIndex = newList.indexOf(article);
-        console.log(articleList);
         newList.splice(articleIndex, 1, article);
-        console.log(newList);
         setArticleList(newList);
     }
 

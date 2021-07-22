@@ -21,12 +21,11 @@ const ListArticles = ({articleList, setIsEditing, removeArticle, addArticle, isA
                     toast.success("L'article à bien été supprimé !")
                 } else {
                     toast.error("Une erreur est survenue, veuillez contacter un administrateur.");
-                    addArticle(article);
                 }
             })
             .catch((error) => {
                 toast.error(error.response.data["hydra:description"]);
-                addArticle(article);
+                addArticle(article, true);
             });
     }
 

@@ -8,7 +8,7 @@ const ArticlesDisplayer = ({articles}) => {
         <div className={style.articlesDisplayer}>
             <div className={style.articlesContent}>
                 { articles && articles.map((article, index) => (
-                    <ArticlePresentation article={article} isResponsiveMode={true} key={index} />
+                    <ArticlePresentation article={article} isResponsiveMode={true} key={index}/>
                 ))}
             </div>
         </div>

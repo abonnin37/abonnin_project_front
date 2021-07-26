@@ -56,7 +56,7 @@ const Header = () => {
                 {
                     isMobile ?
                         <div className={style.menuMobileBurger} onClick={() => setShowMenu(!showMenu)}>
-                            <input type="checkbox" />
+                            <input type="checkbox" checked={showMenu}/>
 
                             <span></span>
                             <span></span>
@@ -64,12 +64,12 @@ const Header = () => {
                         </div>
                         :
                         <div className={style.menu}>
-                            <MenuList />
+                            <MenuList/>
                         </div>
                 }
 
                 <div className={style.sideMenuMobile}>
-                    <MenuList />
+                    <MenuList setShowMenu={setShowMenu}/>
                 </div>
             </div>
         </header>

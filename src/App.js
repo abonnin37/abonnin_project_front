@@ -7,6 +7,7 @@ import AdminBlog from "./admin/Blog/admin-blog";
 import Footer from "./components/Layout/footer/footer";
 import NotFound from "./components/Layout/not-found/not-found";
 import {Toaster} from "react-hot-toast";
+import ArticleDetail from "./components/Blog/article-detail/article-detail";
 
 function App() {
     return(
@@ -19,6 +20,9 @@ function App() {
                     </Route>
                     <Route path="/acceuil">
                         <MainPage />
+                    </Route>
+                    <Route path="/blog/:id">
+                        <ArticleDetail />
                     </Route>
                     <Route path="/blog">
                         <Blog />

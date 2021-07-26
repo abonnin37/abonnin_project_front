@@ -34,10 +34,12 @@
       }
     }
 
-    a {
+    .link {
       color: $green;
       display: flex;
       align-items: center;
+      cursor: pointer;
+      text-decoration: underline;
 
       svg {
         margin-right: 3px;

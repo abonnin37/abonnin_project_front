@@ -1,0 +1,66 @@
+@import "src/common";
+
+.articleDetail {
+  position: relative;
+  padding-top: toRem(135);
+  background-color: $whitePastel;
+
+  .goBack {
+    position: relative;
+    @extend .content-width;
+    display: flex;
+    align-items: center;
+    color: $green;
+    z-index: 10;
+
+    svg {
+      margin-right: 3px;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .articleDetailContent {
+    position: relative;
+    @extend .content-width;
+    text-align: center;
+    max-width: 1250px;
+    margin: auto;
+    z-index: 10;
+
+    .title {
+      margin: 50px 0;
+    }
+
+    .image {
+      z-index: 10;
+      width: 100%;
+      object-fit: cover;
+      max-height: 500px;
+      max-width: 890px;
+    }
+
+    .date {
+      margin: 50px 0;
+      color: $black;
+    }
+
+    .content {
+      padding: 50px 0;
+      text-align: justify;
+      color: $green;
+    }
+  }
+
+  .backgroundLightGreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $lightGreen;
+    height: 700px;
+    z-index: 1;
+  }
+}

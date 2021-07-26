@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import HomeHero from "./home-hero/home-hero";
 import ArticlesDisplayer from "./articles-displayer/articles-displayer";
+import {toast} from "react-hot-toast";
 
 import style from "./blog.module.scss";
 import axios from "../../axios";
-import {toast} from "react-hot-toast";
 
 const Blog = () => {
     const [articleList, setArticleList] = useState([]);
@@ -22,10 +22,10 @@ const Blog = () => {
     }, [setArticleList]);
 
     return (
-      <div className={style.blog}>
-          <HomeHero articleList={articleList}/>
-          <ArticlesDisplayer articles={articleList}/>
-      </div>
+        <div className={style.blog}>
+            <HomeHero articleList={articleList}/>
+            <ArticlesDisplayer articles={articleList}/>
+        </div>
     );
 }
 

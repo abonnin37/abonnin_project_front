@@ -12,14 +12,14 @@ $fontSize: 80%;
 
 // Layouts
 $contentWidth: 1620px;
-$minMargin: 40px;
-$minMarginMobile: 30px;
+$minMargin: 100px;
+$minMarginMobile: 16px;
 $menuHeight: 68.4;
 
 // Responsive
+$laptopBreakpoint: 1200px;
 $tabletBreakpoint: 990px;
 $mobileBreakpoint: 600px;
-$laptopBreakpoint: 1200px;
 
 // Extends
 .content-width {

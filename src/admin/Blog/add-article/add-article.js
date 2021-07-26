@@ -2,7 +2,6 @@ import React from "react";
 import ArticleForm from "../article-form/article-form";
 
 import style from "./add-article.module.scss";
-import ChevronLeft from "../../../assets/images/chevron-left.svg";
 
 const AddArticle = ({addArticle}) => {
     return (

@@ -1,0 +1,18 @@
+@import "src/common";
+
+.articlesDisplayer {
+  background-color: $whitePastel;
+  padding-top: 50px;
+
+  .articlesContent {
+    @extend .content-width;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6%;
+    
+    @media (max-width: $mobileBreakpoint) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+}

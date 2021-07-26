@@ -11,13 +11,27 @@
     align-items: center;
     gap: 50px;
 
+    @media (max-width: $mobileBreakpoint) {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     h4 {
       text-align: left;
       margin-bottom: 30px;
+
+      @media (max-width: $mobileBreakpoint) {
+        margin-bottom: 15px;
+      }
     }
 
     p {
       margin-bottom: 30px;
+
+      @media (max-width: $mobileBreakpoint) {
+        margin-bottom: 15px;
+      }
     }
 
     a {
@@ -59,5 +73,42 @@
     background-color: $whitePastel;
     height: 150px;
     z-index: 1;
+  }
+
+  &.responsive {
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: 100%;
+      margin: 0;
+
+      h4 {
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+    }
+
+    .image {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+
+      @media (max-width: 1300px) {
+        height: 200px;
+      }
+
+      @media (max-width: $tabletBreakpoint) {
+        height: 150px;
+      }
+
+      @media (max-width: $mobileBreakpoint) {
+        height: 200px;
+      }
+    }
   }
 }

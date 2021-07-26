@@ -1,12 +1,18 @@
 // Test
-@import "common";
+@import "mixins";
 
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
 
 html {
   margin: 0;
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-x: hidden;
   font-size: $fontSize;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 *{
@@ -21,74 +27,27 @@ body {
   margin: 0;
   font-family: $font;
   font-weight: 400;
-  font-size: toRem(20);
-  line-height: toRem(24);
+  font-size: 16px;
+  letter-spacing: .5px;
+  line-height: 24px;
   color: $black;
 
-  @media (max-width: $tabletBreakpoint){
-    font-size: toRem(18);
-  }
-
-  @media (max-width: $mobileBreakpoint){
-    font-size: toRem(16);
-  }
-
   h1 {
-    font-size: toRem(80);
-    line-height: toRem(96);
-    font-family: $fontTitle;
-    font-weight: 400;
-    color: $green;
-
-    @media (max-width: $tabletBreakpoint){
-      font-size: toRem(64);
-    }
-
-    @media (max-width: $mobileBreakpoint){
-      font-size: toRem(45);
-    }
+    @include h1;
   }
   h2 {
-    font-size: toRem(48);
-    line-height: toRem(55);
-    font-weight: 400;
-    color: $green;
-
-    @media (max-width: $tabletBreakpoint){
-      font-size: toRem(34);
-    }
+    @include h2;
   }
 
   h3 {
-    font-size: toRem(34);
-    line-height: toRem(43);
-    font-weight: 400;
-    color: $green;
-
-    @media (max-width: $tabletBreakpoint){
-      font-size: toRem(24);
-    }
+    @include h3;
   }
 
   h4 {
-    font-size: toRem(24);
-    line-height: toRem(43);
-    font-weight: 400;
-    color: $green;
+    @include h4;
   }
 
   h5 {
-    font-size: toRem(20);
-    line-height: toRem(36);
-    font-weight: 400;
-    color: $green;
-
-    @media (max-width: $tabletBreakpoint){
-      font-size: toRem(18);
-    }
-
-    @media (max-width: $mobileBreakpoint){
-      font-size: toRem(16);
-    }
+    @include h5;
   }
 }

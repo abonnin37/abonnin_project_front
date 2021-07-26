@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import HomeHero from "./home-hero/home-hero";
+import ArticlesDisplayer from "./articles-displayer/articles-displayer";
 
 import style from "./blog.module.scss";
 import axios from "../../axios";
@@ -23,6 +24,7 @@ const Blog = () => {
     return (
       <div className={style.blog}>
           <HomeHero articleList={articleList}/>
+          <ArticlesDisplayer articles={articleList}/>
       </div>
     );
 }

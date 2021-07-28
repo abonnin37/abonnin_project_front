@@ -40,6 +40,7 @@ const CitationForm = ({addCitation, editCitation, citation}) => {
             axios.post("/api/citations", data)
                 .then(response => {
                     addCitation(response.data);
+                    reset();
                     toast.success("Vous avez créé une citation !");
                 })
                 .catch(err => {

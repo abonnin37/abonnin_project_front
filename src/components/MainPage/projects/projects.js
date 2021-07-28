@@ -21,6 +21,16 @@ const Projects = () => {
     const swiperNext = useRef(null);
     const swiperPrev = useRef(null);
 
+    useEffect(() => {
+        const html = document.documentElement;
+
+        if (openModal){
+            html.style.overflow = "hidden";
+        } else {
+            html.style.overflow = "auto";
+        }
+    }, [openModal]);
+
     // Swiper configuration
     const sliderSettings = {
         slidesPerView:4,
@@ -35,7 +45,10 @@ const Projects = () => {
     const sliderSettingsMobile = {
         slidesPerView:1,
         autoplay: {"delay": 3000},
-        navigation: true
+        navigation: {
+            nextEl: swiperNext.current,
+            prevEl: swiperPrev.current,
+        }
     };
 
     const propertiesDistribution = () => {
@@ -71,27 +84,29 @@ const Projects = () => {
 
     return (
         <div className={style.projects}>
-            <h1 className={style.title}>My projects</h1>
-            <div className={style.swiper}>
-                <Swiper tag="section" {...propertiesDistribution()} >
-                    { projects &&
+            <div className={style.projectsContainer}>
+                <h1 className={style.title}>My projects</h1>
+                <div className={style.swiper}>
+                    <Swiper tag="section" {...propertiesDistribution()} >
+                        { projects &&
                         projects.map((project, i) => {
-                        return (
-                            <SwiperSlide key={`project-${i}`}>
-                                <div className={style.projectContainer} onClick={() => handleProjectClick(project)}>
-                                    <Tile project={project}/>
-                                </div>
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
-                <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
-                <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
-            </div>
+                            return (
+                                <SwiperSlide key={`project-${i}`}>
+                                    <div className={style.projectContainer} onClick={() => handleProjectClick(project)}>
+                                        <Tile project={project}/>
+                                    </div>
+                                </SwiperSlide>
+                            );
+                        })}
+                    </Swiper>
+                    <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
+                    <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
+                </div>
 
-            <SlideModal open={openModal} setOpen={setOpenModal}>
-                <ProjectDetail project={selectedProject} handleCloseModal={handleCloseModal}/>
-            </SlideModal>
+                <SlideModal open={openModal} setOpen={setOpenModal}>
+                    <ProjectDetail project={selectedProject} handleCloseModal={handleCloseModal}/>
+                </SlideModal>
+            </div>
         </div>
     );
 }

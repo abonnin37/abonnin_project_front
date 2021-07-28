@@ -26,8 +26,7 @@ const HomeHero = () => {
                 </div>
 
                 <div className={style.colRight}>
-                    <div className={style.slash}>
-                    </div>
+                    <div className={style.slash}/>
                     <div className={style.bannerDate}>
                         <p>1997 - {new Date().getFullYear()}</p>
                     </div>

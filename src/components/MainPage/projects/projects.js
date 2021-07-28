@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {Autoplay, Navigation} from 'swiper/core';
 import {useMedia} from "use-media";
 import Tile from "./tile/tile";
+import ProjectDetail from "../project-detail/project-detail";
+import {SlideModal} from "../../Layout/slide-modal/slide-modal";
 
 import style from "./projects.module.scss";
 import 'swiper/swiper-bundle.css';
@@ -13,6 +15,8 @@ SwiperCore.use([Autoplay, Navigation]);
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
     const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
     const swiperNext = useRef(null);
     const swiperPrev = useRef(null);
@@ -42,6 +46,16 @@ const Projects = () => {
         }
     }
 
+    const handleProjectClick = (project) => {
+        setSelectedProject(project);
+        setOpenModal(true);
+    }
+
+    const handleCloseModal = () => {
+        setSelectedProject(null);
+        setOpenModal(false);
+    }
+
     // Get the datas from the api
     // user-info
     useEffect(() => {
@@ -64,18 +78,20 @@ const Projects = () => {
                         projects.map((project, i) => {
                         return (
                             <SwiperSlide key={`project-${i}`}>
-                                <div className={style.projectContainer}>
+                                <div className={style.projectContainer} onClick={() => handleProjectClick(project)}>
                                     <Tile project={project}/>
                                 </div>
                             </SwiperSlide>
                         );
                     })}
                 </Swiper>
-                <div className={style.navigation}>
-                    <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
-                    <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
-                </div>
+                <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
+                <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
             </div>
+
+            <SlideModal open={openModal} setOpen={setOpenModal}>
+                <ProjectDetail project={selectedProject} handleCloseModal={handleCloseModal}/>
+            </SlideModal>
         </div>
     );
 }

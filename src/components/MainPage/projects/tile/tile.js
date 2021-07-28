@@ -5,7 +5,6 @@ import axios from "../../../../axios";
 import {toast} from "react-hot-toast";
 
 const Tile = ({project}) => {
-    console.log(project);
     const [imageUrl, setImageUrl] = useState("");
 
     useEffect(() => {

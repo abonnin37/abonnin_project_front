@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import HomeHero from "./home-hero/home-hero";
 import Projects from "./projects/projects";
 import Competences from "./competences/competences";
 import Contact from "./contact/contact";
 import BlogRedirection from "./blog-redirection/blog-redirection";
-import AdminProjects from "../../admin/MainPage/projects/admin-projects";
 
 import style from './main-page.module.scss';
 

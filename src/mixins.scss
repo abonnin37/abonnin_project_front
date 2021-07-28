@@ -65,3 +65,14 @@
     font-size: toRem(16);
   }
 }
+
+@mixin h6 {
+  font-size: toRem(18);
+  line-height: toRem(24);
+  font-weight: bold;
+  color: $green;
+
+  @media (max-width: $mobileBreakpoint){
+    font-size: toRem(16);
+  }
+}

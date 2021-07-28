@@ -50,4 +50,8 @@ body {
   h5 {
     @include h5;
   }
+
+  h6 {
+    @include h6;
+  }
 }

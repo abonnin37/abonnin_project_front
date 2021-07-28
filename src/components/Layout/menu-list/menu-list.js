@@ -17,8 +17,8 @@ const MenuList = ({setShowMenu}) => {
               <li onClick={() => handleClick("/acceuil")}>
                   <NavLink activeClassName={style.active} to="/acceuil">Acceuil</NavLink>
               </li>
-              <li onClick={() => handleClick("/adminProject")}>
-                  <NavLink activeClassName={style.active} to="/adminProject">Admin Project</NavLink>
+              <li onClick={() => handleClick("/adminMainPage")}>
+                  <NavLink activeClassName={style.active} to="/adminMainPage">Admin Main Page</NavLink>
               </li>
               <li onClick={() => handleClick("/blog")}>
                   <NavLink activeClassName={style.active} to="/blog">Blog</NavLink>

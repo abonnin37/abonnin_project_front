@@ -9,6 +9,7 @@ import NotFound from "./components/Layout/not-found/not-found";
 import {Toaster} from "react-hot-toast";
 import ArticleDetail from "./components/Blog/article-detail/article-detail";
 import AdminProjects from "./admin/MainPage/projects/admin-projects";
+import AdminCitations from "./admin/MainPage/citations/admin-citations";
 
 function App() {
     return(
@@ -22,8 +23,9 @@ function App() {
                     <Route path="/acceuil">
                         <MainPage />
                     </Route>
-                    <Route path="/adminProject">
+                    <Route path="/adminMainPage">
                         <AdminProjects />
+                        <AdminCitations />
                     </Route>
                     <Route path="/blog/:id">
                         <ArticleDetail />

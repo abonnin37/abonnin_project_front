@@ -7,6 +7,7 @@ import Contact from "./contact/contact";
 import BlogRedirection from "./blog-redirection/blog-redirection";
 
 import style from './main-page.module.scss';
+import Citations from "./citations/citations";
 
 const MainPage = () => {
     return (
@@ -14,6 +15,7 @@ const MainPage = () => {
             <HomeHero />
             {/*<AdminProjects />*/}
             <Projects />
+            <Citations />
             <Competences />
             <BlogRedirection />
             <Contact />

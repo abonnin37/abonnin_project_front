@@ -1,6 +1,7 @@
 @import "src/common";
 
 .adminProjects{
+  @extend .content-width;
   padding-top: toRem(135);
   background-color: $whitePastel;
 }

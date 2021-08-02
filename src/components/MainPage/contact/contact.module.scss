@@ -2,62 +2,109 @@
 
 .contact {
     background-color: $whitePastel;
-    padding: 40px 10%;
+    padding: 40px 0;
 
-    h1 {
-        color: $green;
-        text-align: center;
-        margin-bottom: 50px;
-    }
+    .contactContainer {
+        @extend .content-width;
 
-    h5 {
-        color: $green;
-        text-align: center;
-    }
+        h1 {
+            color: $green;
+            text-align: center;
+            margin-bottom: 50px;
 
-    .contactForm {
-        background-color: $lightGreen;
-        padding: 30px;
-        .formControl {
+            @media (max-width: $mobileBreakpoint) {
+                margin-bottom: 20px;
+            }
+        }
+
+        h5 {
+            color: $green;
+            text-align: center;
+
+        }
+
+        .contactForm {
+            background-color: $lightGreen;
+            padding: 30px;
             display: grid;
             grid: auto-flow auto / repeat(3, 1fr);
             gap: 15px 30px;
 
-            div {
-                height: 50px;
+            @media (max-width: $tabletBreakpoint) {
+                grid-template-columns: 1fr;
             }
 
-            div:nth-last-child(2) {
-                grid-column: span 2;
+            >div {
+                label {
+                    color: $green;
+                }
+
+                :global(.MuiInputBase-root) {
+                    border: none;
+                    border-radius: 0;
+
+                }
             }
 
-            div:nth-last-child(1) {
+            .subject {
+                grid-column: 2 / -1;
+
+                @media (max-width: $tabletBreakpoint) {
+                    grid-column: 1 / -1;
+                }
+            }
+
+            input, textarea {
+                background-color: white;
+                border: none;
+                outline: none;
+                color: $green;
+                font-size: 18px;
+
+                &::placeholder {
+                    color: $green;
+                }
+            }
+
+            textarea {
                 grid-column: 1 / -1;
-                height: auto;
-            }
+                resize: vertical;
+                height: 200px!important;
+                font-family: "Work Sans";
+                font-size: 18px;
+                padding: 18.5px 14px;
+            };
         }
 
-        .formActions {
-            display: flex;
+        button {
+            grid-column: 1 / -1;
+            color: $green;
+            background-color: $lightGreen;
+            padding: 10px;
+            border: 3px solid white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 500ms, color 500ms;
 
-            button {
-                flex-grow: 1;
+            &.disabled {
+                background-color: #ececec;
+                color: #afafaf;
+                cursor: initial;
+            }
+
+            &:hover {
                 color: $green;
-                padding: 10px;
-                border: 3px solid white;
-                cursor: pointer;
-                font-weight: bold;
-                transition: background-color 500ms, color 500ms;
+                background-color: white;
 
-                &:hover {
-                    color: $black;
-                    background-color: white;
+                &.disabled {
+                    background-color: #ececec;
+                    color: #afafaf;
                 }
             }
         }
-    }
 
-    .requiredText {
-        margin-top: 40px;
+        .requiredText {
+            margin-top: 40px;
+        }
     }
 }

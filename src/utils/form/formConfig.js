@@ -108,7 +108,6 @@ export const contactForm = {
         ...createFormFieldConfig("Message", "message", "textarea", true),
         validationRules: [
             requiredRule("message"),
-            minLengthRule("password", 10)
         ]
     }
 };

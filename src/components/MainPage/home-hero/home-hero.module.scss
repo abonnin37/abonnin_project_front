@@ -29,14 +29,23 @@
       margin-bottom: 50px;
       margin-left: 30px;
 
+      &:hover {
+        div {
+          text-decoration: underline;
+        }
+      }
+
       @media (max-width: $tabletBreakpoint) {
         grid-area: 4 / 2 / 5 / 3;
         margin: 20px 0 0 50px;
       }
-
-      a {
+      svg {
+        margin-bottom: 6px;
+      }
+      div {
+        cursor: pointer;
         color: $green;
-        font-size: toRem(26);
+        font-size: toRem(20);
       }
     }
 

@@ -80,6 +80,7 @@ const Contact = () => {
                         render={({ field, fieldState }) => (
                             <TextField
                                 label={"Email"}
+                                type={"email"}
                                 error={fieldState.invalid}
                                 helperText={fieldState.invalid ? "L'email est requis" : null}
                                 variant="outlined"

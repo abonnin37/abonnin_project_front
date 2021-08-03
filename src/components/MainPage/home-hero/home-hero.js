@@ -1,17 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import style from './home-hero.module.scss';
 import Banner from "/src/assets/images/home-hero-banner.jpg";
 import RightArrow from "/src/assets/images/right-arrow.svg";
+import {SlideModal} from "../../Layout/slide-modal/slide-modal";
+import ProspectModal from "./prospect-modal/prospect-modal";
 
 const HomeHero = () => {
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleCloseModal = () => {
+        setOpenModal(false);
+    }
+
     return (
         <div className={style.homeHero}>
             <h1 className={style.title}>Alexandre Bonnin</h1>
             <div className={style.contentHomeHero}>
                 <div className={style.cvLink}>
                     <RightArrow />
-                    <a href="">Link to my CV</a>
+                    <div onClick={() => setOpenModal(!openModal)}>Link to my CV</div>
                 </div>
                 <div className={style.banner}>
                     <img src={Banner} alt=""/>
@@ -28,9 +36,13 @@ const HomeHero = () => {
                 <div className={style.colRight}>
                     <div className={style.slash}/>
                     <div className={style.bannerDate}>
-                        <p>1997 - {new Date().getFullYear()}</p>
+                        <p>1997 - {new Date().getFullYear() /* dayjs */}</p>
                     </div>
                 </div>
+
+                <SlideModal open={openModal} setOpen={setOpenModal} mode={"fade"}>
+                    <ProspectModal handleCloseModal={handleCloseModal}/>
+                </SlideModal>
             </div>
         </div>
     );

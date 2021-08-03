@@ -1,0 +1,128 @@
+@import "src/common";
+@import "src/mixins";
+
+.prospectModal {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .formContainer {
+    background-color: white;
+    padding: 30px;
+    border-radius: 3px;
+    border: 1px solid $green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      @include h5;
+      margin-bottom: 20px;
+    }
+
+    .contactForm {
+      display: flex;
+      :global(.MuiFormControl-root){
+        width: 400px;
+        label {
+          color: $green;
+        }
+
+        :global(.MuiInputBase-root) {
+          border-radius: 0;
+
+          fieldset {
+            border-color: $green;
+            border-right: none;
+          }
+        }
+      }
+
+      button {
+        height: 56px;
+        border-radius: 0;
+        border: 1px solid $green;
+        color: white;
+        background-color: $green;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        max-width: 150px;
+        width: 100%;
+
+        &:hover {
+          background-color: $lightGreen;
+          color: $green;
+        }
+
+        &.disabled {
+          background-color: lightgrey;
+          border-color: lightgrey;
+          color: grey;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .close {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: end;
+    align-self: start;
+    position: relative;
+    cursor: pointer;
+    transform: translate(30px, -30px);
+
+    &:hover {
+      .circle {
+        background-color: white;
+        border: 3px solid $black;
+      }
+
+      .cross1 {
+        background-color: $black;
+        transform: translate(-20px, 30px) rotate(-45deg);
+      }
+
+      .cross2 {
+        background-color: $black;
+        transform: translate(-20px, 30px) rotate(45deg);
+      }
+    }
+
+    .circle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      border: 3px solid $green;
+      border-radius: 30px;
+      background-color: $lightGreen;
+      transition: all 0.3s ease;
+    }
+
+    .cross1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 3px;
+      background-color: $green;
+      transform-origin: center;
+      transform: translate(-20px, 30px) rotate(45deg);
+      transition: all 0.3s ease;
+    }
+
+    .cross2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 3px;
+      background-color: $green;
+      transform-origin: center;
+      transform: translate(-20px, 30px) rotate(-45deg);
+      transition: all 0.3s ease;
+    }
+  }
+}

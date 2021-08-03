@@ -48,7 +48,6 @@ const ProjectDetail = ({project, handleCloseModal}) => {
             <div className={style.leftCol}>
                 <Swiper tag="section" {...sliderSettings} >
                     { imageList.length > 0 && imageList.map((image, i) => {
-                        console.log(image);
                         return (
                             <SwiperSlide key={"project-image-"+i}>
                                 <div className={style.imageContainer} >

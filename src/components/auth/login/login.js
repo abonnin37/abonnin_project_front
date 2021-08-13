@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react";
+import React, {useEffect, useContext, useCallback, useState} from "react";
 
 import style from "./login.module.scss";
 import {Controller, useForm} from "react-hook-form";
@@ -6,17 +6,34 @@ import axios from "../../../axios";
 import {toast} from "react-hot-toast";
 import {TextField} from "@material-ui/core";
 import {Button} from "../../UI/button/button";
-import {Link, useHistory} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import AuthContext from "../../../store/auth-context";
 import jwt_decode from "jwt-decode";
 
 const Login = () => {
-    const history = useHistory();
-
     const {login} = useContext(AuthContext);
+    const history = useHistory();
+    let location = useLocation();
+    const [isVerifyUserEmail, setIsVerifyUserEmail] = useState(false);
+    const queryParams = new URLSearchParams(location.search);
+
+    // we do that because we can't call toast in useEffect
+    if (isVerifyUserEmail) {
+        if (queryParams.get("status") === "201") {
+            toast.success(queryParams.get("message"));
+        } else if (queryParams.get("status") === "400") {
+            toast.error(queryParams.get("message"));
+        }
+        setIsVerifyUserEmail(false);
+    }
+
 
     useEffect(() => {
+        if (queryParams.get("status")) {
+            setIsVerifyUserEmail(true);
+        }
+
         document.getElementsByTagName('header')[0].style.display = "none";
         document.getElementsByTagName('footer')[0].style.display = "none";
 
@@ -47,7 +64,11 @@ const Login = () => {
                 }
             })
             .catch(err => {
-                toast.error("Vérifier le couple email / password");
+                if (err.response.data.message === "Votre compte n'est pas activé") {
+                    toast.error(err.response.data.message);
+                } else {
+                    toast.error("Vérifier le couple email / password");
+                }
             });
     }
 

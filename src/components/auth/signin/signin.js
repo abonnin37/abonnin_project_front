@@ -43,16 +43,12 @@ const Signin = () => {
                 console.log(response);
                 if (response.status === 201) {
                     reset();
-                    toast.success("Votre compte à bien été créé");
+                    toast.success(response.data.message);
                     history.push("/login");
                 }
             })
             .catch(err => {
-                if (err.response.status === 422) {
-                    toast.error("Cet email est déjà utilisé");
-                } else {
-                    toast.error("Vérifier le couple email / password");
-                }
+                toast.error(err.response.data.message);
             });
     }
 

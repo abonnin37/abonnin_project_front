@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useContext} from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import MainPage from "./components/MainPage/main-page";
 import Header from "./components/Layout/header/header";
@@ -10,8 +10,14 @@ import {Toaster} from "react-hot-toast";
 import ArticleDetail from "./components/Blog/article-detail/article-detail";
 import AdminProjects from "./admin/MainPage/projects/admin-projects";
 import AdminCitations from "./admin/MainPage/citations/admin-citations";
+import Login from "./components/auth/login/login";
+import {AuthWrapper} from "./components/auth/shared/auth-wrapper/auth-wrapper";
+import Signin from "./components/auth/signin/signin";
+import AuthContext from "./store/auth-context";
+import Profile from "./components/auth/profile/profile";
 
 function App() {
+    const {isLoggedIn, isAdmin} = useContext(AuthContext);
     return(
         <Fragment>
             <Header />
@@ -23,21 +29,44 @@ function App() {
                     <Route path="/acceuil">
                         <MainPage />
                     </Route>
-                    <Route path="/adminMainPage">
-                        <AdminProjects />
-                        <AdminCitations />
-                    </Route>
+                    { isLoggedIn && isAdmin &&
+                        <Route path="/adminMainPage">
+                            <AdminProjects />
+                            <AdminCitations />
+                        </Route>
+                    }
                     <Route path="/blog/:id">
                         <ArticleDetail />
                     </Route>
                     <Route path="/blog">
                         <Blog />
                     </Route>
-                    <Route path="/adminBlog">
-                        <AdminBlog />
+                    { isLoggedIn && isAdmin &&
+                        <Route path="/adminBlog">
+                            <AdminBlog />
+                        </Route>
+                    }
+                    { !isLoggedIn &&
+                        <Route path="/login">
+                            <AuthWrapper title={"Connexion"}>
+                                <Login />
+                            </AuthWrapper>
+                        </Route>
+                    }
+                    { !isLoggedIn &&
+                        <Route path="/signin">
+                            <AuthWrapper title={"Inscription"}>
+                                <Signin />
+                            </AuthWrapper>
+                        </Route>
+                    }
+                    { isLoggedIn &&
+                    <Route path="/profile">
+                        <Profile />
                     </Route>
-                    <Route path="*">
-                        <NotFound />
+                    }
+                    <Route path='*'>
+                        <Redirect to="/acceuil" />
                     </Route>
                 </Switch>
             </main>

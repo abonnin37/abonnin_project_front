@@ -1,15 +1,18 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useContext} from 'react';
 import {useMedia} from "use-media";
 import MenuList from "../menu-list/menu-list";
 
 import style from './header.module.scss';
 import Logo from "/src/assets/images/logo.svg";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import AuthContext from "../../../store/auth-context";
+import {toast} from "react-hot-toast";
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const headerEl = useRef(null);
     const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
+    const {isLoggedIn, logout} = useContext(AuthContext);
 
     // We put a listener on the showMenu property to open and close the side menu
     useEffect(() => {
@@ -45,8 +48,13 @@ const Header = () => {
         };
     });
 
+    const logoutHandler = () => {
+        if (logout()) {
+            toast.success("Vous avez bien été déconnecté");
+        }
+    }
     return (
-        <header className={style.header} >
+        <header className={style.header}>
             <div className={style.container} ref={headerEl}>
                 <div className={style.logo}>
                     <Link to="/">
@@ -66,6 +74,13 @@ const Header = () => {
                         <div className={style.menu}>
                             <MenuList/>
                         </div>
+                }
+                { isLoggedIn ?
+                    <div className={style.logoutBtn} onClick={logoutHandler}>
+                        Déconnexion
+                    </div>
+                    :
+                    <Link to="/login" className={style.loginBtn}>Connexion</Link>
                 }
 
                 <div className={style.sideMenuMobile}>

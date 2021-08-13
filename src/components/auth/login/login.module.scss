@@ -1,0 +1,30 @@
+@import "src/common";
+
+.login {
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .signinLinkGroup {
+      text-align: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $green;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        svg {
+          height: 15px;
+          width: 15px;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+}

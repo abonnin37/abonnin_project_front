@@ -37,6 +37,24 @@
 
     }
 
+    .loginBtn, .logoutBtn {
+      grid-area: 1 / 1 / 2 / 2;
+      align-self: center;
+      justify-self: end;
+      padding: 25px;
+      border: 2px solid $green;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: $green;
+      font-size: 18px;
+
+      &:hover {
+        background-color: $green;
+          color: white;
+      }
+    }
+
     .menuMobileBurger {
       display: block;
       position: relative;

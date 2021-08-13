@@ -1,0 +1,101 @@
+import React, {useEffect, useContext} from "react";
+
+import style from "./login.module.scss";
+import {Controller, useForm} from "react-hook-form";
+import axios from "../../../axios";
+import {toast} from "react-hot-toast";
+import {TextField} from "@material-ui/core";
+import {Button} from "../../UI/button/button";
+import {Link, useHistory} from "react-router-dom";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import AuthContext from "../../../store/auth-context";
+import jwt_decode from "jwt-decode";
+
+const Login = () => {
+    const history = useHistory();
+
+    const {login} = useContext(AuthContext);
+
+    useEffect(() => {
+        document.getElementsByTagName('header')[0].style.display = "none";
+        document.getElementsByTagName('footer')[0].style.display = "none";
+
+        return () => {
+            document.getElementsByTagName('header')[0].style.display = "block";
+            document.getElementsByTagName('footer')[0].style.display = "block";
+        };
+    }, []);
+
+    const { control, handleSubmit, formState: {isValid}, reset } = useForm({
+        mode: "onChange",
+        defaultValues: {username: "", password: ""}
+    });
+
+    const onSubmit = (data) => {
+        console.log(data);
+
+        axios.post("/api/login", data)
+            .then(response => {
+                if (response.status === 200) {
+                    // We get the jwt token data to pass the expiration time to the login fct in milisecond (it come in seconde)
+                    const decoded_token = jwt_decode(response.data.token);
+                    login(response.data.token, decoded_token.exp * 1000, decoded_token.roles);
+                    reset();
+                    toast.success("Vous êtes connecté !");
+                    // replace erase the history so that the user can't come back form "acceuil" to "login"
+                    history.replace("/acceuil", );
+                }
+            })
+            .catch(err => {
+                toast.error("Vérifier le couple email / password");
+            });
+    }
+
+    return (
+        <div className={style.login}>
+            <form onSubmit={handleSubmit(onSubmit)} className={style.loginForm}>
+                <Controller
+                    name="username"
+                    rules={{ required: true }}
+                    control={control}
+                    render={({ field, fieldState }) => (
+                        <TextField
+                            label={"Email"}
+                            type={"email"}
+                            fullWidth
+                            error={fieldState.invalid}
+                            helperText={fieldState.invalid ? "L'email est requis" : null}
+                            variant="outlined"
+                            required={true}
+                            {...field}
+                        />
+                    )}
+                />
+                <Controller
+                    name="password"
+                    rules={{ required: true }}
+                    control={control}
+                    render={({ field, fieldState }) => (
+                        <TextField
+                            label={"Mot de passe"}
+                            type={"password"}
+                            fullWidth
+                            error={fieldState.invalid}
+                            helperText={fieldState.invalid ? "Le mot de passe est requis" : null}
+                            variant="outlined"
+                            required={true}
+                            {...field}
+                        />
+                    )}
+                />
+                <Button disabled={!isValid} type={"submit"}>Connexion</Button>
+                <div className={style.signinLinkGroup}>
+                    <h5>Vous n'avez pas de compte ?</h5>
+                    <Link to={"/signin"}><ArrowForwardIcon /> Inscrivez-vous</Link>
+                </div>
+            </form>
+        </div>
+    );
+}
+
+export default Login;

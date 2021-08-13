@@ -1,0 +1,46 @@
+@import "src/common";
+@import "src/mixins";
+
+.profile {
+  @extend .content-width;
+  padding: toRem(135) 0;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .profileContainer {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 100px;
+
+    .userInfo {
+      h2 {
+        @include h3;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        div {
+          &:nth-child(1) {
+            grid-area: 1 / 1 / 2 / 3;
+          }
+        }
+
+        button {
+          grid-area: 3 / 1 / 4 / 3;
+        }
+      }
+    }
+
+    .changePasswordContainer {
+
+    }
+  }
+
+
+}

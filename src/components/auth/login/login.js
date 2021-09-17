@@ -110,6 +110,10 @@ const Login = () => {
                     )}
                 />
                 <Button disabled={!isValid} type={"submit"}>Connexion</Button>
+                <div className={style.resetPasswordLinkGroup}>
+                    <h5>Mot de passe oublié ?</h5>
+                    <Link to={"/reset-password-ask"}><ArrowForwardIcon /> Réinitialiser le mot de passe</Link>
+                </div>
                 <div className={style.signinLinkGroup}>
                     <h5>Vous n'avez pas de compte ?</h5>
                     <Link to={"/signin"}><ArrowForwardIcon /> Inscrivez-vous</Link>

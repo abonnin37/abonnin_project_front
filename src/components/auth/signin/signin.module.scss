@@ -6,6 +6,10 @@
     flex-direction: column;
     gap: 20px;
 
+    button {
+      margin-bottom: 50px;
+    }
+
     .inputCheckbox {
       display: flex;
       align-items: flex-start;

@@ -15,6 +15,8 @@ import {AuthWrapper} from "./components/auth/shared/auth-wrapper/auth-wrapper";
 import Signin from "./components/auth/signin/signin";
 import AuthContext from "./store/auth-context";
 import Profile from "./components/auth/profile/profile";
+import ResetPasswordAsk from "./components/auth/reset-password-ask/reset-password-ask";
+import ResetPassword from "./components/auth/reset-password/reset-password";
 
 function App() {
     const {isLoggedIn, isAdmin} = useContext(AuthContext);
@@ -59,6 +61,19 @@ function App() {
                                 <Signin />
                             </AuthWrapper>
                         </Route>
+                    }
+                    { !isLoggedIn && <>
+                            <Route path="/reset-password-ask">
+                                <AuthWrapper title={"Réinitialiser le mot de passe"}>
+                                    <ResetPasswordAsk />
+                                </AuthWrapper>
+                            </Route>
+                            <Route path="/reset-password">
+                                <AuthWrapper title={"Réinitialiser le mot de passe"}>
+                                    <ResetPassword />
+                                </AuthWrapper>
+                            </Route>
+                        </>
                     }
                     { isLoggedIn &&
                     <Route path="/profile">

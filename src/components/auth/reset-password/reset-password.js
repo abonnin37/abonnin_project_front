@@ -26,7 +26,7 @@ const ResetPassword = () => {
 
         return () => {
             document.getElementsByTagName('header')[0].style.display = "block";
-            document.getElementsByTagName('footer')[0].style.display = "block";
+            document.getElementsByTagName('footer')[0].style.display = "grid";
         };
     }, []);
 

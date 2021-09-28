@@ -20,4 +20,24 @@
 
   .children {
   }
+
+  .home {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    svg {
+      margin-right: 5px;
+
+      + path {
+        fill: $green;
+      }
+    }
+  }
 }

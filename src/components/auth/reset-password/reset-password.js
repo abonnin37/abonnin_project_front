@@ -56,7 +56,11 @@ const ResetPassword = () => {
             })
             .catch(e => {
                 if (e.response.status === 400) {
-                    toast.error(e.response.data.message);
+                    toast.error(e.response.data.message, {
+                        style: {
+                            whiteSpace: "pre-line"
+                        }
+                    });
                 }
                 if (e.response.status === 404) {
                     toast.error("L'utilisateur n'existe pas");

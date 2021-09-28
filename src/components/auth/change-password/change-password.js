@@ -20,8 +20,6 @@ const ChangePassword = ({uri, AuthStr}) => {
     }
 
     const onSubmit = (data) => {
-        console.log(data);
-
         axios.patch("/api/users/" + uri + "/changePassword", data, {
             headers: {
                 Authorization: AuthStr,
@@ -35,9 +33,14 @@ const ChangePassword = ({uri, AuthStr}) => {
             })
             .catch(err => {
                 if (err.response.status === 400) {
-                    toast.error(err.response.data.message);
+                    toast.error(err.response.data.message, {
+                        style: {
+                            whiteSpace: "pre-line"
+                        }
+                    });
+                } else {
+                    toast.error("Une erreur est survenue, veuillez contacter un administrateur");
                 }
-                toast.error("Une erreur est survenue, veuillez contacter un administrateur");
             });
     }
 

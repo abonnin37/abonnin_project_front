@@ -33,7 +33,18 @@ const Contact = () => {
                 }
             })
             .catch(err => {
-                toast.error(err.response.data["hydra:description"]);
+                let errorMessage = "";
+                if (err.response.data["hydra:description"]) {
+                    errorMessage = err.response.data["hydra:description"];
+                } else {
+                    errorMessage = err.response.data.message;
+                }
+
+                toast.error(errorMessage, {
+                    style: {
+                        whiteSpace: "pre-line"
+                    }
+                });
             })
     }
 

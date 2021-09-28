@@ -36,11 +36,8 @@ const Signin = () => {
     }
 
     const onSubmit = (data) => {
-        console.log(data);
-
         axios.post("/api/users", data)
             .then(response => {
-                console.log(response);
                 if (response.status === 201) {
                     reset();
                     toast.success(response.data.message);
@@ -48,7 +45,11 @@ const Signin = () => {
                 }
             })
             .catch(err => {
-                toast.error(err.response.data.message);
+                toast.error(err.response.data.message, {
+                    style: {
+                        whiteSpace: "pre-line"
+                    }
+                });
             });
     }
 

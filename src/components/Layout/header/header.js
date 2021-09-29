@@ -7,25 +7,30 @@ import Logo from "/src/assets/images/logo.svg";
 import {Link, NavLink} from "react-router-dom";
 import AuthContext from "../../../store/auth-context";
 import {toast} from "react-hot-toast";
+import PersonIcon from '@material-ui/icons/Person';
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const headerEl = useRef(null);
-    const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
+    const isTablet = useMedia(`(max-width: ${style.tabletBreakpoint})`);
     const {isLoggedIn, logout} = useContext(AuthContext);
 
     // We put a listener on the showMenu property to open and close the side menu
     useEffect(() => {
-        if (showMenu){
-            document.getElementsByClassName(style.sideMenuMobile)[0].style.transform = "translate(0, 0)";
-            document.getElementsByTagName('body')[0].style.height = "100%";
-            document.getElementsByTagName('html')[0].style.overflow = "hidden";
+        if (isTablet) {
+            if (showMenu){
+                document.getElementsByClassName(style.sideMenuMobile)[0].style.transform = "translate(0, 0)";
+                document.getElementsByTagName('body')[0].style.height = "100%";
+                document.getElementsByTagName('html')[0].style.overflow = "hidden";
+            } else {
+                document.getElementsByClassName(style.sideMenuMobile)[0].style.transform = "translate(-100%, 0)";
+                document.getElementsByTagName('body')[0].style.height = "auto";
+                document.getElementsByTagName('html')[0].style.overflow = "auto";
+            }
         } else {
-            document.getElementsByClassName(style.sideMenuMobile)[0].style.transform = "translate(-100%, 0)";
-            document.getElementsByTagName('body')[0].style.height = "auto";
-            document.getElementsByTagName('html')[0].style.overflow = "auto";
+            setShowMenu(false);
         }
-    }, [showMenu]);
+    }, [showMenu, isTablet, setShowMenu]);
 
     // Manages the header background according to the scroll
     function backgroundHeaderHandler () {
@@ -49,10 +54,30 @@ const Header = () => {
     });
 
     const logoutHandler = () => {
+        setShowMenu(false);
         if (logout()) {
             toast.success("Vous avez bien été déconnecté");
         }
     }
+
+    const AuthActions = () => (
+        <div className={style.authActions}>
+            { isLoggedIn ?
+                <>
+                    <Link className={style.profileLink} to={"/profile"} onClick={() => setShowMenu(false)}>
+                        <PersonIcon />
+                        Mon compte
+                    </Link>
+                    <div className={style.logoutBtn} onClick={logoutHandler}>
+                        Déconnexion
+                    </div>
+                </>
+                :
+                <Link to="/login" className={style.loginBtn} onClick={() => setShowMenu(false)}>Connexion</Link>
+            }
+        </div>
+    );
+
     return (
         <header className={style.header}>
             <div className={style.container} ref={headerEl}>
@@ -62,30 +87,29 @@ const Header = () => {
                     </Link>
                 </div>
                 {
-                    isMobile ?
-                        <div className={style.menuMobileBurger} onClick={() => setShowMenu(!showMenu)}>
-                            <input type="checkbox" checked={showMenu}/>
+                    isTablet ?
+                        <>
+                            <div className={style.menuMobileBurger} onClick={() => setShowMenu(!showMenu)}>
+                                <input type="checkbox" checked={showMenu}/>
 
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div className={style.sideMenuMobile}>
+                                <MenuList setShowMenu={setShowMenu}/>
+                                <div className={style.separator} />
+                                <AuthActions />
+                            </div>
+                        </>
                         :
-                        <div className={style.menu}>
-                            <MenuList/>
-                        </div>
+                        <>
+                            <div className={style.menu}>
+                                <MenuList/>
+                            </div>
+                            <AuthActions />
+                        </>
                 }
-                { isLoggedIn ?
-                    <div className={style.logoutBtn} onClick={logoutHandler}>
-                        Déconnexion
-                    </div>
-                    :
-                    <Link to="/login" className={style.loginBtn}>Connexion</Link>
-                }
-
-                <div className={style.sideMenuMobile}>
-                    <MenuList setShowMenu={setShowMenu}/>
-                </div>
             </div>
         </header>
     );

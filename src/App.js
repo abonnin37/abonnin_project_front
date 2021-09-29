@@ -5,7 +5,6 @@ import Header from "./components/Layout/header/header";
 import Blog from "./components/Blog/blog";
 import AdminBlog from "./admin/Blog/admin-blog";
 import Footer from "./components/Layout/footer/footer";
-import NotFound from "./components/Layout/not-found/not-found";
 import {Toaster} from "react-hot-toast";
 import ArticleDetail from "./components/Blog/article-detail/article-detail";
 import AdminProjects from "./admin/MainPage/projects/admin-projects";
@@ -18,6 +17,12 @@ import Profile from "./components/auth/profile/profile";
 import ResetPasswordAsk from "./components/auth/reset-password-ask/reset-password-ask";
 import ResetPassword from "./components/auth/reset-password/reset-password";
 
+/*
+    Only Route or Redirect are valid children of the Switch component.
+    The React fragments are being returned and messing with the route matching.
+    Source : https://stackoverflow.com/questions/66922799/conditional-routes-not-working-in-react-router
+ */
+
 function App() {
     const {isLoggedIn, isAdmin} = useContext(AuthContext);
     return(
@@ -25,64 +30,75 @@ function App() {
             <Header />
             <main>
                 <Switch>
-                    <Route path='/' exact>
-                        <Redirect to="/acceuil" />
-                    </Route>
                     <Route path="/acceuil">
                         <MainPage />
                     </Route>
+                    <Route path='/' exact>
+                        <Redirect to="/acceuil" />
+                    </Route>
+
+                    {/* If the user is logged in */}
+                    {isLoggedIn &&
+                        <Route path="/profile">
+                            <Profile />
+                        </Route>
+                    }
+                    {isLoggedIn &&
+                        <Route path="/blog/:id">
+                            <ArticleDetail />
+                        </Route>
+                    }
+                    {isLoggedIn &&
+                        <Route path="/blog">
+                            <Blog />
+                        </Route>
+                    }
+
+                    {/* If the user is logged in and is an administrator */}
                     { isLoggedIn && isAdmin &&
                         <Route path="/adminMainPage">
                             <AdminProjects />
                             <AdminCitations />
                         </Route>
                     }
-                    <Route path="/blog/:id">
-                        <ArticleDetail />
-                    </Route>
-                    <Route path="/blog">
-                        <Blog />
-                    </Route>
                     { isLoggedIn && isAdmin &&
                         <Route path="/adminBlog">
                             <AdminBlog />
                         </Route>
                     }
-                    { !isLoggedIn &&
+
+                    {/* Only if the user is not logged in */}
+                    {!isLoggedIn &&
                         <Route path="/login">
                             <AuthWrapper title={"Connexion"}>
                                 <Login />
                             </AuthWrapper>
                         </Route>
                     }
-                    { !isLoggedIn &&
+                    {!isLoggedIn &&
                         <Route path="/signin">
                             <AuthWrapper title={"Inscription"}>
                                 <Signin />
                             </AuthWrapper>
                         </Route>
                     }
-                    { !isLoggedIn && <>
-                            <Route path="/reset-password-ask">
-                                <AuthWrapper title={"Réinitialiser le mot de passe"}>
-                                    <ResetPasswordAsk />
-                                </AuthWrapper>
-                            </Route>
-                            <Route path="/reset-password">
-                                <AuthWrapper title={"Réinitialiser le mot de passe"}>
-                                    <ResetPassword />
-                                </AuthWrapper>
-                            </Route>
-                        </>
+                    {!isLoggedIn &&
+                        <Route path="/reset-password-ask">
+                            <AuthWrapper title={"Réinitialiser le mot de passe"}>
+                                <ResetPasswordAsk />
+                            </AuthWrapper>
+                        </Route>
                     }
-                    { isLoggedIn &&
-                    <Route path="/profile">
-                        <Profile />
-                    </Route>
+                    {!isLoggedIn &&
+                        <Route path="/reset-password">
+                            <AuthWrapper title={"Réinitialiser le mot de passe"}>
+                                <ResetPassword />
+                            </AuthWrapper>
+                        </Route>
                     }
-                    <Route path='*'>
-                        <Redirect to="/acceuil" />
-                    </Route>
+
+                    {/* If a route is unknown */}
+                    <Redirect to="/acceuil" />
                 </Switch>
             </main>
             <Footer />

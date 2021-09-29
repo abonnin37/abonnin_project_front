@@ -11,8 +11,8 @@
     top: 0;
     width: 100vw;
 
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    justify-content: space-between;
 
     background-color: transparent;
     transition: background-color 275ms, padding-top 275ms, top 0.3s ease;
@@ -24,34 +24,90 @@
     }
 
     .logo {
-      grid-area: 1 / 1 / 2 / 2;
       align-self: center;
       justify-self: start;
       width: 80px;
     }
 
     .menu {
-      grid-area: 1 / 1 / 2 / 2;
+      flex: 1;
+      max-width: 800px;
+      margin: 0 50px;
       align-self: center;
       justify-self: center;
 
     }
 
-    .loginBtn, .logoutBtn {
-      grid-area: 1 / 1 / 2 / 2;
-      align-self: center;
-      justify-self: end;
-      padding: 25px;
-      border: 2px solid $green;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: $green;
-      font-size: 18px;
+    .authActions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-      &:hover {
-        background-color: $green;
+      .profileLink {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        font-size: toRem(20);
+        line-height: toRem(32);
+        letter-spacing: toRem(0.15);
+        color: $green;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        svg {
+          margin-right: 5px;
+          +path {
+            fill: $green;
+          }
+        }
+      }
+
+      .loginBtn, .logoutBtn {
+        align-self: center;
+        justify-self: end;
+        padding: 25px;
+        border: 2px solid $green;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: $green;
+        background-color: transparent;
+        font-size: 18px;
+
+        &:hover {
+          background-color: $green;
           color: white;
+        }
+      }
+
+      @media (max-width: $tabletBreakpoint) {
+        flex-direction: column;
+        margin: 10px 1em;
+
+        .profileLink {
+          padding: 20px 0;
+          width: 100%;
+          border: 1px solid $green;
+          justify-content: center;
+          margin: 0 0 20px 0;
+        }
+
+        .logoutBtn, .loginBtn {
+          display: flex;
+          justify-content: center;
+          background-color: $green;
+          color: white;
+          width: 100%;
+
+          &:hover {
+            background-color: white;
+            color: $green;
+          }
+        }
       }
     }
 
@@ -187,6 +243,12 @@
             left: 0;
           }
         }
+      }
+
+      .separator {
+        margin: 40px 5em;
+        height: 2px;
+        background-color: $green;
       }
     }
   }

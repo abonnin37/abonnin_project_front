@@ -78,29 +78,6 @@
 
         button {
             grid-column: 1 / -1;
-            color: $green;
-            background-color: $lightGreen;
-            padding: 10px;
-            border: 3px solid white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 500ms, color 500ms;
-
-            &.disabled {
-                background-color: #ececec;
-                color: #afafaf;
-                cursor: initial;
-            }
-
-            &:hover {
-                color: $green;
-                background-color: white;
-
-                &.disabled {
-                    background-color: #ececec;
-                    color: #afafaf;
-                }
-            }
         }
 
         .requiredText {

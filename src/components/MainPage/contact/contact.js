@@ -6,6 +6,7 @@ import clsx from "clsx";
 import style from "./contact.module.scss";
 import axios from "../../../axios";
 import {toast} from "react-hot-toast";
+import {Button} from "../../UI/button/button";
 
 const Contact = () => {
     const defaultValues = {
@@ -142,7 +143,7 @@ const Contact = () => {
                                 {...field}/>
                         )}
                     />
-                    <button type={"submit"} disabled={!isValid} className={clsx({[style.disabled]: !isValid})}>Envoyer</button>
+                    <Button disabled={!isValid} type={"submit"}>Envoyer</Button>
                 </form>
                 <p className={style.requiredText}>* required fields.</p>
             </div>

@@ -17,7 +17,8 @@ const Projects = () => {
     const [projects, setProjects] = useState([]);
     const [selectedProject, setSelectedProject] = useState(null);
     const [openModal, setOpenModal] = useState(false);
-    const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
+    const isTablet = useMedia(`(max-width: ${style.tabletBreakpoint})`);
+    const isLaptop = useMedia(`(max-width: ${style.laptopBreakpoint})`);
     const swiperNext = useRef(null);
     const swiperPrev = useRef(null);
 
@@ -42,7 +43,16 @@ const Projects = () => {
         }
     };
 
-    const sliderSettingsMobile = {
+    const sliderSettingsLaptop = {
+        slidesPerView:2,
+        autoplay: {"delay": 3000},
+        navigation: {
+            nextEl: swiperNext.current,
+            prevEl: swiperPrev.current,
+        }
+    };
+
+    const sliderSettingsTablet = {
         slidesPerView:1,
         autoplay: {"delay": 3000},
         navigation: {
@@ -52,9 +62,11 @@ const Projects = () => {
     };
 
     const propertiesDistribution = () => {
-        if (isMobile){
-            return sliderSettingsMobile;
-        }  else {
+        if (isTablet){
+            return sliderSettingsTablet;
+        } else if (isLaptop){
+            return sliderSettingsLaptop;
+        } else {
             return sliderSettings;
         }
     }

@@ -1,158 +1,160 @@
 @import "src/common";
 
 .competences {
-  display: grid;
-  grid-template-columns: 2fr 6fr 1fr 7fr 2fr;
-  padding: 100px 0;
+  padding: 75px 0;
   background-color: $whitePastel;
 
-  @media (max-width: $laptopBreakpoint) {
-    grid-template-columns: 1fr 6fr 1fr 7fr 1fr;
-  }
+  .competencesContainer {
+    @extend .content-width;
+    display: grid;
+    grid-template-columns: 6fr 1fr 7fr;
 
-  @media (max-width: 800px) {
-    grid-template-columns: 30px 1fr 30px;
-    justify-items: center;
-  }
-
-  .itemTitle {
-    grid-area: 1 / 2 / 2 / 3;
-
-    @media (max-width: 800px) {
-      grid-area: 1 / 2 / 2 / 3;
+    @media (max-width: $laptopBreakpoint) {
+      grid-template-columns: 6fr 1fr 7fr;
     }
 
-    h1 {
-      color: $green;
-      padding: 10px 20px;
-      position: relative;
-      width: fit-content;
+    @media (max-width: $tabletBreakpoint) {
+      grid-template-columns: 1fr;
+    }
 
-      @media (max-width: 800px) {
-        margin-bottom: 30px;
-      }
+    .itemTitle {
+      grid-area: 1 / 1 / 2 / 2;
 
-      span {
-        z-index: 10;
+      h1 {
+        color: $green;
+        padding: 10px 20px;
         position: relative;
-      }
+        width: fit-content;
 
-      div {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-
-        &.background {
-          background-color: $whitePastel;
-          z-index: 5;
+        @media (max-width: $tabletBreakpoint) {
+          margin-bottom: 30px;
         }
 
-        &.square {
-          border: 1px solid $green;
-          transform: translate(90px, -20px);
-          width: 85%;
-          height: 85%;
+        span {
+          z-index: 10;
+          position: relative;
+        }
 
-          @media (max-width: $mobileBreakpoint) {
-            transform: translate(45px, -20px);
+        div {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+
+          &.background {
+            background-color: $whitePastel;
+            z-index: 5;
+          }
+
+          &.square {
+            border: 1px solid $green;
+            transform: translate(90px, -20px);
+            width: 85%;
+            height: 85%;
+
+            @media (max-width: $mobileBreakpoint) {
+              transform: translate(45px, -20px);
+              width: 90%;
+              height: 84%;
+            }
           }
         }
       }
+
+      .emptySquare {
+        position: absolute;
+        border: 1px solid $green;
+        width: 375px;
+        height: 175px;
+        transform: translate(62px, -226px);
+        z-index: 9;
+      }
     }
 
-    .emptySquare {
-      position: absolute;
-      border: 1px solid $green;
-      width: 375px;
-      height: 175px;
-      transform: translate(62px, -226px);
-      z-index: 9;
+    .itemLangues {
+      grid-area: 2 / 1 / 3 / 2;
+      display: flex;
+      place-self: self-start;
+      align-self: flex-end;
+
+      @media (max-width: $tabletBreakpoint) {
+        grid-area: 2 / 1 / 3 / 2;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 40px;
+
+        .textGroup {
+          padding-left: 20px;
+          flex: 1;
+        }
+
+        .icon {
+          flex: 1;
+        }
+      }
     }
-  }
 
-  .itemLangues {
-    grid-area: 2 / 2 / 3 / 3;
-    display: flex;
-    place-self: self-start;
-    align-self: flex-end;
+    .itemComputer {
+      grid-area: 1 / 3 / 3 / 4;
+      display: flex;
 
-    @media (max-width: 800px) {
-      grid-area: 2 / 2 / 3 / 3;
-      width: 100%;
+      @media (max-width: $tabletBreakpoint) {
+        grid-area: 3 / 1 / 4 / 2;
+        flex-direction: row-reverse;
+        justify-self: end;
+
+        .textGroup {
+          flex: 1;
+          padding-left: 0;
+          padding-right: 20px;
+          border-left: none;
+          border-right: 2px solid $lightGreen;
+        }
+
+        .icon {
+          flex: 1;
+        }
+      }
+    }
+
+    .textGroup {
+      padding-left: 40px;
+      border-left: 2px solid $lightGreen;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      margin-bottom: 40px;
 
-      .textGroup {
-        padding-left: 20px;
-        flex: 1;
+      h2 {
+        color: $green;
+        margin-bottom: 20px;
       }
 
-      .icon {
-        flex: 1;
+      ul {
+        list-style: circle;
+      }
+    }
+    .icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      max-height: 120px;
+      max-width: 200px;
+
+      svg {
+        height: 100%;
+        width: 100%;
+        padding: 0 40px;
+
+        @media (max-width: $tabletBreakpoint) {
+          padding: 0 15px;
+        }
+
+        path{
+          fill: $lightGreen;
+        }
       }
     }
   }
 
-  .itemComputer {
-    grid-area: 1 / 4 / 3 / 5;
-    display: flex;
-
-    @media (max-width: 800px) {
-      grid-area: 3 / 2 / 4 / 3;
-      flex-direction: row-reverse;
-      justify-self: end;
-
-      .textGroup {
-        flex: 1;
-        padding-left: 0;
-        padding-right: 20px;
-        border-left: none;
-        border-right: 2px solid $lightGreen;
-      }
-
-      .icon {
-        flex: 1;
-      }
-    }
-  }
-
-  .textGroup {
-    padding-left: 40px;
-    border-left: 2px solid $lightGreen;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    h2 {
-      color: $green;
-      margin-bottom: 20px;
-    }
-
-    ul {
-      list-style: circle;
-    }
-  }
-  .icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    max-height: 120px;
-    max-width: 200px;
-
-    svg {
-      height: 100%;
-      width: 100%;
-      padding: 0 40px;
-
-      @media (max-width: 800px) {
-        padding: 0 15px;
-      }
-
-      path{
-        fill: $lightGreen;
-      }
-    }
-  }
 }

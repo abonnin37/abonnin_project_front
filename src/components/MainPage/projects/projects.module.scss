@@ -7,7 +7,7 @@
     @extend .content-width;
     display: grid;
     grid-template-columns: 150px 1fr ;
-    padding-top: toRem(75);
+    padding: toRem(75) 0;
     position: relative;
 
     @media (max-width: $mobileBreakpoint) {

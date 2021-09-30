@@ -9,14 +9,16 @@ export const AuthWrapper = ({title, children}) => {
 
     return (
         <div className={style.wrapper}>
-            <h1 className={style.header}>{title}</h1>
+            <div className={style.wrapperContent}>
+                <h1 className={style.header}>{title}</h1>
 
-            <div className={style.children}>
-                {children}
-            </div>
-            <div className={style.home} onClick={() => history.replace("/acceuil", )}>
-                <HomeIcon />
-                Acceuil
+                <div className={style.children}>
+                    {children}
+                </div>
+                <div className={style.home} onClick={() => history.replace("/acceuil", )}>
+                    <HomeIcon />
+                    Acceuil
+                </div>
             </div>
         </div>
     );

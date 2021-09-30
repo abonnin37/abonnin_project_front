@@ -2,21 +2,27 @@
 
 .blogRedirection {
   background-color: $lightGreen;
-  padding: 60px 0;
+  padding: 75px 0;
 
-  h2 {
-    margin: 0 auto;
-    border: 1px solid $green;
-    padding: 20px 100px;
-    width: fit-content;
-    color: $green;
+  .blogRedirectionContainer {
+    @extend .content-width;
 
-    a {
+    h2 {
+      margin: 0 auto;
+      border: 1px solid $green;
+      padding: 20px min(100px, 11%);
+      width: fit-content;
       color: $green;
+      text-align: center;
 
-      &:hover {
-        text-decoration: none;
+      a {
+        color: $green;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
+
 }

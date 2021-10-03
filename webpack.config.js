@@ -77,8 +77,8 @@ module.exports =  {
         new HtmlWebpackPlugin(),
         new MiniCssExtractPlugin(
             {
-                filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-                chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
+                filename: isDevelopment ? '[name].css' : '[name].[fullhash].css',
+                chunkFilename: isDevelopment ? '[id].css' : '[id].[fullhash].css'
             },
         ),
     ],

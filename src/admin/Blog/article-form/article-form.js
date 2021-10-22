@@ -11,7 +11,7 @@ import axios from "../../../axios";
 const ArticleForm = ({addArticle, editArticle, article}) => {
     const [updateImage, setUpdateImage] = useState(!(article && article.imageUrl));
     const defaultValues = {
-        user: "/api/users/2",
+        user: "/api/users/10",
         title: "",
         summary: "",
         content: "",

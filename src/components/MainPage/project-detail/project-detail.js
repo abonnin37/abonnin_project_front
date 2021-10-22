@@ -32,7 +32,7 @@ const ProjectDetail = ({project, handleCloseModal}) => {
 
     // Get the image-urls from the api form the specified project
     useEffect(() => {
-        if (project) {
+        if (project && project.images.length > 0) {
             axios.get('/api/projects/' + project.id + '/images')
                 .then((response) => {
                     setImageList(response.data['hydra:member']);

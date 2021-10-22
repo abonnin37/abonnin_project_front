@@ -8,14 +8,16 @@ const Tile = ({project}) => {
     const [imageUrl, setImageUrl] = useState("");
 
     useEffect(() => {
-        axios.get(project.images[0])
-            .then(response => {
-                setImageUrl(response.data.contentUrl);
-            })
-            .catch(e => {
-                console.log(e.response);
-                toast.error(e.response.statusText);
-            });
+        if (project.images.length > 0) {
+            axios.get(project.images[0])
+                .then(response => {
+                    setImageUrl(response.data.contentUrl);
+                })
+                .catch(e => {
+                    console.log(e.response);
+                    toast.error(e.response.statusText);
+                });
+        }
     }, [project]);
 
 

@@ -11,7 +11,7 @@ import * as dayjs from "dayjs";
 
 const CitationForm = ({addCitation, editCitation, citation}) => {
     const defaultValues = {
-        user: "/api/users/2",
+        user: "/api/users/10",
         firstName: "",
         lastName: "",
         position: "",

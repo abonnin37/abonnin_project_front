@@ -52,8 +52,8 @@ const Contact = () => {
     return (
         <div className={style.contact}>
             <div className={style.contactContainer}>
-                <h5>Hi ther, I'm Alex.</h5>
-                <h1>Get in touch !</h1>
+                <h5>Salut, je m'appelle Alexandre.</h5>
+                <h1>Contacte moi !</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className={style.contactForm}>
                     <Controller
                         name="firstName"
@@ -136,7 +136,7 @@ const Contact = () => {
                         render={({ field, fieldState }) => (
                             <TextareaAutosize
                                 aria-label="empty textarea"
-                                placeholder="Message"
+                                placeholder="Message *"
                                 label={"Message"}
                                 variant="outlined"
                                 required={true}
@@ -145,7 +145,7 @@ const Contact = () => {
                     />
                     <Button disabled={!isValid} type={"submit"}>Envoyer</Button>
                 </form>
-                <p className={style.requiredText}>* required fields.</p>
+                <p className={style.requiredText}>* champs requis.</p>
             </div>
         </div>
     );

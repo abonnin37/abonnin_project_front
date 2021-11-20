@@ -5,9 +5,9 @@ import Projects from "./projects/projects";
 import Competences from "./competences/competences";
 import Contact from "./contact/contact";
 import BlogRedirection from "./blog-redirection/blog-redirection";
+import Citations from "./citations/citations";
 
 import style from './main-page.module.scss';
-import Citations from "./citations/citations";
 
 const MainPage = () => {
     return (

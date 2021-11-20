@@ -3,14 +3,17 @@ import React from 'react';
 import style from './competences.module.scss';
 import Langues from '/src/assets/images/langues.svg';
 import ComputerScience from '/src/assets/images/computer-science.svg';
+import {useMedia} from "use-media";
 
 const Competences = () => {
+    const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
+
     return (
       <div className={style.competences}>
           <div className={style.competencesContainer}>
               <div className={style.itemTitle}>
                   <h1>
-                      <span>My<br/>competences</span>
+                      <span>Mes<br/>compétences</span>
                       <div className={style.background} />
                       <div className={style.square} />
                   </h1>
@@ -32,12 +35,14 @@ const Competences = () => {
                   </div>
               </div>
               <div className={style.itemComputer}>
-                  <div className={style.icon}>
-                      <ComputerScience />
-                  </div>
+                  {!isMobile &&
+                      <div className={style.icon}>
+                          <ComputerScience />
+                      </div>
+                  }
                   <div className={style.textGroup}>
                       <div>
-                          <h2>Computer science</h2>
+                          <h2>Compétences informatiques</h2>
                       </div>
                       <div>
                           <h3>Back-end</h3>
@@ -62,7 +67,7 @@ const Competences = () => {
                           </ul>
                       </div>
                       <div>
-                          <h3>Other</h3>
+                          <h3>Autre</h3>
                           <ul>
                               <li>Microsoft Project</li>
                               <li>SQL</li>

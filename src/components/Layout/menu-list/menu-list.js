@@ -26,11 +26,9 @@ const MenuList = ({setShowMenu}) => {
                       <NavLink activeClassName={style.active} to="/adminMainPage">Admin Main Page</NavLink>
                   </li>
               }
-              { isLoggedIn &&
-                  <li onClick={() => handleClick("/blog")}>
-                      <NavLink activeClassName={style.active} to="/blog">Blog</NavLink>
-                  </li>
-              }
+              <li onClick={() => handleClick("/blog")}>
+                  <NavLink activeClassName={style.active} to="/blog">Blog</NavLink>
+              </li>
               { isLoggedIn && isAdmin &&
                   <li onClick={() => handleClick("/adminBlog")}>
                       <NavLink activeClassName={style.active} to="/adminBlog">Admin Blog</NavLink>

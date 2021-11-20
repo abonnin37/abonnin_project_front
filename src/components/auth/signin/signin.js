@@ -8,6 +8,7 @@ import {TextField} from "@material-ui/core";
 import {Button} from "../../UI/button/button";
 import CheckIcon from '@material-ui/icons/Check';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import HelpIcon from '@material-ui/icons/Help';
 
 import style from "./signin.module.scss";
 
@@ -116,16 +117,23 @@ const Signin = () => {
                 />
                 <Controller
                     name="rgpd"
+                    rules={{
+                        required: true,
+                        validate: value => value
+                    }}
                     control={control}
                     defaultValue={false}
                     render={({field}) => (
-                            <div className={style.inputCheckbox} onClick={() => handleRgpdClick(!field.value)}>
-                                <div className={style.checkbox} {...field}>
-                                    { field.value &&
-                                        <CheckIcon />
-                                    }
+                            <div className={style.inputCheckbox}>
+                                <div className={style.checkboxLink} onClick={() => handleRgpdClick(!field.value)}>
+                                    <div className={style.checkbox} {...field}>
+                                        { field.value &&
+                                            <CheckIcon />
+                                        }
+                                    </div>
+                                    <label >J’accepte les conditions d'utilisation</label>
                                 </div>
-                                <label >J’accepte les conditions d'utilisation</label>
+                                <Link to={"/legal"} target={"_blank"} title={"Voir les mentions légales"}><HelpIcon /></Link>
                             </div>
                     )}
                 />

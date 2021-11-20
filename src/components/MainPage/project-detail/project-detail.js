@@ -1,19 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import * as dayjs from "dayjs";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import {Swiper, SwiperSlide} from "swiper/react";
 import SwiperCore, {Autoplay, Pagination, EffectFade} from "swiper/core";
 import axios from "../../../axios";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 import style from "./project-detail.module.scss";
 import 'swiper/swiper-bundle.css';
 import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/effect-fade/effect-fade.min.css";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 SwiperCore.use([Autoplay, Pagination, EffectFade]);
 
 const ProjectDetail = ({project, handleCloseModal}) => {
     const [imageList, setImageList] = useState([]);
+    const swiperRef = useRef();
+    const [openModal, setOpenModal] = useState(false);
+    const [selectedImgUrl, setSelectedImgUrl] = useState("");
 
     // Swiper configuration
     const sliderSettings = {
@@ -28,6 +37,18 @@ const ProjectDetail = ({project, handleCloseModal}) => {
             crossFade: true,
         },
         speed: 1000,
+    };
+
+    const handleOpen = (imgUrl) => {
+        setSelectedImgUrl(imgUrl);
+        swiperRef.current.swiper.autoplay.stop();
+        setOpenModal(true);
+    };
+
+    const handleClose = () => {
+        setOpenModal(false);
+        swiperRef.current.swiper.autoplay.start();
+        setSelectedImgUrl("");
     };
 
     // Get the image-urls from the api form the specified project
@@ -46,17 +67,50 @@ const ProjectDetail = ({project, handleCloseModal}) => {
     return (
         <div className={style.projectDetail}>
             <div className={style.leftCol}>
-                <Swiper tag="section" {...sliderSettings} >
+                <Swiper tag="section" {...sliderSettings} ref={swiperRef}>
                     { imageList.length > 0 && imageList.map((image, i) => {
                         return (
                             <SwiperSlide key={"project-image-"+i}>
                                 <div className={style.imageContainer} >
-                                    <img src={axios.defaults.baseURL + image.contentUrl} alt=""/>
+                                    <img src={axios.defaults.baseURL + image.contentUrl} alt="" onClick={() => handleOpen(axios.defaults.baseURL + image.contentUrl)}/>
                                 </div>
                             </SwiperSlide>
                         );
                     })}
                 </Swiper>
+                <Modal
+                    className={style.modal}
+                    open={openModal}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={openModal}>
+                        <div className={style.modalImageContainer}>
+                            <TransformWrapper
+                                centerOnInit>
+                                {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                                    <>
+                                        <div className={style.tools}>
+                                            <div className={style.minus} onClick={() => zoomOut()}><RemoveIcon/></div>
+                                            <div className={style.reset} onClick={() => resetTransform()}>Zoom initial</div>
+                                            <div className={style.more} onClick={() => zoomIn()}><AddIcon/></div>
+                                        </div>
+                                        <div className={style.close} onClick={() => handleClose()}>
+                                            <div>Fermer</div>
+                                        </div>
+                                        <TransformComponent>
+                                            <img src={selectedImgUrl} alt=""/>
+                                        </TransformComponent>
+                                    </>
+                                )}
+                            </TransformWrapper>
+                        </div>
+                    </Fade>
+                </Modal>
             </div>
 
             <div className={style.rightCol}>

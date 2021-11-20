@@ -7,7 +7,7 @@ const BlogRedirection = () => {
     return (
         <div className={style.blogRedirection}>
             <div className={style.blogRedirectionContainer}>
-                <h2>Click <Link to="/blog">here</Link> to go to the blog</h2>
+                <h2>Clique <Link to="/blog">ici</Link> pour accéder au blog</h2>
             </div>
         </div>
     );

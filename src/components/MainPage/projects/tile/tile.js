@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import style from "./tile.module.scss";
 import axios from "../../../../axios";
+import dayjs from "dayjs";
 import {toast} from "react-hot-toast";
 
 const Tile = ({project}) => {
@@ -35,7 +36,7 @@ const Tile = ({project}) => {
                 {project.name}
             </h3>
             <h4 className={style.period}>
-                {monthNames[new Date(project.begin_at).getMonth()]} {new Date(project.begin_at).getFullYear()} - {monthNames[new Date(project.end_at).getMonth()]} {new Date(project.end_at).getFullYear()}
+                {dayjs(project.beginAt).locale("fr").format("MMMM") + " - " + dayjs(project.endAt).locale("fr").format("MMMM YYYY")}
             </h4>
             <p className={style.excerpt}>
                 {project.excerpt}

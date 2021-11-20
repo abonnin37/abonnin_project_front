@@ -15,27 +15,44 @@
       align-items: flex-start;
       margin-top: 20px;
 
-      label {
-        cursor: pointer;
-        font-size: 14px;
+      .checkboxLink {
+        display: flex;
+        align-items: flex-start;
+
+        label {
+          cursor: pointer;
+          font-size: 14px;
+        }
+
+        .checkbox {
+          display: flex;
+          flex: none;
+          margin-top: 5px;
+          justify-content: center;
+          align-items: center;
+          height: 20px;
+          width: 20px;
+          border: 1px solid #C9C9C9;
+          border-radius: 2px;
+          margin-right: 8px;
+          cursor: pointer;
+
+          svg {
+            height: 14px;
+            width: 14px;
+          }
+        }
       }
 
-      .checkbox {
-        display: flex;
-        flex: none;
-        margin-top: 5px;
-        justify-content: center;
-        align-items: center;
-        height: 20px;
-        width: 20px;
-        border: 1px solid #C9C9C9;
-        border-radius: 2px;
-        margin-right: 8px;
-        cursor: pointer;
+
+      a {
+        height: 16px;
+        margin-left: 4px;
 
         svg {
-          height: 14px;
-          width: 14px;
+          path:nth-last-child(1) {
+            fill: $green;
+          }
         }
       }
     }

@@ -16,6 +16,7 @@ import AuthContext from "./store/auth-context";
 import Profile from "./components/auth/profile/profile";
 import ResetPasswordAsk from "./components/auth/reset-password-ask/reset-password-ask";
 import ResetPassword from "./components/auth/reset-password/reset-password";
+import Legal from "./components/Legal/legal";
 
 /*
     Only Route or Redirect are valid children of the Switch component.
@@ -36,21 +37,20 @@ function App() {
                     <Route path='/' exact>
                         <Redirect to="/acceuil" />
                     </Route>
+                    <Route path="/legal">
+                        <Legal />
+                    </Route>
+                    <Route path="/blog/:id">
+                        <ArticleDetail />
+                    </Route>
+                    <Route path="/blog">
+                        <Blog />
+                    </Route>
 
                     {/* If the user is logged in */}
                     {isLoggedIn &&
                         <Route path="/profile">
                             <Profile />
-                        </Route>
-                    }
-                    {isLoggedIn &&
-                        <Route path="/blog/:id">
-                            <ArticleDetail />
-                        </Route>
-                    }
-                    {isLoggedIn &&
-                        <Route path="/blog">
-                            <Blog />
                         </Route>
                     }
 

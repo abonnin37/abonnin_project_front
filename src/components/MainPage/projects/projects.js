@@ -97,7 +97,7 @@ const Projects = () => {
     return (
         <div className={style.projects}>
             <div className={style.projectsContainer}>
-                <h1 className={style.title}>My projects</h1>
+                <h1 className={style.title}>Mes projets</h1>
                 <div className={style.swiper}>
                     <Swiper tag="section" {...propertiesDistribution()} >
                         { projects &&

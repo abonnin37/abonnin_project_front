@@ -20,7 +20,7 @@ const HomeHero = () => {
                 <div className={style.contentHomeHero}>
                     <div className={style.cvLink}>
                         <RightArrow />
-                        <div onClick={() => setOpenModal(!openModal)}>Link to my CV</div>
+                        <div onClick={() => setOpenModal(!openModal)}>Lien vers mon CV</div>
                     </div>
                     <div className={style.banner}>
                         <img src={Banner} alt=""/>

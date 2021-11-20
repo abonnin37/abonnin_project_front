@@ -110,11 +110,34 @@
           padding-right: 20px;
           border-left: none;
           border-right: 2px solid $lightGreen;
+
+          @media (max-width: $mobileBreakpoint) {
+            padding-right: 0;
+            border: none;
+            text-align: center;
+
+            ul {
+              padding: 0;
+              margin-bottom: 30px;
+
+              li {
+                list-style: none;
+              }
+
+              li:first-child {
+                margin-top: 5px;
+              }
+            }
+          }
         }
 
         .icon {
           flex: 1;
         }
+      }
+
+      @media (max-width: $mobileBreakpoint) {
+        justify-self: center;
       }
     }
 

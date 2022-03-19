@@ -17,6 +17,7 @@ import Profile from "./components/auth/profile/profile";
 import ResetPasswordAsk from "./components/auth/reset-password-ask/reset-password-ask";
 import ResetPassword from "./components/auth/reset-password/reset-password";
 import Legal from "./components/Legal/legal";
+import AdminTechnologies from "./admin/MainPage/technologies/admin-technologies";
 
 /*
     Only Route or Redirect are valid children of the Switch component.
@@ -58,6 +59,7 @@ function App() {
                     { isLoggedIn && isAdmin &&
                         <Route path="/adminMainPage">
                             <AdminProjects />
+                            <AdminTechnologies />
                             <AdminCitations />
                         </Route>
                     }

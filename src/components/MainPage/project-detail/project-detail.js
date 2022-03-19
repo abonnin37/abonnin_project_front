@@ -23,6 +23,17 @@ const ProjectDetail = ({project, handleCloseModal}) => {
     const swiperRef = useRef();
     const [openModal, setOpenModal] = useState(false);
     const [selectedImgUrl, setSelectedImgUrl] = useState("");
+    const [technologies, setTechnologies] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/projects/'+ project.id +'/technologies')
+            .then(response => {
+                setTechnologies(response.data["hydra:member"]);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    })
 
     // Swiper configuration
     const sliderSettings = {
@@ -129,7 +140,7 @@ const ProjectDetail = ({project, handleCloseModal}) => {
                         <div className={style.technologiesGroup}>
                             <h6>.technologies</h6>
                             <ul>
-                                { project.technologies.length > 0 && project.technologies.map((tech, index) =>(
+                                { technologies.length > 0 && technologies.map((tech, index) =>(
                                     <li key={tech.name + "-" + index}>
                                         {tech.name}
                                     </li>

@@ -71,8 +71,8 @@
         background-color: $whitePastel;
         padding: 50px;
         height: fit-content;
-        max-height: 62%;
-        overflow: auto;
+        //max-height: 62%;
+        //overflow: auto;
 
         @media (max-width: $laptopBreakpoint) {
           padding: 30px

@@ -5,22 +5,14 @@ import clsx from "clsx";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/fr';
 
 import style from "./project-form.module.scss";
 import axios from "../../../../axios";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
-// dayjs
-export const getFormatedDate = (stringDate) => {
-    const date = new Date(stringDate);
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDay();
-
-    return year + "-" + (month < 10 && "0") + month + "-" + (day < 10 && "0") + day;
 }
 
 const ProjectForm = ({refreshList, isEditing, project}) => {
@@ -30,7 +22,6 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAwaiting, setIsAwaiting] = useState(false);
 
-
     useEffect(() => {
         if (isEditing) {
             setInputValue("name", project.name);
@@ -38,8 +29,8 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
             setInputValue("description", project.description);
             setInputValue("url", project.url);
             setInputValue("user", project.user);
-            setInputValue("beginat", getFormatedDate(project.beginAt));
-            setInputValue("endat", getFormatedDate(project.endAt));
+            setInputValue("beginat", dayjs(project.beginAt).locale('fr').format("YYYY-MM-DD"));
+            setInputValue("endat", dayjs(project.endAt).locale('fr').format("YYYY-MM-DD"));
         } else {
             setInputValue("name", "");
             setInputValue("excerpt", "");
@@ -54,6 +45,9 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
     const formSubmissionHandler = (event) => {
         event.preventDefault();
 
+        console.log(event);
+        console.log(project);
+
         // We prepare the information to send
         const requestObj = {
             name: event.target[0].value,
@@ -61,7 +55,7 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
             description: event.target[2].value,
             url: event.target[3].value,
             images: [],
-            technologies: [],
+            technologies: project ? project.technologies : [],
             user: event.target[4].value,
             beginAt: new Date(event.target[5].value),
             endAt: new Date(event.target[6].value),

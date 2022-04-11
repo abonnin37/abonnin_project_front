@@ -49,8 +49,6 @@ const Login = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
-
         axios.post("/api/login", data)
             .then(response => {
                 if (response.status === 200) {

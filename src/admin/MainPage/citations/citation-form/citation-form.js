@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 import style from "./citation-form.module.scss";
 import {useForm, Controller} from "react-hook-form";
@@ -25,8 +25,6 @@ const CitationForm = ({addCitation, editCitation, citation}) => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
-
         if(citation) {
             axios.put("/api/citations/" + citation.id, data)
                 .then(response => {

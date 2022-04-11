@@ -26,6 +26,7 @@ const ProjectDetail = ({project, handleCloseModal}) => {
     const [technologies, setTechnologies] = useState([]);
 
     useEffect(() => {
+        console.log(project);
         axios.get('/api/projects/'+ project.id +'/technologies')
             .then(response => {
                 setTechnologies(response.data["hydra:member"]);
@@ -33,7 +34,7 @@ const ProjectDetail = ({project, handleCloseModal}) => {
             .catch(e => {
                 console.log(e);
             })
-    })
+    }, [])
 
     // Swiper configuration
     const sliderSettings = {
@@ -147,10 +148,12 @@ const ProjectDetail = ({project, handleCloseModal}) => {
                                 ))}
                             </ul>
                         </div>
-                        <div className={style.linkGroup}>
-                            <div className={style.slash} />
-                            <a href={project.url}><ArrowForwardIcon />Lien</a>
-                        </div>
+                        { project.url &&
+                            <div className={style.linkGroup}>
+                                <div className={style.slash} />
+                                <a href={project.url}><ArrowForwardIcon />Lien</a>
+                            </div>
+                        }
                     </div>
                 }
 

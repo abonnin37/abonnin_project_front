@@ -90,7 +90,7 @@ const Header = () => {
                     isTablet ?
                         <>
                             <div className={style.menuMobileBurger} onClick={() => setShowMenu(!showMenu)}>
-                                <input type="checkbox" checked={showMenu}/>
+                                <input type="checkbox" defaultChecked={showMenu}/>
 
                                 <span></span>
                                 <span></span>

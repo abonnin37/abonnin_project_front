@@ -40,8 +40,8 @@ const ListTechnologies = ({listTechnologies, setIsEditing, removeTechnology, add
                     <th>Actions</th>
                 </tr>
                 { listTechnologies &&
-                    listTechnologies.map((technology) =>
-                        <tr key={technology.id}>
+                    listTechnologies.map((technology, index) =>
+                        <tr key={`technology-${index}`}>
                             <td className={style.name}>{technology.name}</td>
                             <td className={style.actions}>
                                 <div>

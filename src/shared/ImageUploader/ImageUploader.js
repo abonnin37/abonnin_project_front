@@ -86,9 +86,9 @@ export const ImageUploader = ({resourceName, projectId}) => {
                     { isAwaiting ?
                         <CircularProgress size={15} className={style.circularProgress}/>
                         : listImages.length > 0 ?
-                            listImages.map(image => {
+                            listImages.map((image, index) => {
                                 return (
-                                    <li>
+                                    <li key={`image-${index}`}>
                                         {image.name}
                                         <div className={style.delete} onClick={() => onDeleteHandler(image.id)}>
                                             <Delete />

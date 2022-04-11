@@ -36,7 +36,12 @@ const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
     });
 
     const onSubmit = (data) => {
-        const projectsToSend = data.projects.split(",");
+
+        let projectsToSend = data.projects.split(",");
+
+        if (!projectsToSend || projectsToSend[0] === "") {
+            projectsToSend = [];
+        }
 
         if(technology) {
             axios.put("/api/technologies/" + technology.id, {...data, projects: projectsToSend})

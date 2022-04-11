@@ -8,9 +8,7 @@ import style from "./slide-modal.module.scss";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        overflowY: "auto"
     },
 }));
 

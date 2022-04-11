@@ -95,7 +95,7 @@ const Projects = () => {
     }, []);
 
     return (
-        <div className={style.projects}>
+        <div id={"projects"} className={style.projects}>
             <div className={style.projectsContainer}>
                 <h1 className={style.title}>Mes projets</h1>
                 <div className={style.swiper}>

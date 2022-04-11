@@ -14,7 +14,7 @@ const HomeHero = () => {
     }
 
     return (
-        <div className={style.homeHero}>
+        <div id={"home"} className={style.homeHero}>
             <div className={style.homeHeroContainer}>
                 <h1 className={style.title}>Alexandre Bonnin</h1>
                 <div className={style.contentHomeHero}>

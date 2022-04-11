@@ -9,7 +9,7 @@ const Competences = () => {
     const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
 
     return (
-      <div className={style.competences}>
+      <div id={"competencies"} className={style.competences}>
           <div className={style.competencesContainer}>
               <div className={style.itemTitle}>
                   <h1>

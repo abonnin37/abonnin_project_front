@@ -50,7 +50,7 @@ const Contact = () => {
     }
 
     return (
-        <div className={style.contact}>
+        <div id={"contact"} className={style.contact}>
             <div className={style.contactContainer}>
                 <h5>Salut, je m'appelle Alexandre.</h5>
                 <h1>Contacte moi !</h1>

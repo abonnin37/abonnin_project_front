@@ -14,13 +14,14 @@
       width: fit-content;
       color: $green;
       text-align: center;
+      cursor: pointer;
 
-      a {
-        color: $green;
+      span {
+        text-decoration: underline;
+      }
 
-        &:hover {
-          text-decoration: none;
-        }
+      &:hover span {
+        text-decoration: none;
       }
     }
   }

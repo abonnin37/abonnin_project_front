@@ -41,7 +41,7 @@ const Citations = () => {
     };
 
     return (
-        <div className={style.citation}>
+        <div id={"recommendations"} className={style.citation}>
             <div className={style.swiper}>
                 <QuoteLeft className={style.leftQuote}/>
                 <Swiper tag="section" {...sliderSettings}>

@@ -15,7 +15,7 @@ const MenuList = ({setShowMenu}) => {
     useEffect(() => {
         history.listen((location) => {
             console.log("verif");
-            if (history.location.pathname === "/acceuil") {
+            if (history.location.pathname === "/acceuil" || history.location.pathname === "/") {
                 setIsHome(true);
             } else {
                 setIsHome(false);

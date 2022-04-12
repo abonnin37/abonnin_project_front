@@ -21,23 +21,23 @@ const Tile = ({project}) => {
         }
     }, [project]);
 
-
-    // dayjs
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
     return (
         <div className={style.tile}>
             <div className={style.image}>
                 <img src={axios.defaults.baseURL + imageUrl} alt=""/>
             </div>
+            <h4 className={style.period}>
+                {
+                    (
+                        dayjs(project.beginAt).locale("fr").format("MMMM") === dayjs(project.endAt).locale("fr").format("MMMM") ?
+                            ""
+                            :
+                            dayjs(project.beginAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.beginAt).locale("fr").format("YY") + " - "
+                    ) + dayjs(project.endAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.endAt).locale("fr").format("YY")}
+            </h4>
             <h3 className={style.title}>
                 {project.name}
             </h3>
-            <h4 className={style.period}>
-                {dayjs(project.beginAt).locale("fr").format("MMMM") + " - " + dayjs(project.endAt).locale("fr").format("MMMM YYYY")}
-            </h4>
             <p className={style.excerpt}>
                 {project.excerpt}
             </p>

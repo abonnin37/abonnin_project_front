@@ -111,9 +111,10 @@ const Projects = () => {
                             );
                         })}
                     </Swiper>
-                    <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
-                    <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
                 </div>
+
+                <div className={clsx(style.navEl, style.navElLeft)} ref={swiperPrev}>&lt;</div>
+                <div className={clsx(style.navEl, style.navElRight)} ref={swiperNext}>></div>
 
                 <SlideModal open={openModal} setOpen={setOpenModal}>
                     <ProjectDetail project={selectedProject} handleCloseModal={handleCloseModal}/>

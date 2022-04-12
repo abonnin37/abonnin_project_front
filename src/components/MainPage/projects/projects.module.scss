@@ -60,39 +60,50 @@
       .projectContainer {
 
       }
+    }
 
-      .navEl {
-        position: absolute;
-        z-index: 10;
-        top: calc(100% / 2 - 30px);
+    .navEl {
+      grid-area: 2/2/3/3;
+      justify-self: end;
+      z-index: 10;
+      margin-top: 20px;
 
-        cursor: pointer;
-        font-size: 40px;
-        color: $green;
-        border: 2px solid $green;
-        height: 60px;
-        width: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 30px;
-        background-color: #f5f2f1b8;
+      cursor: pointer;
+      font-size: 40px;
+      color: $green;
+      border: 2px solid $green;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      background-color: #f5f2f1b8;
 
-        @media (max-width: $tabletBreakpoint) {
-          display: none;
-        }
+      transition: background-color 0.3s ease;
 
-        &.navElLeft {
-          padding-right: 5px;
-          left: 35px;
-        }
-
-        &.navElRight {
-          padding-left: 5px;
-          right: 35px;
-        }
+      @media (max-width: $tabletBreakpoint) {
+        display: none;
       }
 
+      &.navElLeft {
+        padding-right: 5px;
+        margin-right: 80px;
+      }
+
+      &.navElRight {
+        padding-left: 5px;
+      }
+
+      &:hover {
+        background-color: $lightGreen;
+      }
+
+      &:global(.swiper-button-disabled) {
+        background-color: lightgray;
+        color: gray;
+        border-color: gray;
+      }
     }
   }
 

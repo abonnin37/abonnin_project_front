@@ -11,6 +11,13 @@
     align-items: center;
     gap: 50px;
 
+    text-decoration: none;
+    color: $green;
+
+    &:hover .link{
+      text-decoration: none;
+    }
+
     @media (max-width: $mobileBreakpoint) {
       display: flex;
       flex-direction: column;
@@ -42,11 +49,7 @@
       text-decoration: underline;
 
       svg {
-        margin-right: 3px;
-      }
-
-      &:hover {
-        text-decoration: none;
+        margin: 0 3px 5px 0;
       }
     }
 

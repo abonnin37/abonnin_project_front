@@ -7,7 +7,7 @@
     @extend .content-width;
     display: grid;
     grid-template-columns: 150px 1fr ;
-    padding: toRem(75) 0;
+    padding: 75px 0;
     position: relative;
 
     @media (max-width: $tabletBreakpoint) {

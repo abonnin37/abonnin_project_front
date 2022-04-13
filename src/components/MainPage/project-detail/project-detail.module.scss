@@ -92,15 +92,17 @@
     .projectContent {
       grid-area: 1 / 1 / 2 / 2;
 
-      .title {
-        h1 {
-          font-size: 45px;
-          line-height: 55px;
-        }
+      .date {
+        margin-top: 10px;
+        font-size: 1.2rem
       }
 
-      .date {
-        margin-bottom: 30px;
+      .title {
+        margin-bottom: 40px;
+        h1 {
+          font-size: 45px;
+          line-height: 0.9;
+        }
       }
 
       .detailGroup {
@@ -112,14 +114,6 @@
       }
 
       .linkGroup {
-        .slash {
-          width: 50px;
-          height: 1px;
-          background-color: $green;
-          transform: rotate(60deg);
-          margin-top: 100px;
-        }
-
         a {
           color: $green;
           display: flex;
@@ -127,10 +121,10 @@
           cursor: pointer;
           text-decoration: underline;
           transform: translateY(-20px);
-          margin-left: 60px;
+          margin-left: 10px;
 
           svg {
-            margin-right: 3px;
+            margin: 0 3px 3px 0;
           }
 
           &:hover {

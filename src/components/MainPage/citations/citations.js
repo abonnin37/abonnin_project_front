@@ -8,8 +8,6 @@ import style from "./citations.module.scss";
 import 'swiper/swiper-bundle.css';
 import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/effect-fade/effect-fade.min.css";
-import QuoteLeft from "../../../assets/quote-left.svg";
-import QuoteRight from "../../../assets/quote-right.svg";
 
 SwiperCore.use([Autoplay, Pagination, EffectFade]);
 
@@ -43,7 +41,6 @@ const Citations = () => {
     return (
         <div id={"recommendations"} className={style.citation}>
             <div className={style.swiper}>
-                <QuoteLeft className={style.leftQuote}/>
                 <Swiper tag="section" {...sliderSettings}>
                     { citationList.length > 0 && citationList.map((citation, i) => {
                         return (
@@ -53,7 +50,6 @@ const Citations = () => {
                         );
                     })}
                 </Swiper>
-                <QuoteRight className={style.rightQuote}/>
             </div>
         </div>
     );

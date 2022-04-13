@@ -8,6 +8,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import RightArrow from "/src/assets/images/right-arrow.svg";
 
 import style from "./project-detail.module.scss";
 import 'swiper/swiper-bundle.css';
@@ -128,11 +129,20 @@ const ProjectDetail = ({project, handleCloseModal}) => {
             <div className={style.rightCol}>
                 { project &&
                     <div className={style.projectContent}>
+                        <div className={style.date}>
+                            <h4>
+                                {
+                                    (
+                                        dayjs(project.beginAt).locale("fr").format("MMMM") === dayjs(project.endAt).locale("fr").format("MMMM") ?
+                                            ""
+                                            :
+                                            dayjs(project.beginAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.beginAt).locale("fr").format("YY") + " - "
+                                    ) + dayjs(project.endAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.endAt).locale("fr").format("YY")
+                                }
+                            </h4>
+                        </div>
                         <div className={style.title}>
                             <h1>{project.name}</h1>
-                        </div>
-                        <div className={style.date}>
-                            <h4>{dayjs(project.beginAt).locale('fr').format("DD MMMM YYYY") + " - " + dayjs(project.endAt).locale('fr').format("DD MMMM YYYY") }</h4>
                         </div>
                         <div className={style.detailGroup}>
                             <h6>.details</h6>
@@ -150,8 +160,7 @@ const ProjectDetail = ({project, handleCloseModal}) => {
                         </div>
                         { project.url &&
                             <div className={style.linkGroup}>
-                                <div className={style.slash} />
-                                <a href={project.url}><ArrowForwardIcon />Lien</a>
+                                <a href={project.url}><RightArrow />Lien</a>
                             </div>
                         }
                     </div>

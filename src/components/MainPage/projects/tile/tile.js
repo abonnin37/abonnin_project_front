@@ -33,7 +33,8 @@ const Tile = ({project}) => {
                             ""
                             :
                             dayjs(project.beginAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.beginAt).locale("fr").format("YY") + " - "
-                    ) + dayjs(project.endAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.endAt).locale("fr").format("YY")}
+                    ) + dayjs(project.endAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.endAt).locale("fr").format("YY")
+                }
             </h4>
             <h3 className={style.title}>
                 {project.name}

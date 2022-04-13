@@ -1,5 +1,4 @@
 import React from "react";
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import style from "./article-presentation.module.scss";
 import * as dayjs from 'dayjs';
@@ -8,6 +7,7 @@ import axios from "../../../../axios";
 import {useMedia} from "use-media";
 import clsx from "clsx";
 import {Link} from "react-router-dom";
+import RightArrow from "/src/assets/images/right-arrow.svg";
 
 const ArticlePresentation = ({article, isResponsiveMode = false}) => {
     const isMobile = useMedia(`(max-width: ${style.mobileBreakpoint})`);
@@ -20,7 +20,7 @@ const ArticlePresentation = ({article, isResponsiveMode = false}) => {
     return (
         <div className={articlePresentationClasses}>
             { article &&
-                <div className={style.content}>
+                <Link className={style.content} to={"/blog/" + article.id}>
                     <img className={style.image} src={axios.defaults.baseURL + article.imageUrl} alt=""/>
                     <div className={style.rightCol}>
                         <h3>{article.title}</h3>
@@ -28,9 +28,9 @@ const ArticlePresentation = ({article, isResponsiveMode = false}) => {
                         <p>
                             {article.summary}
                         </p>
-                        <Link to={"/blog/" + article.id} className={style.link}><ArrowForwardIcon />Plus d'info</Link>
+                        <div className={style.link}><RightArrow />Lire l'article</div>
                     </div>
-                </div>
+                </Link>
             }
             { !isResponsiveMode && ! isMobile &&
                 <div className={style.backgroundPastel} />

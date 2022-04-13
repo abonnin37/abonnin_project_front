@@ -1,7 +1,7 @@
 @import "src/common";
 
 .citation {
-  padding: 75px 0;
+  padding: 85px 0 75px 0;
   background-color: $lightGreen;
 
   .swiper {
@@ -36,20 +36,6 @@
           }
         }
       }
-    }
-  }
-
-  svg {
-    path {
-      fill: $green;
-    }
-
-    &.leftQuote {
-      grid-area: 1 / 1 / 2 / 2;
-    }
-
-    &.rightQuote {
-      grid-area: 3 / 3 / 4 / 4;
     }
   }
 }

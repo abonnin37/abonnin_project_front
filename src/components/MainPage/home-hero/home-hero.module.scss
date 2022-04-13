@@ -2,7 +2,7 @@
 
 .homeHero {
   background-color: $lightGreen;
-  padding-bottom: toRem(75);
+  padding-bottom: 75px;
 
   .homeHeroContainer {
     @extend .content-width;

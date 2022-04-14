@@ -42,7 +42,7 @@ const ListCitations = ({citationList, setIsEditing, removeCitation, addCitation,
                 </tr>
                 { citationList &&
                 citationList.map((citation) =>
-                    <tr key={citation.id}>
+                    <tr key={"citation-"+citation.id}>
                         <td className={style.auteur}>{citation.firstName} {citation.lastName}</td>
                         <td className={style.createdAt}>{dayjs(citation.createdAt).locale('fr').format("DD MMMM YYYY")}</td>
                         <td className={style.actions}>

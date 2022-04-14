@@ -32,7 +32,7 @@ const AdminCitations = () => {
 
     const editCitation = (citation) => {
         const newList = [...citationList];
-        const citationIndex = newList.indexOf(citation);
+        const citationIndex = newList.findIndex(c => c.id === citation.id);
         newList.splice(citationIndex, 1, citation);
         setCitationList(newList);
     }
@@ -42,7 +42,6 @@ const AdminCitations = () => {
         setIsAwaitingRefresh(true);
         axios.get("/api/citations")
             .then(response => {
-                console.log(response);
                 setCitationList(response.data["hydra:member"]);
                 setIsAwaitingRefresh(false);
             })

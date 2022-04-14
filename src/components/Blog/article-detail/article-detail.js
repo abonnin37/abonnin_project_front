@@ -14,15 +14,12 @@ const ArticleDetail = ({articleId}) => {
     useEffect(() => {
         axios.get("/api/posts/" + articleId)
             .then(response => {
-                console.log(response);
                 setArticle(response.data);
             })
             .catch(err => {
                 toast.error(err.response.data["hydra:description"]);
             })
     }, [setArticle]);
-
-    console.log(article);
 
     return (
         <div className={style.articleDetail}>
@@ -34,7 +31,7 @@ const ArticleDetail = ({articleId}) => {
                         <img className={style.image} src={axios.defaults.baseURL + article.imageUrl} alt=""/>
                         <h5 className={style.date}>{dayjs(article.created_at).locale('fr').format("DD MMMM YYYY")}</h5>
                         <h4 className={style.summary}>{article.summary}</h4>
-                        <p className={style.content}>{article.content}</p>
+                        <div className={style.content} dangerouslySetInnerHTML={{ __html: article.content }}></div>
                     </div>
 
                     <div className={style.backgroundLightGreen} />

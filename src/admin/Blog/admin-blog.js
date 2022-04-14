@@ -32,7 +32,7 @@ const AdminBlog = () => {
 
     const editArticle = (article) => {
         const newList = [...articleList];
-        const articleIndex = newList.indexOf(article);
+        const articleIndex = newList.findIndex(a => a.id === article.id);
         newList.splice(articleIndex, 1, article);
         setArticleList(newList);
     }
@@ -42,7 +42,6 @@ const AdminBlog = () => {
         setIsAwaitingRefresh(true);
         axios.get("/api/posts")
             .then(response => {
-                console.log(response);
                 setArticleList(response.data["hydra:member"]);
                 setIsAwaitingRefresh(false);
             })

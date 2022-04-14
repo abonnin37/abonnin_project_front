@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import style from "./citation-form.module.scss";
 import {useForm, Controller} from "react-hook-form";
@@ -19,10 +19,23 @@ const CitationForm = ({addCitation, editCitation, citation}) => {
         createdAt: dayjs(),
     };
 
-    const { control, handleSubmit, formState: {isValid}, reset } = useForm({
+    const { control, handleSubmit, formState: {isValid}, reset, setValue } = useForm({
         mode: "onChange",
         defaultValues: citation ?? defaultValues,
     });
+
+    // When we select a different citation we update the input fields
+    useEffect(() => {
+        if (citation) {
+            setValue('user', citation.user);
+            setValue('firstName', citation.firstName);
+            setValue('lastName', citation.lastName);
+            setValue('position', citation.position);
+            setValue('company', citation.company);
+            setValue('createdAt', citation.createdAt);
+            setValue('content', citation.content)
+        }
+    }, [citation]);
 
     const onSubmit = (data) => {
         if(citation) {
@@ -78,7 +91,10 @@ const CitationForm = ({addCitation, editCitation, citation}) => {
                         InputAdornmentProps={{ position: "end" }}
                         required
                         className={style.datePicker}
-                        {...field}
+                        onChange={field.onChange}
+                        name={field.name}
+                        value={field.value}
+                        onBlur={field.onBlur}
                     />
                 )}
             />

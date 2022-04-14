@@ -43,7 +43,7 @@ const AdminTechnologies = () => {
 
     const updateTechnology = (technology) => {
         const newList = [...listTechnologies];
-        const technologyIndex = newList.indexOf(technology);
+        const technologyIndex = newList.findIndex(t => t.id === technology.id);
         newList.splice(technologyIndex, 1, technology);
         setListTechnologies(newList);
     }

@@ -27,7 +27,6 @@ const ChangePassword = ({uri, AuthStr}) => {
             }
         })
             .then(response => {
-                console.log(response);
                 toast.success("Votre mot de passe a bien été modifiées");
                 reset();
             })

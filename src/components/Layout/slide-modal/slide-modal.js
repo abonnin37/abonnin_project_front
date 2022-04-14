@@ -8,7 +8,7 @@ import style from "./slide-modal.module.scss";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
-        overflowY: "auto"
+        overflowY: "initial"
     },
 }));
 
@@ -18,6 +18,18 @@ export const SlideModal = ({open, setOpen, children, mode = "slide"}) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleOverflow = () => {
+        const modal = document.getElementsByClassName("makeStyles-modal-1")[0];
+
+        if (modal) {
+            if (modal.style.overflowY === "auto") {
+                modal.style.overflowY = "initial";
+            } else {
+                modal.style.overflowY = "auto";
+            }
+        }
+    }
 
     return (
         <div className={style.slideModal}>
@@ -38,7 +50,7 @@ export const SlideModal = ({open, setOpen, children, mode = "slide"}) => {
                         </div>
                     </Fade>
                     :
-                    <Slide in={open} direction={"left"} mountOnEnter unmountOnExit timeout={500}>
+                    <Slide in={open} direction={"left"} mountOnEnter unmountOnExit timeout={500} addEndListener={() => handleOverflow()}>
                         <div className={style.childrenContainer}>
                             {children}
                         </div>

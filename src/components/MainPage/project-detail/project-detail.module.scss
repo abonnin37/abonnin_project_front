@@ -107,6 +107,10 @@
 
       .detailGroup {
         margin-bottom: 30px;
+
+        p {
+          min-height: 16px;
+        }
       }
 
       .technologiesGroup {

@@ -4,7 +4,6 @@ export const FileUpload = () => {
 
     const uploadFile = (file, project_id) => {
         let formData = new FormData();
-        console.log(project_id);
 
         formData.append("imageFile", file);
         formData.append("project", "/api/projects/" + project_id);

@@ -45,16 +45,13 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
     const formSubmissionHandler = (event) => {
         event.preventDefault();
 
-        console.log(event);
-        console.log(project);
-
         // We prepare the information to send
         const requestObj = {
             name: event.target[0].value,
             excerpt: event.target[1].value,
             description: event.target[2].value,
             url: event.target[3].value,
-            images: [],
+            images: project ? project.images : [],
             technologies: project ? project.technologies : [],
             user: event.target[4].value,
             beginAt: new Date(event.target[5].value),

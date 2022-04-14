@@ -40,7 +40,7 @@ const ListArticles = ({articleList, setIsEditing, removeArticle, addArticle, isA
                 </tr>
                 { articleList &&
                 articleList.map((article) =>
-                    <tr key={article.id}>
+                    <tr key={"article-"+article.id}>
                         <td className={style.title}>{article.title}</td>
                         <td className={style.actions}>
                             <div>

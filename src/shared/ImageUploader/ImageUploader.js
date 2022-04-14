@@ -36,7 +36,6 @@ export const ImageUploader = ({resourceName, projectId}) => {
     const uploadHandler = () => {
         uploadFile(selectedFile, projectId).then((response) => {
             addImageToList(response.data);
-            console.log(response);
         }).catch(err => {
             console.log(err);
         });

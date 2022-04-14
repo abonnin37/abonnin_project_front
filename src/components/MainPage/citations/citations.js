@@ -13,7 +13,6 @@ SwiperCore.use([Autoplay, Pagination, EffectFade]);
 
 const Citations = () => {
     const [citationList, setCitationList] = useState([]);
-    console.log(citationList);
 
     // Get all citations
     useEffect(() => {

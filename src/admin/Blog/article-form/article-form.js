@@ -1,17 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Component} from "react";
+import WYSIWYGEditor from "/src/utils/WYSIWYGEditor/WYSIWYGEditor";
 
 import style from "./article-form.module.scss";
 import {useForm, Controller} from "react-hook-form";
-import {TextareaAutosize, TextField} from "@material-ui/core";
+import { TextField} from "@material-ui/core";
 import { DropzoneArea } from 'material-ui-dropzone';
 import clsx from "clsx";
 import {toast} from "react-hot-toast";
 import axios from "../../../axios";
+import {EditorState} from "draft-js";
+import {stateFromHTML} from "draft-js-import-html";
 
 const ArticleForm = ({addArticle, editArticle, article}) => {
     const [updateImage, setUpdateImage] = useState(!(article && article.imageUrl));
+    const [editorWYSIWYGState, setEditorWYSIWYGState] = useState( EditorState.createEmpty());
+
     const defaultValues = {
-        user: "/api/users/10",
+        user: "/api/users/1",
         title: "",
         summary: "",
         content: "",
@@ -19,13 +24,23 @@ const ArticleForm = ({addArticle, editArticle, article}) => {
         published: false,
     };
 
-    const { control, handleSubmit, formState: {isValid}, reset } = useForm({
+    const { control, handleSubmit, formState: {isValid}, reset, setValue } = useForm({
         mode: "onChange",
         defaultValues: article ?? defaultValues,
     });
 
+    // When we select a different article we update the input fields
+    useEffect(() => {
+        if (article) {
+            setValue('user', article.user);
+            setValue('title', article.title);
+            setValue('summary', article.summary);
+            setValue('content', article.content);
+            setEditorWYSIWYGState(EditorState.createWithContent(stateFromHTML(article.content)));
+        }
+    }, [article]);
+
     const onSubmit = (data) => {
-        console.log(data);
         let formData = new FormData();
 
         formData.append("imageFile", updateImage ? data.imageFile : null);
@@ -144,12 +159,7 @@ const ArticleForm = ({addArticle, editArticle, article}) => {
                 control={control}
                 defaultValue=""
                 render={({ field, fieldState }) => (
-                    <TextareaAutosize
-                        aria-label="empty textarea"
-                        placeholder="Contenu de l'article ..."
-                        label={"Contenu"}
-                        variant="outlined"
-                        {...field}/>
+                    <WYSIWYGEditor editorState={editorWYSIWYGState} setEditorState={setEditorWYSIWYGState} onChange={field.onChange} name={field.name}/>
                 )}
             />
             <button type={"submit"} disabled={!isValid} className={clsx({[style.disabled]: !isValid})}>Envoyer</button>

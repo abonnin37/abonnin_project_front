@@ -27,7 +27,6 @@ const ProjectDetail = ({project, handleCloseModal}) => {
     const [technologies, setTechnologies] = useState([]);
 
     useEffect(() => {
-        console.log(project);
         axios.get('/api/projects/'+ project.id +'/technologies')
             .then(response => {
                 setTechnologies(response.data["hydra:member"]);
@@ -146,7 +145,7 @@ const ProjectDetail = ({project, handleCloseModal}) => {
                         </div>
                         <div className={style.detailGroup}>
                             <h6>.details</h6>
-                            <p>{project.description}</p>
+                            <div dangerouslySetInnerHTML={{ __html: project.description }}></div>
                         </div>
                         <div className={style.technologiesGroup}>
                             <h6>.technologies</h6>

@@ -8,12 +8,13 @@ import {toast} from "react-hot-toast";
 import axios from "../../../../axios";
 
 const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
-    const [inputProjects, setInputProjects] = useState("");
-    const defaultValues = {
-        name: "",
-        projects: [],
-    };
 
+    const { control, handleSubmit, formState: {isValid}, reset, setValue } = useForm({
+        mode: "onChange",
+        defaultValues: {name: "", projects: []}
+    });
+
+    // When we select a different technology we update the input fields
     useEffect(() => {
         let input_projects = "";
 
@@ -27,17 +28,15 @@ const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
                 }
             }
         }
-        setInputProjects(input_projects);
-    }, [technology, setInputProjects]);
 
-    const { control, handleSubmit, formState: {isValid}, reset } = useForm({
-        mode: "onChange",
-        defaultValues: technology ? {name: technology.name, projects: inputProjects} : defaultValues,
-    });
+        if (technology) {
+            setValue('name', technology.name);
+            setValue('projects', input_projects);
+        }
+    }, [technology]);
 
     const onSubmit = (data) => {
-
-        let projectsToSend = data.projects.split(",");
+        let projectsToSend = data.projects.replace(/\r?\n|\r|\s/g, "").split(",");
 
         if (!projectsToSend || projectsToSend[0] === "") {
             projectsToSend = [];
@@ -88,7 +87,7 @@ const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
                 render={({ field, fieldState }) => (
                     <TextareaAutosize
                         aria-label="empty textarea"
-                        placeholder={inputProjects ?? "Liste des projets ..."}
+                        placeholder={"Liste des projets ..."}
                         label={"Projets"}
                         variant="outlined"
                         {...field}/>

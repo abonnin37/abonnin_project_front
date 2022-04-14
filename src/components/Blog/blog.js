@@ -13,7 +13,6 @@ const Blog = () => {
     useEffect(() => {
         axios.get("/api/posts")
             .then(response => {
-                console.log(response);
                 setArticleList(response.data["hydra:member"]);
             })
             .catch(err => {

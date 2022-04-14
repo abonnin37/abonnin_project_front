@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import { useHistory, NavLink } from 'react-router-dom';
+import {useHistory, NavLink, useLocation} from 'react-router-dom';
 import { NavHashLink} from "react-router-hash-link";
 
 import style from './menu-list.module.scss';
@@ -11,17 +11,15 @@ const MenuList = ({setShowMenu}) => {
     const {isLoggedIn, isAdmin} = useContext(AuthContext);
     const isTablet = useMedia(`(max-width: ${style.tabletBreakpoint})`);
     const [isHome, setIsHome] = useState(history.location.pathname === "/acceuil");
+    const { pathname } = useLocation();
 
     useEffect(() => {
-        history.listen((location) => {
-            console.log("verif");
-            if (history.location.pathname === "/acceuil" || history.location.pathname === "/") {
-                setIsHome(true);
-            } else {
-                setIsHome(false);
-            }
-        })
-    }, [history]);
+        if (pathname === "/acceuil" || pathname === "/") {
+            setIsHome(true);
+        } else {
+            setIsHome(false);
+        }
+    }, [pathname]);
 
     const handleClick = (link) => {
         if (setShowMenu) {

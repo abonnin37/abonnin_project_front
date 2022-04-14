@@ -26,7 +26,6 @@ const ResetPasswordAsk = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
         axios.post("/api/resetPassword", data)
             .then(response => {
                 if (response.status === 200) {

@@ -41,31 +41,44 @@ const ResetPassword = () => {
         return newPw === actualConfirmNewPw;
     }
 
+    const fetchData = async (data) => {
+        return await axios.patch("/api/users/"+ userId +"/resetPassword", data, {
+            headers: {
+                'Content-Type': 'application/merge-patch+json'
+            }});
+    };
+
     const onSubmit = (data) => {
         data = {...data, token: token};
 
-        axios.patch("/api/users/"+ userId +"/resetPassword", data, {
-            headers: {
-                'Content-Type': 'application/merge-patch+json'
-            }})
-            .then(response => {
-                if (response.status === 200) {
-                    toast.success("Le mot de passe à été mis à jour");
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction,
+            {
+                loading: "En attente ...",
+                error: err => {
+                    if (err.response.status === 400) {
+                        return err.response.data.message;
+                    }
+                    if (err.response.status === 404) {
+                        return "L'utilisateur n'existe pas.";
+                    }
+                    return "Une erreur est survenue, veuillez contacter un administrateur.";
+                },
+                success: res => {
                     history.replace("/login", );
+                    return "Le mot de passe à été mis à jour.";
                 }
-            })
-            .catch(e => {
-                if (e.response.status === 400) {
-                    toast.error(e.response.data.message, {
-                        style: {
-                            whiteSpace: "pre-line"
-                        }
-                    });
+            },
+            {
+                error: {
+                    style: {
+                        whiteSpace: "pre-line"
+                    }
                 }
-                if (e.response.status === 404) {
-                    toast.error("L'utilisateur n'existe pas");
-                }
-            });
+            }
+        );
+
         reset();
     }
 

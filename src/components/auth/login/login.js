@@ -48,26 +48,32 @@ const Login = () => {
         defaultValues: {username: "", password: ""}
     });
 
+    const fetchData = async (data) => {
+        return await axios.post("/api/login", data);
+    };
+
     const onSubmit = (data) => {
-        axios.post("/api/login", data)
-            .then(response => {
-                if (response.status === 200) {
-                    // We get the jwt token data to pass the expiration time to the login fct in milisecond (it come in seconde)
-                    const decoded_token = jwt_decode(response.data.token);
-                    login(response.data.token, decoded_token.exp * 1000, decoded_token.roles);
-                    reset();
-                    toast.success("Vous êtes connecté !");
-                    // replace erase the history so that the user can't come back form "acceuil" to "login"
-                    history.replace("/acceuil", );
-                }
-            })
-            .catch(err => {
-                if (err.response.data.message === "Votre compte n'est pas activé") {
-                    toast.error(err.response.data.message);
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction, {
+            loading: "En attente ...",
+            error: err => {
+                if (err.response.data.message === "deactivated_account") {
+                    return "Consultez votre email, vous devez activer votre compte."
                 } else {
-                    toast.error("Vérifier le couple email / password");
+                    return "Identifiant non valide."
                 }
-            });
+            },
+            success: res => {
+                // We get the jwt token data to pass the expiration time to the login fct in milisecond (it come in seconde)
+                const decoded_token = jwt_decode(res.data.token);
+                login(res.data.token, decoded_token.exp * 1000, decoded_token.roles);
+                reset();
+                // replace erase the history so that the user can't come back form "acceuil" to "login"
+                history.replace("/acceuil", );
+                return "Vous êtes connecté !";
+            }
+        });
     }
 
     return (

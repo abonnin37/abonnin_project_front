@@ -17,20 +17,27 @@ const ProspectModal = ({handleCloseModal}) => {
         defaultValues: defaultValues,
     });
 
+    const fetchData = async (data) => {
+        return await axios.post("/api/prospect_mails/send", data);
+    };
+
     const onSubmit = (data) => {
-        axios.post("/api/prospect_mails/send", data)
-            .then(response => {
-                if (response.status === 200) {
-                    toast.success("Le document vous a bien été envoyé !");
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction,
+            {
+                loading: "En attente ...",
+                error: err => {
+                    return "Il y a eu un problème lors de l'envoie du document.";
+                },
+                success: res => {
                     reset();
                     handleCloseModal();
-                } else {
-                    toast.error("Il y a eu un problème lors de l'envoie du document");
+                    return "Le document vous a été envoyé par email !";
+
                 }
-            })
-            .catch(err => {
-                toast.error(err.response.data["hydra:description"]);
-            })
+            }
+        );
     }
 
     return (

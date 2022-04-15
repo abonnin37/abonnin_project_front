@@ -6,6 +6,7 @@ import {TextField} from "@material-ui/core";
 import {Button} from "../../UI/button/button";
 import axios from "../../../axios";
 import {toast} from "react-hot-toast";
+import jwt_decode from "jwt-decode";
 
 const ChangePassword = ({uri, AuthStr}) => {
     const { control, handleSubmit, formState: {isValid}, reset, watch } = useForm({
@@ -19,28 +20,41 @@ const ChangePassword = ({uri, AuthStr}) => {
         return newPw === actualConfirmNewPw;
     }
 
-    const onSubmit = (data) => {
-        axios.patch("/api/users/" + uri + "/changePassword", data, {
+    const fetchData = async (data) => {
+        return await axios.patch("/api/users/" + uri + "/changePassword", data, {
             headers: {
                 Authorization: AuthStr,
                 'Content-Type': 'application/merge-patch+json'
-            }
-        })
-            .then(response => {
-                toast.success("Votre mot de passe a bien été modifiées");
-                reset();
-            })
-            .catch(err => {
-                if (err.response.status === 400) {
-                    toast.error(err.response.data.message, {
-                        style: {
-                            whiteSpace: "pre-line"
-                        }
-                    });
-                } else {
-                    toast.error("Une erreur est survenue, veuillez contacter un administrateur");
+            }});
+    };
+
+    const onSubmit = (data) => {
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction,
+            {
+                loading: "En attente ...",
+                error: err => {
+                    if (err.response.status === 400) {
+                        return err.response.data.message;
+                    } else {
+                        return "Une erreur est survenue, veuillez contacter un administrateur.";
+                    }
+                },
+                success: res => {
+                    reset();
+                    return "Votre mot de passe a bien été modifié.";
+
                 }
-            });
+            },
+            {
+                error: {
+                    style: {
+                        whiteSpace: "pre-line"
+                    }
+                }
+            }
+        );
     }
 
     return (

@@ -9,6 +9,7 @@ import axios from "../../../axios";
 import AuthContext from "../../../store/auth-context";
 import {toast} from "react-hot-toast";
 import ChangePassword from "../change-password/change-password";
+import jwt_decode from "jwt-decode";
 
 const Profile = () => {
     const [uri, setUri] = useState("");
@@ -26,17 +27,26 @@ const Profile = () => {
         defaultValues: defaultValues,
     });
 
-    const save = (data) => {
-        axios.patch("/api/users/" + uri, data, {
+    const fetchData = async (data) => {
+        return await axios.patch("/api/users/" + uri, data, {
             headers: {
                 Authorization: AuthStr,
                 'Content-Type': 'application/merge-patch+json'
+            }});
+    };
+
+    const save = (data) => {
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction, {
+            loading: "En attente ...",
+            error: err => {
+                return err.response.data["hydra:description"];
+            },
+            success: res => {
+                return "Vos informations ont bien été modifiées";
             }
-        }).then(response => {
-            toast.success("Vos informations ont bien été modifiées");
-        }).catch(err => {
-            toast.error(err.response.data["hydra:description"]);
-        })
+        });
     }
 
     useEffect(() => {

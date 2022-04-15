@@ -25,16 +25,29 @@ const ResetPasswordAsk = () => {
         defaultValues: {email: ""}
     });
 
+    const fetchData = async (data) => {
+        return await axios.post("/api/resetPassword", data);
+    };
+
     const onSubmit = (data) => {
-        axios.post("/api/resetPassword", data)
-            .then(response => {
-                if (response.status === 200) {
-                    toast.success("Un email vous a été envoyé pour réinitialiser votre mot de passe");
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction,
+            {
+                loading: "En attente ...",
+                error: err => {
+                    console.log(err.response);
+                    if (err.response.status === 500) {
+                        return "Une erreur est survenue, veuillez contacter un administrateur.";
+                    }
+                    return err.response.data.message;
+                },
+                success: res => {
+                    return "Un email vous a été envoyé pour réinitialiser votre mot de passe.";
+
                 }
-            })
-            .catch(e => {
-                toast.error(e.response.data.message);
-            });
+            }
+        );
         reset();
     }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import style from './home-hero.module.scss';
 import Banner from "/src/assets/images/home-hero-banner.jpg";
@@ -12,6 +12,14 @@ const HomeHero = () => {
     const handleCloseModal = () => {
         setOpenModal(false);
     }
+
+    useEffect(() => {
+        if (openModal) {
+            document.documentElement.style.overflow = "hidden";
+        } else {
+            document.documentElement.style.overflow = "auto";
+        }
+    }, [openModal])
 
     return (
         <div id={"home"} className={style.homeHero}>

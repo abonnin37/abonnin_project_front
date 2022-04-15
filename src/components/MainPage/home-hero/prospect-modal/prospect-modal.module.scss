@@ -5,6 +5,10 @@
   display: grid;
   grid-template-columns: 1fr;
 
+  @media (max-width: $mobileBreakpoint) {
+    margin: 0 16px;
+  }
+
   .formContainer {
     background-color: white;
     padding: 30px;
@@ -13,6 +17,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: $mobileBreakpoint) {
+      padding: 30px 16px;
+      text-align: center;
+    }
 
     h2 {
       @include h5;
@@ -61,6 +70,25 @@
           cursor: default;
         }
       }
+
+      @media (max-width: $mobileBreakpoint) {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+
+        :global(.MuiFormControl-root){
+          width: 100%;
+
+          fieldset {
+            border-right: 1px solid $green!important;
+          }
+        }
+
+        button {
+          width: 100%;
+          max-width: initial;
+        }
+      }
     }
   }
 
@@ -71,6 +99,10 @@
     position: relative;
     cursor: pointer;
     transform: translate(30px, -30px);
+
+    @media (max-width: $mobileBreakpoint) {
+      transform: translate(15px, -20px) scale(0.7);
+    }
 
     &:hover {
       .circle {

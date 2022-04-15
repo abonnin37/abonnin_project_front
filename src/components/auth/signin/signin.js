@@ -36,22 +36,34 @@ const Signin = () => {
         return actualPw === actualConfirmPw;
     }
 
+    const fetchData = async (data) => {
+        return await axios.post("/api/resetPassword", data);
+    };
+
     const onSubmit = (data) => {
-        axios.post("/api/users", data)
-            .then(response => {
-                if (response.status === 201) {
+        const callFunction= fetchData(data);
+
+        toast.promise(callFunction,
+            {
+                loading: "En attente ...",
+                error: err => {
+                    return err.response.data.message;
+                },
+                success: res => {
                     reset();
-                    toast.success(response.data.message);
                     history.push("/login");
+                    return res.data.message;
+
                 }
-            })
-            .catch(err => {
-                toast.error(err.response.data.message, {
+            },
+            {
+                error: {
                     style: {
                         whiteSpace: "pre-line"
                     }
-                });
-            });
+                }
+            }
+        );
     }
 
     const handleRgpdClick = (value) => {

@@ -111,12 +111,14 @@ function App() {
                     duration: 5000,
                     success: {
                         style: {
-                            border: '1px solid green'
+                            border: '1px solid green',
+                            borderRadius: '2px'
                         }
                     },
                     error: {
                         style: {
                             border: '1px solid red',
+                            borderRadius: '2px'
                         }
                     }
                 }}

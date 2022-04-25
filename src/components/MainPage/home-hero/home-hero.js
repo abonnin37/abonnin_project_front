@@ -35,20 +35,18 @@ const HomeHero = () => {
                     </div>
                     <div className={style.descriptionGroup}>
                         <h2>
-                            Je suis un ingénieur en informatique passionné par le développement web.
+                            Ingénieur informatique engagé
                         </h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Aliquam aspernatur, commodi culpa eius est id impedit incidunt ipsum maxime nostrum,
-                            obcaecati perspiciatis quo, quod repellat sint tempore temporibus vitae voluptates?
-
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Aliquam aspernatur, commodi culpa eius est id impedit incidunt ipsum maxime nostrum,
-                            obcaecati perspiciatis quo, quod repellat sint tempore temporibus vitae voluptates?
-
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Aliquam aspernatur, commodi culpa eius est id impedit incidunt ipsum maxime nostrum,
-                            obcaecati perspiciatis quo, quod repellat sint tempore temporibus vitae voluptates?
+                            J’ai 25 ans, je suis né à Tours et j’ai fait mes études à Rennes dans une école du groupe INSA.
+                        </p>
+                        <p></p>
+                        <p>
+                            Ce qui m’anime dans mon métier, c’est de mettre l’informatique au service de mes partenaires. J’aime voir mes créations comme autant d’outils participant à la réalisation d’un objectif supérieur. L’informatique web permet également de mettre de concert des compétences très diverse, chaque projet est un nouveau défi.
+                        </p>
+                        <p></p>
+                        <p>
+                            Dans un futur proche, je veux partager mon temps entre une activité rémunérée et une activité bénévole auprès de collectifs, d’associations et d’ONG qui travaillent à la conscientisation et à la lutte pour une société plus écologique, plus démocratique et en mettant l’humain au centre de ses réflexions.
                         </p>
                     </div>
 

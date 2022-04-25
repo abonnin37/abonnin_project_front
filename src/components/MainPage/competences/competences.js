@@ -29,7 +29,7 @@ const Competences = () => {
                       <ul>
                           <li>Français</li>
                           <li>Anglais</li>
-                          <li>Portugais (brésilien)</li>
+                          <li>Portugais (du Brésil)</li>
                           <li>Espagnol</li>
                       </ul>
                   </div>
@@ -47,30 +47,33 @@ const Competences = () => {
                       <div>
                           <h3>Back-end</h3>
                           <ul>
-                              <li>PHP ~ Symfony</li>
-                              <li>C# ~ ASP.NET MVC</li>
-                              <li>Java ~ Java Server Faces</li>
+                              <li>SQL</li>
+                              <li>PHP</li>
+                              <li>Symfony</li>
+                              <li>API Platform</li>
                           </ul>
                       </div>
                       <div>
                           <h3>Front-end</h3>
                           <ul>
-                              <li>Javascript ~ React</li>
                               <li>HTML</li>
                               <li>CSS</li>
+                              <li>Javascript</li>
+                              <li>Typescript</li>
+                              <li>React</li>
                           </ul>
                       </div>
                       <div>
                           <h3>CRM</h3>
                           <ul>
                               <li>Wordpress</li>
+                              <li>Moodle</li>
                           </ul>
                       </div>
                       <div>
                           <h3>Autre</h3>
                           <ul>
                               <li>Microsoft Project</li>
-                              <li>SQL</li>
                               <li>UML</li>
                           </ul>
                       </div>

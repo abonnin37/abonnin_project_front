@@ -2,14 +2,12 @@ import React, {useContext, useEffect, useState} from "react";
 
 import style from "./profile.module.scss";
 import {Controller, useForm} from "react-hook-form";
-import * as dayjs from "dayjs";
 import {TextField} from "@material-ui/core";
 import {Button} from "../../UI/button/button";
 import axios from "../../../axios";
 import AuthContext from "../../../store/auth-context";
 import {toast} from "react-hot-toast";
 import ChangePassword from "../change-password/change-password";
-import jwt_decode from "jwt-decode";
 
 const Profile = () => {
     const [uri, setUri] = useState("");

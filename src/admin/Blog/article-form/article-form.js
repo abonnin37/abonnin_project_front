@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Component} from "react";
+import React, {useEffect, useState, Component, useContext} from "react";
 import WYSIWYGEditor from "/src/utils/WYSIWYGEditor/WYSIWYGEditor";
 
 import style from "./article-form.module.scss";
@@ -10,10 +10,13 @@ import {toast} from "react-hot-toast";
 import axios from "../../../axios";
 import {EditorState} from "draft-js";
 import {stateFromHTML} from "draft-js-import-html";
+import AuthContext from "../../../store/auth-context";
 
 const ArticleForm = ({addArticle, editArticle, article}) => {
     const [updateImage, setUpdateImage] = useState(!(article && article.imageUrl));
     const [editorWYSIWYGState, setEditorWYSIWYGState] = useState( EditorState.createEmpty());
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     const defaultValues = {
         user: "/api/users/1",
@@ -54,6 +57,7 @@ const ArticleForm = ({addArticle, editArticle, article}) => {
             axios.post("/api/posts/" + article.id + "?_method=PUT", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    "Authorization": AuthStr
                 },
             })
                 .then(response => {
@@ -67,6 +71,7 @@ const ArticleForm = ({addArticle, editArticle, article}) => {
             axios.post("/api/posts", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    "Authorization": AuthStr
                 }
             })
                 .then(response => {

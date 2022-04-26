@@ -1,6 +1,10 @@
 import axios from "../../axios";
+import {useContext} from "react";
+import AuthContext from "../../store/auth-context";
 
 export const FileUpload = () => {
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     const uploadFile = (file, project_id) => {
         let formData = new FormData();
@@ -11,6 +15,7 @@ export const FileUpload = () => {
         return axios.post("/api/images", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
+                "Authorization": AuthStr
             }
         });
     }
@@ -24,7 +29,11 @@ export const FileUpload = () => {
     }
 
     const deleteFile = (fileId) => {
-        return axios.delete("/api/images/" + fileId);
+        return axios.delete("/api/images/" + fileId, {
+            headers: {
+                "Authorization": AuthStr
+            }
+        });
     }
 
     return {uploadFile, getFiles, deleteFile, getProjectFiles};

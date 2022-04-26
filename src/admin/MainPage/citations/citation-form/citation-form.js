@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 
 import style from "./citation-form.module.scss";
 import {useForm, Controller} from "react-hook-form";
@@ -8,8 +8,12 @@ import {KeyboardDatePicker} from "@material-ui/pickers";
 import {toast} from "react-hot-toast";
 import axios from "../../../../axios";
 import * as dayjs from "dayjs";
+import AuthContext from "../../../../store/auth-context";
 
 const CitationForm = ({addCitation, editCitation, citation}) => {
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
+
     const defaultValues = {
         user: "/api/users/10",
         firstName: "",
@@ -39,7 +43,11 @@ const CitationForm = ({addCitation, editCitation, citation}) => {
 
     const onSubmit = (data) => {
         if(citation) {
-            axios.put("/api/citations/" + citation.id, data)
+            axios.put("/api/citations/" + citation.id, data, {
+                headers: {
+                    "Authorization": AuthStr
+                }
+            })
                 .then(response => {
                     editCitation(response.data);
                     toast.success("Vous avez édité la citation !");
@@ -48,7 +56,11 @@ const CitationForm = ({addCitation, editCitation, citation}) => {
                     toast.error(err.response.data["hydra:description"]);
                 });
         } else {
-            axios.post("/api/citations", data)
+            axios.post("/api/citations", data, {
+                headers: {
+                    "Authorization": AuthStr
+                }
+            })
                 .then(response => {
                     addCitation(response.data);
                     reset();

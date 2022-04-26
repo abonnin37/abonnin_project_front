@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import style from "./technology-form.module.scss";
 import {useForm, Controller} from "react-hook-form";
@@ -6,8 +6,11 @@ import {TextareaAutosize, TextField} from "@material-ui/core";
 import clsx from "clsx";
 import {toast} from "react-hot-toast";
 import axios from "../../../../axios";
+import AuthContext from "../../../../store/auth-context";
 
 const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     const { control, handleSubmit, formState: {isValid}, reset, setValue } = useForm({
         mode: "onChange",
@@ -43,7 +46,11 @@ const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
         }
 
         if(technology) {
-            axios.put("/api/technologies/" + technology.id, {...data, projects: projectsToSend})
+            axios.put("/api/technologies/" + technology.id, {...data, projects: projectsToSend}, {
+                headers: {
+                    "Authorization": AuthStr
+                }
+            })
                 .then(response => {
                     editTechnology(response.data);
                     toast.success("Vous avez édité la technologie !");
@@ -52,7 +59,11 @@ const TechnologyForm = ({addTechnology, editTechnology, technology}) => {
                     toast.error(err.response.data["hydra:description"]);
                 });
         } else {
-            axios.post("/api/technologies", {...data, projects: projectsToSend})
+            axios.post("/api/technologies", {...data, projects: projectsToSend}, {
+                headers: {
+                    "Authorization": AuthStr
+                }
+            })
                 .then(response => {
                     addTechnology(response.data);
                     reset();

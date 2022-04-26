@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import style from "./list-citations.module.scss";
 import Edit from "../../../../assets/edit.svg";
@@ -7,8 +7,11 @@ import {CircularProgress} from "@material-ui/core";
 import axios from "../../../../axios";
 import {toast} from "react-hot-toast";
 import * as dayjs from "dayjs";
+import AuthContext from "../../../../store/auth-context";
 
 const ListCitations = ({citationList, setIsEditing, removeCitation, addCitation, isAwaitingRefresh}) => {
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     const onDeleteHandler = (citation) => {
         removeCitation(citation);
@@ -16,6 +19,9 @@ const ListCitations = ({citationList, setIsEditing, removeCitation, addCitation,
         axios({
             method: "delete",
             url: '/api/citations/'+citation.id,
+            headers: {
+                "Authorization": AuthStr
+            }
         })
             .then((response) => {
                 if (response.status === 204) {

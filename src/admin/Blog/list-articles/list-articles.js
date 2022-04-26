@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import style from "./list-articles.module.scss";
 import Edit from "../../../assets/edit.svg";
@@ -6,8 +6,11 @@ import Delete from "../../../assets/trash.svg";
 import {CircularProgress} from "@material-ui/core";
 import axios from "../../../axios";
 import {toast} from "react-hot-toast";
+import AuthContext from "../../../store/auth-context";
 
 const ListArticles = ({articleList, setIsEditing, removeArticle, addArticle, isAwaitingRefresh}) => {
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     const onDeleteHandler = (article) => {
         removeArticle(article);
@@ -15,6 +18,9 @@ const ListArticles = ({articleList, setIsEditing, removeArticle, addArticle, isA
         axios({
             method: "delete",
             url: '/api/posts/'+article.id,
+            headers: {
+                "Authorization": AuthStr
+            }
         })
             .then((response) => {
                 if (response.status === 204) {

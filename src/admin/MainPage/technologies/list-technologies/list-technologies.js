@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from "../../../../axios";
 
 import style from "./list-technologies.module.scss";
@@ -8,14 +8,21 @@ import Delete from "../../../../assets/trash.svg";
 import Snackbar from "@material-ui/core/Snackbar";
 import {Alert} from "@material-ui/lab";
 import {toast} from "react-hot-toast";
+import AuthContext from "../../../../store/auth-context";
 
 const ListTechnologies = ({listTechnologies, setIsEditing, removeTechnology, addTechnology, isAwaitingRefresh}) => {
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
+
     const onDeleteHandler = (technology) => {
         removeTechnology(technology);
         // We send the request
         axios({
             method: "delete",
             url: '/api/technologies/'+technology.id,
+            headers: {
+                "Authorization": AuthStr
+            }
         })
             .then((response) => {
                 if (response.status === 204) {

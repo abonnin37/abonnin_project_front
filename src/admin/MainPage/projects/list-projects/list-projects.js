@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import style from "./list-projects.module.scss";
 import Edit from "../../../../assets/edit.svg";
@@ -7,11 +7,14 @@ import axios from "../../../../axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import {Alert} from "@material-ui/lab";
+import AuthContext from "../../../../store/auth-context";
 
 const ListProjects = ({listProjects, refreshList, isAwaitingRefresh, setIsEditing}) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAwaiting, setIsAwaiting] = useState(false);
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -26,6 +29,9 @@ const ListProjects = ({listProjects, refreshList, isAwaitingRefresh, setIsEditin
         axios({
             method: "delete",
             url: '/api/projects/'+id,
+            headers: {
+                "Authorization": AuthStr
+            }
         })
             .then((response) => {
                 setIsAwaiting(false);

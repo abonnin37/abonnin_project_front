@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useContext, useEffect, useRef, useState} from "react"
 import useForm from "../../../../hooks/form/useForm";
 import {addProjectForm} from "../../../../utils/form/formConfig";
 import clsx from "clsx";
@@ -10,6 +10,7 @@ import 'dayjs/locale/fr';
 
 import style from "./project-form.module.scss";
 import axios from "../../../../axios";
+import AuthContext from "../../../../store/auth-context";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -21,6 +22,8 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isAwaiting, setIsAwaiting] = useState(false);
+    const {token} = useContext(AuthContext);
+    const AuthStr = "Bearer ".concat(token);
 
     useEffect(() => {
         if (isEditing) {
@@ -64,6 +67,9 @@ const ProjectForm = ({refreshList, isEditing, project}) => {
             method: isEditing ? "put" : "post",
             url: isEditing ? "/api/projects/"+project.id : "/api/projects",
             data: requestObj,
+            headers: {
+                "Authorization": AuthStr
+            }
         })
             .then((response) => {
                 setIsAwaiting(false);

@@ -132,19 +132,25 @@ const ProjectDetail = ({project, handleCloseModal}) => {
                             <h4>
                                 {
                                     (
-                                        dayjs(project.beginAt).locale("fr").format("MMMM") === dayjs(project.endAt).locale("fr").format("MMMM") ?
+                                        dayjs(project.beginAt).locale("fr").format("MMMM YYYY") === dayjs(project.endAt).locale("fr").format("MMMM YYYY") ?
                                             ""
                                             :
-                                            dayjs(project.beginAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.beginAt).locale("fr").format("YY") + " - "
-                                    ) + dayjs(project.endAt).locale("fr").format("MMMM").slice(0,3).toUpperCase() + " " + dayjs(project.endAt).locale("fr").format("YY")
+                                            dayjs(project.beginAt).locale("fr").format("MMM").toUpperCase() + " " + dayjs(project.beginAt).locale("fr").format("YY") + " - "
+                                    ) + dayjs(project.endAt).locale("fr").format("MMM").toUpperCase() + " " + dayjs(project.endAt).locale("fr").format("YY")
                                 }
                             </h4>
                         </div>
                         <div className={style.title}>
                             <h1>{project.name}</h1>
                         </div>
+                        <div className={style.excerptGroup}>
+                            <h6>.aperçu</h6>
+                            <div className={style.excerpt}>
+                                {project.excerpt}
+                            </div>
+                        </div>
                         <div className={style.detailGroup}>
-                            <h6>.details</h6>
+                            <h6>.détail</h6>
                             <div dangerouslySetInnerHTML={{ __html: project.description }}></div>
                         </div>
                         <div className={style.technologiesGroup}>

@@ -75,6 +75,7 @@ const Competences = () => {
                           <ul>
                               <li>Microsoft Project</li>
                               <li>UML</li>
+                              <li>Linux</li>
                           </ul>
                       </div>
                   </div>

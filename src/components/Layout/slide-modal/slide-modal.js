@@ -6,17 +6,27 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import style from "./slide-modal.module.scss";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     modal: {
         overflowY: "initial",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        justifyContent: ({mode}) => {
+            if (mode === "slide")
+                return "initial";
+            else
+                return "center";
+        },
+        alignItems: ({mode}) => {
+            if (mode === "slide")
+                return "initial";
+            else
+                return "center";
+        }
     },
-}));
+});
 
 export const SlideModal = ({open, setOpen, children, mode = "slide"}) => {
-    const classes = useStyles();
+    const classes = useStyles({mode});
 
     const handleClose = () => {
         setOpen(false);
@@ -24,7 +34,6 @@ export const SlideModal = ({open, setOpen, children, mode = "slide"}) => {
 
     const handleOverflow = () => {
         const modal = document.getElementsByClassName("makeStyles-modal-1")[0];
-
         if (modal) {
             if (modal.style.overflowY === "auto") {
                 modal.style.overflowY = "initial";

@@ -17,6 +17,8 @@
   .leftCol {
     grid-area: 1 / 1 / 2 / 2;
     background-color: $whitePastel;
+    position: sticky;
+    top: 0;
 
     @media (max-width: $mobileBreakpoint) {
       grid-area: 2 / 1 / 3 / 2;

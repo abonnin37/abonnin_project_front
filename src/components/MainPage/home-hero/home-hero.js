@@ -42,11 +42,11 @@ const HomeHero = () => {
                         </p>
                         <p></p>
                         <p>
-                            Ce qui m’anime dans mon métier, c’est de mettre l’informatique au service de mes partenaires. J’aime voir mes créations comme autant d’outils participant à la réalisation d’un objectif supérieur. L’informatique web permet également de mettre de concert des compétences très diverse, chaque projet est un nouveau défi.
+                            Ce qui m’anime dans mon métier, c’est de mettre l’informatique au service de mes partenaires. J’aime voir mes créations comme autant d’outils participant à la réalisation d’un objectif supérieur. L’informatique web me permet également de mettre de concert des compétences très diverse, chaque projet est un nouveau défi.
                         </p>
                         <p></p>
                         <p>
-                            Dans un futur proche, je veux partager mon temps entre une activité rémunérée et une activité bénévole auprès de collectifs, d’associations et d’ONG qui travaillent à la conscientisation et à la lutte pour une société plus écologique, plus démocratique et en mettant l’humain au centre de ses réflexions.
+                            Je partage mon temps entre une activité rémunérée et une activité bénévole auprès de collectifs, d’associations et d’ONG qui travaillent à une société plus écologique, plus démocratique et plus humanisée.
                         </p>
                     </div>
 

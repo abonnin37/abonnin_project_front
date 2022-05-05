@@ -33,7 +33,7 @@ export const SlideModal = ({open, setOpen, children, mode = "slide"}) => {
     };
 
     const handleOverflow = () => {
-        const modal = document.getElementsByClassName("makeStyles-modal-1")[0];
+        const modal = document.getElementsByClassName(classes.modal)[0];
         if (modal) {
             if (modal.style.overflowY === "auto") {
                 modal.style.overflowY = "initial";

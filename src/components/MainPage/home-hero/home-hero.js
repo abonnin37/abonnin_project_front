@@ -28,7 +28,7 @@ const HomeHero = () => {
                 <div className={style.contentHomeHero}>
                     <div className={style.cvLink}>
                         <RightArrow />
-                        <div onClick={() => setOpenModal(!openModal)}>Lien vers mon CV</div>
+                        <div onClick={() => setOpenModal(!openModal)}>Obtenir mon CV</div>
                     </div>
                     <div className={style.banner}>
                         <img src={Banner} alt=""/>
@@ -42,11 +42,11 @@ const HomeHero = () => {
                         </p>
                         <p></p>
                         <p>
-                            Ce qui m’anime dans mon métier, c’est de mettre l’informatique au service de mes partenaires. J’aime voir mes créations comme autant d’outils participant à la réalisation d’un objectif supérieur. L’informatique web me permet également de mettre de concert des compétences très diverse, chaque projet est un nouveau défi.
+                            Ce qui m’anime dans mon métier, c’est de mettre l’informatique au service de mes partenaires. J’aime voir mes créations comme autant d’outils participant à la réalisation d’un objectif supérieur. L’informatique web me permet également de mettre de concert des compétences très diverses, chaque projet est un nouveau défi.
                         </p>
                         <p></p>
                         <p>
-                            Je partage mon temps entre une activité rémunérée et une activité bénévole auprès de collectifs, d’associations et d’ONG qui travaillent à une société plus écologique, plus démocratique et plus humanisée.
+                            Je partage mon temps entre une activité rémunérée et une activité bénévole auprès de collectifs, d’associations et d’ONG qui travaillent à une société plus écologique, plus démocratique et plus humaine.
                         </p>
                     </div>
 

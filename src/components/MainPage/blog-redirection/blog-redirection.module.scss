@@ -6,8 +6,10 @@
 
   .blogRedirectionContainer {
     @extend .content-width;
+    display: flex;
+    flex-direction: column;
 
-    h2 {
+    .blogRedirectionContent {
       margin: 0 auto;
       border: 1px solid $green;
       padding: 20px min(100px, 11%);
@@ -16,11 +18,20 @@
       text-align: center;
       cursor: pointer;
 
-      span {
+      .blogLink {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-decoration: underline;
+
+        p {
+          margin-top: 6px;
+          font-size: 1.25rem;
+          margin-left: 4px;
+        };
       }
 
-      &:hover span {
+      &:hover .blogLink {
         text-decoration: none;
       }
     }

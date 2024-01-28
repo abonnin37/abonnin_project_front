@@ -32,11 +32,11 @@ function App() {
             <Header />
             <main>
                 <Switch>
-                    <Route path="/acceuil">
+                    <Route path="/accueil">
                         <MainPage />
                     </Route>
                     <Route path='/' exact>
-                        <Redirect to="/acceuil" />
+                        <Redirect to="/accueil" />
                     </Route>
                     <Route path="/legal">
                         <Legal />
@@ -100,7 +100,7 @@ function App() {
                     }
 
                     {/* If a route is unknown */}
-                    <Redirect to="/acceuil" />
+                    <Redirect to="/accueil" />
                 </Switch>
             </main>
             <Footer />

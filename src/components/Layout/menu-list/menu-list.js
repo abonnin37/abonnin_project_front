@@ -10,11 +10,11 @@ const MenuList = ({setShowMenu}) => {
     const history = useHistory();
     const {isLoggedIn, isAdmin} = useContext(AuthContext);
     const isTablet = useMedia(`(max-width: ${style.tabletBreakpoint})`);
-    const [isHome, setIsHome] = useState(history.location.pathname === "/acceuil");
+    const [isHome, setIsHome] = useState(history.location.pathname === "/accueil");
     const { pathname } = useLocation();
 
     useEffect(() => {
-        if (pathname === "/acceuil" || pathname === "/") {
+        if (pathname === "/accueil" || pathname === "/") {
             setIsHome(true);
         } else {
             setIsHome(false);
@@ -58,8 +58,8 @@ const MenuList = ({setShowMenu}) => {
                   </>
                   :
                     <>
-                        <li onClick={() => handleClick("/acceuil")}>
-                            <NavLink activeClassName={style.active} to="/acceuil">Acceuil</NavLink>
+                        <li onClick={() => handleClick("/accueil")}>
+                            <NavLink activeClassName={style.active} to="/accueil">accueil</NavLink>
                         </li>
                     </>
               }
@@ -74,8 +74,8 @@ const MenuList = ({setShowMenu}) => {
               </>
               }
               {/*
-                  <li onClick={() => handleClick("/acceuil")}>
-                      <NavLink activeClassName={style.active} to="/acceuil">Acceuil</NavLink>
+                  <li onClick={() => handleClick("/accueil")}>
+                      <NavLink activeClassName={style.active} to="/accueil">accueil</NavLink>
                   </li>
                   { isLoggedIn && isAdmin &&
                       <li onClick={() => handleClick("/adminMainPage")}>

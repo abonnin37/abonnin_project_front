@@ -20,7 +20,7 @@ const Footer = () => {
                     <nav>
                         <ul>
                             <li>
-                                <NavLink activeClassName={style.active} to="/acceuil">Acceuil</NavLink>
+                                <NavLink activeClassName={style.active} to="/accueil">accueil</NavLink>
                             </li>
                             <li>
                                 <NavLink activeClassName={style.active} to="/blog">Blog</NavLink>

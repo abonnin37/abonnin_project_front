@@ -15,9 +15,9 @@ export const AuthWrapper = ({title, children}) => {
                 <div className={style.children}>
                     {children}
                 </div>
-                <div className={style.home} onClick={() => history.replace("/acceuil", )}>
+                <div className={style.home} onClick={() => history.replace("/accueil", )}>
                     <HomeIcon />
-                    Acceuil
+                    accueil
                 </div>
             </div>
         </div>

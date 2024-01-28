@@ -69,8 +69,8 @@ const Login = () => {
                 const decoded_token = jwt_decode(res.data.token);
                 login(res.data.token, decoded_token.exp * 1000, decoded_token.roles);
                 reset();
-                // replace erase the history so that the user can't come back form "acceuil" to "login"
-                history.replace("/acceuil", );
+                // replace erase the history so that the user can't come back form "accueil" to "login"
+                history.replace("/accueil", );
                 return "Vous êtes connecté !";
             }
         });

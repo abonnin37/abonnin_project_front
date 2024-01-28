@@ -38,7 +38,7 @@ const MenuList = ({setShowMenu}) => {
               { isHome ?
                   <>
                       <li onClick={() => handleClick("#home")}>
-                          <NavHashLink to={"#home"}>Acceuil</NavHashLink>
+                          <NavHashLink to={"#home"}>Accueil</NavHashLink>
                       </li>
                       <li onClick={() => handleClick("#projects")}>
                           <NavHashLink to={"#projects"} scroll={el => scrollWithOffset(el, -122, -98.39)}>Projets</NavHashLink>

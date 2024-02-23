@@ -1,0 +1,9 @@
+# Installation de l'environnement de développement avec Docker
+
+En premier lieu, il vous faudra installer Docker Desktop si vous être sur un environnement Windows.
+
+Vous pourrez ensuite créer une image à partir du Dockerfile en ouvrant un terminal à la racine du projet et en exécutant cette commande :
+docker build -t alexandrebonnin-front:latest .
+
+Une fois l'image construite sur votre poste, lancer la commande ci-dessous pour exécuter le container docker :
+docker run -d -it -p 3001:3000 --name alexandrebonnin-front alexandrebonnin-front:latest

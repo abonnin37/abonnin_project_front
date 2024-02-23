@@ -1,0 +1,25 @@
+## Active la redirection pour ce fichier htaccess
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^alexandrebonnin\.fr [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://alexandrebonnin.fr/$1 [R,L]
+
+# Défini la base de redirection comme "/"
+RewriteBase /
+
+# Indique que si le chemin tombe sur "index.html" il n'y a pas de substitution à apporter
+RewriteRule ^index.html$ - [L]
+
+## On applique une condition à la redirection grace à "RewriteCond"
+# On teste si la requête concerne un fichier qui n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# On teste si la requête concerne un dossier qui n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# On teste si le requête concerne un lien qui n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Si la requête entre dans une de ces conditions on redirige le client vers le fichier "index.html"
+# Le drapeau "L" signifie que cette redirection est la dernière du fichier htaccess
+RewriteRule . /index.html [L]

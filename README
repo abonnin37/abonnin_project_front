@@ -6,4 +6,7 @@ Vous pourrez ensuite créer une image à partir du Dockerfile en ouvrant un term
 docker build -t alexandrebonnin-front:latest .
 
 Une fois l'image construite sur votre poste, lancer la commande ci-dessous pour exécuter le container docker :
-docker run -d -it -p 3001:3000 --name alexandrebonnin-front alexandrebonnin-front:latest
+docker run -d -it -p 3001:3000 --name alexandrebonnin-front -v .:/alexandrebonnin-front -v /alexandrebonnin-front/node_modules alexandrebonnin-front:latest
+
+Pour exécuter l'environnement de développement local avec docker-compose :
+docker-compose up -d

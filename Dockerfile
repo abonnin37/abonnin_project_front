@@ -4,14 +4,8 @@ FROM node:${NODE_VERSION}-alpine AS development
 RUN node -v
 RUN npm -v
 
-ENV NODE_ENV development
-
 WORKDIR /alexandrebonnin-front
 
-COPY package.json .
+COPY package.json ./
 
 RUN npm install
-
-COPY . .
-
-CMD npm run start

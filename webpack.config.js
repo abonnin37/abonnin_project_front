@@ -70,6 +70,11 @@ module.exports =  {
         contentBase: path.join(__dirname, "public/"),
         port: 3000,
         host: "0.0.0.0",
+        hot: true,
+        watchOptions: {
+            poll: 1000,
+            ignored: '**/node_modules/',
+        },
         historyApiFallback: true,
     },
     plugins: [
@@ -82,8 +87,5 @@ module.exports =  {
                 chunkFilename: isDevelopment ? '[id].css' : '[id].[fullhash].css'
             },
         ),
-    ],
-    watchOptions: {
-        poll: 1000,
-    }
+    ]
 };

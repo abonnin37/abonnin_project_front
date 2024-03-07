@@ -3,7 +3,7 @@ services:
   alexandrebonnin-front:
     image: abonnin37/alexandrebonnin-front:latest
     env_file:
-      - .env
+      - .env.dev
     ports: 
       - "3001:3000"
     volumes:

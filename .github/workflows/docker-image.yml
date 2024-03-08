@@ -17,7 +17,7 @@ jobs:
       run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
     - name: Push Docker image to Docker Hub
-      run: docker push abonnin37/alexandrebonnin-front-prod:latest
+      run: docker push alexandrebonnin-front-prod:latest
 
     - name: test
       run: echo "valid 2"

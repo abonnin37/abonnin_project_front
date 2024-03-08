@@ -14,5 +14,5 @@ COPY . .
 
 RUN npm run build
 
-FROM node:${NODE_VERSION}-alpine AS production
+FROM node:${NODE_VERSION}-alpine AS production 
 

@@ -18,3 +18,5 @@ jobs:
 
     - name: Push Docker image to Docker Hub
       run: docker push abonnin37/alexandrebonnin-front-prod:latest
+
+    -name: test

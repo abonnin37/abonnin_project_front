@@ -20,4 +20,5 @@ jobs:
       run: docker push abonnin37/alexandrebonnin-front-prod:latest
 
     - name: test
+      run: echo "valid"
     

@@ -18,7 +18,4 @@ jobs:
 
     - name: Push Docker image to Docker Hub
       run: docker push "${{ secrets.DOCKERHUB_USERNAME }}"/alexandrebonnin-front-prod:latest
-
-    - name: test
-      run: echo "valid 2"
     

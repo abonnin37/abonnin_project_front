@@ -1,9 +1,10 @@
 version: '3'
+
 services:
   alexandrebonnin-front:
-    image: abonnin37/alexandrebonnin-front:latest
+    image: abonnin37/alexandrebonnin-front-prod:latest
     env_file:
-      - .env.dev
+      - prod.env
     ports: 
       - "3001:3000"
     volumes:

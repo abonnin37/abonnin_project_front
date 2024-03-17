@@ -37,7 +37,7 @@ const Signin = () => {
     }
 
     const fetchData = async (data) => {
-        return await axios.post("/api/resetPassword", data);
+        return await axios.post("/api/users", data);
     };
 
     const onSubmit = (data) => {

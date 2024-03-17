@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  alexandrebonnin-front:
+    image: abonnin37/alexandrebonnin-front:latest
+    env_file:
+      - dev.env
+    ports: 
+      - "3001:3000"
+    volumes:
+      - ".:/alexandrebonnin-front"
+      - "/alexandrebonnin-front/node_modules"
+    command: sh -c "npm run start"

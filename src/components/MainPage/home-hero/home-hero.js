@@ -35,7 +35,7 @@ const HomeHero = () => {
                     </div>
                     <div className={style.descriptionGroup}>
                         <h2>
-                            Ingénieur informatique engagé
+                            Ingénieur informatique
                         </h2>
                         <p>
                             J’ai 25 ans, je suis né à Tours et j’ai fait mes études à Rennes dans une école du groupe INSA.

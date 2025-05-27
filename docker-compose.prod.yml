@@ -1,13 +1,24 @@
-version: '3'
-
 services:
-  alexandrebonnin-front:
-    image: abonnin37/alexandrebonnin-front-prod:latest
-    env_file:
-      - prod.env
-    ports: 
-      - "3001:3000"
-    volumes:
-      - ".:/alexandrebonnin-front"
-      - "/alexandrebonnin-front/node_modules"
-    command: sh -c "npm run start"
+  frontend-alexandrebonnin-fr:
+    container_name: frontend-alexandrebonnin-fr
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+      args:
+        - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
+    restart: always
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`alexandrebonnin.fr`)"
+      - "traefik.http.routers.frontend.entrypoints=web,websecure"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.frontend.tls=true"
+      - "traefik.http.routers.frontend.tls.certresolver=production"
+    networks:
+      - traefik_default
+
+networks:
+  traefik_default:
+    external: true

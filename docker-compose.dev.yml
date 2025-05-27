@@ -1,10 +1,12 @@
-version: '3'
-
 services:
-  alexandrebonnin-front:
-    image: abonnin37/alexandrebonnin-front:latest
-    env_file:
-      - dev.env
+  frontend-alexandrebonnin-fr:
+    container_name: frontend-alexandrebonnin-fr
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
     ports: 
       - "3001:3000"
     volumes:

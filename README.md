@@ -17,3 +17,10 @@ Ou la commande
 ```
 npm run docker-dev-up
 ```
+
+# Installation de l'environnement de production
+1. Clônez le projet sur votre serveur à l'emplacement souhaité.
+2. Changez les variables d'environnement dand le fichier `prod.env`.
+3. Lancez la commande suivante pour lancer le container : `docker compose --env-file /var/projects/env_files/alexandrebonnin.fr.env -f docker-compose.prod.yml up -d --build`.
+
+Pour arrêter le container, exécutez la commande suivante : `docker compose --env-file /var/projects/env_files/alexandrebonnin.fr.env -f docker-compose.prod.yml down`.

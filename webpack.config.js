@@ -1,4 +1,5 @@
 require('dotenv').config();
+const webpack = require('webpack');
 const path = require('path');
 const isDevelopment = process.env.NODE_ENV === 'development';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -78,6 +79,9 @@ module.exports =  {
         historyApiFallback: true,
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env.REACT_APP_BACKEND_URL': JSON.stringify(process.env.REACT_APP_BACKEND_URL),
+        }),
         new HtmlWebpackPlugin({
             template: "public/index.html", // to import index.html file inside index.js
           }),

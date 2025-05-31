@@ -6,6 +6,6 @@ RUN npm -v
 
 WORKDIR /alexandrebonnin-front
 
-COPY package.json ./
+COPY package.json package-lock.json ./
 
 RUN npm install
